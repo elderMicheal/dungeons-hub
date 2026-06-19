@@ -4,6 +4,8 @@ Static campaign hub for dungeons.michealburford.com.
 
 This is a lightweight HTML, CSS, and vanilla JavaScript site. It has no backend, build step, database, login system, or API integrations.
 
+Repository: https://github.com/elderMicheal/dungeons-hub
+
 ## Edit Campaign Data
 
 Update `data.js`.

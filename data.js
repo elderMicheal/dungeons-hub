@@ -19,11 +19,11 @@ const SITE_DATA = {
       dndBeyondRules: "#",
       owlbearRoom: "#",
       roll20Game: "#",
-      githubRepo: "#",
-      githubPages: "#",
-      githubEditData: "#",
-      githubEditReadme: "#",
-      githubEditCname: "#"
+      githubRepo: "https://github.com/elderMicheal/dungeons-hub",
+      githubPages: "https://dungeons.michealburford.com",
+      githubEditData: "https://github.com/elderMicheal/dungeons-hub/edit/main/data.js",
+      githubEditReadme: "https://github.com/elderMicheal/dungeons-hub/edit/main/README.md",
+      githubEditCname: "https://github.com/elderMicheal/dungeons-hub/edit/main/CNAME"
     }
   },
 
