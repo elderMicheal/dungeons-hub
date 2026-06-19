@@ -33,11 +33,15 @@
 
 html {
   min-width: 320px;
+  width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  overflow-x: hidden;
   min-height: 100vh;
   background:
     radial-gradient(circle at 12% 0%, rgba(239, 184, 79, 0.18), transparent 20rem),
@@ -94,6 +98,7 @@ h3,
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-width: 0;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid rgba(90, 69, 47, 0.8);
   background: rgba(8, 7, 6, 0.96);
@@ -184,8 +189,10 @@ h3,
 
 .app-shell {
   width: min(1180px, 100%);
+  max-width: 100%;
   margin: 0 auto;
   padding: 1rem;
+  overflow-x: clip;
 }
 
 .app-shell:focus {
@@ -206,6 +213,7 @@ h3,
 .starter-hero {
   display: grid;
   gap: 0.85rem;
+  min-width: 0;
   margin-bottom: 1rem;
   padding: 1rem;
   overflow: hidden;
@@ -220,21 +228,26 @@ h3,
 .hero-copy {
   display: grid;
   gap: 0.42rem;
+  min-width: 0;
 }
 
 .starter-hero h1,
 .page-hero h1,
 .dashboard-hero h1 {
   margin: 0;
+  max-width: 100%;
   color: var(--text);
-  font-size: clamp(2.55rem, 10.4vw, 4.8rem);
+  overflow-wrap: break-word;
+  font-size: clamp(2.3rem, 9vw, 3.35rem);
   line-height: 1;
 }
 
 .starter-hero h2 {
   margin: 0;
+  max-width: 100%;
   color: var(--gold);
-  font-size: clamp(1.25rem, 5.7vw, 3rem);
+  overflow-wrap: break-word;
+  font-size: clamp(1.2rem, 5vw, 2.2rem);
   line-height: 1.08;
 }
 
@@ -244,18 +257,21 @@ h3,
   max-width: 66ch;
   margin: 0;
   color: var(--muted);
+  overflow-wrap: break-word;
 }
 
 .hero-actions,
 .quick-link-grid {
   display: grid;
   gap: 0.6rem;
+  min-width: 0;
 }
 
 .quick-link-card {
   display: grid;
   gap: 0.45rem;
   min-width: 0;
+  max-width: 100%;
   padding: 0.72rem 0.8rem;
   border: 1px solid rgba(90, 69, 47, 0.86);
   border-radius: 12px;
@@ -266,7 +282,7 @@ h3,
 }
 
 .hero-actions .quick-link-card {
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: center;
 }
 
@@ -303,11 +319,13 @@ h3,
 .quick-link-card strong {
   color: var(--text);
   font-size: 1rem;
+  overflow-wrap: anywhere;
 }
 
 .quick-link-card span {
   color: var(--muted);
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
 .quick-card-action {
@@ -335,6 +353,7 @@ h3,
 .panel,
 .character-card {
   min-width: 0;
+  max-width: 100%;
   padding: 1rem;
   background: linear-gradient(145deg, rgba(18, 16, 13, 0.98), rgba(12, 10, 8, 0.98));
 }
