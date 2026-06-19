@@ -53,7 +53,7 @@ function routeButton(label, route, className = "button") {
 function pageHeader(title, text) {
   return `
     <section class="page-hero">
-      <p class="eyebrow">Campaign hub</p>
+      <p class="eyebrow">Dungeons Hub</p>
       <h1>${escapeHtml(title)}</h1>
       ${text ? `<p>${escapeHtml(text)}</p>` : ""}
     </section>
@@ -106,6 +106,123 @@ function renderRoute() {
 }
 
 function renderHome() {
+  if (DATA.siteStatus && DATA.siteStatus.campaignActive) {
+    return renderCampaignDashboardHome();
+  }
+
+  return renderStarterHome();
+}
+
+function renderStarterHome() {
+  const home = DATA.starterHome;
+  const primaryLinks = DATA.quickLinks.slice(0, 5);
+
+  return `
+    <section class="starter-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Gather the party</p>
+        <h1>${escapeHtml(home.hero.title)}</h1>
+        <h2>${escapeHtml(home.hero.subtitle)}</h2>
+        <p>${escapeHtml(home.hero.intro)}</p>
+      </div>
+      <div class="hero-actions" aria-label="First actions">
+        ${primaryLinks.map(renderQuickLinkCard).join("")}
+      </div>
+    </section>
+
+    <section class="starter-grid">
+      <article class="panel intro-card">
+        <p class="eyebrow">What this is</p>
+        <h2>Your D&D clubhouse</h2>
+        <p>${escapeHtml(home.whatThisIs)}</p>
+      </article>
+
+      <article class="panel parchment-card">
+        <p class="eyebrow">Before your first session</p>
+        <h2>What you need</h2>
+        <ol class="check-list">
+          ${home.whatYouNeed.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+        <p>${escapeHtml(home.optionalNeed)}</p>
+      </article>
+
+      <article class="panel parchment-card">
+        <p class="eyebrow">Start here, brave fool</p>
+        <h2>New player quick start</h2>
+        <ol class="check-list">
+          ${home.quickStart.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+        ${routeButton("Open Start Here", "start", "button button-small")}
+      </article>
+
+      <article class="panel no-campaign-card">
+        <p class="eyebrow">Not started yet</p>
+        <h2>${escapeHtml(home.noCampaign.title)}</h2>
+        <p>${escapeHtml(home.noCampaign.text)}</p>
+        <div class="future-mini-grid">
+          ${DATA.futureLinks.slice(0, 4).map((item) => `
+            <a href="#${escapeHtml(item.route)}" class="future-mini-link">
+              <strong>${escapeHtml(item.label)}</strong>
+              <span>${escapeHtml(item.description)}</span>
+            </a>
+          `).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <p class="eyebrow">New to D&D?</p>
+        <h2>Quick help</h2>
+        <div class="help-tile-grid">
+          ${home.quickHelp.map((item) => `
+            <a class="help-tile" href="#${escapeHtml(item.route)}">
+              <strong>${escapeHtml(item.title)}</strong>
+              <span>${escapeHtml(item.text)}</span>
+            </a>
+          `).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel tools-preview-card">
+        <p class="eyebrow">Tools of the trade</p>
+        <h2>What we will use</h2>
+        <div class="tool-preview-grid">
+          ${home.toolsPreview.map((tool) => `
+            <article>
+              <h3>${escapeHtml(tool.title)}</h3>
+              <p>${escapeHtml(tool.text)}</p>
+              ${tool.route ? routeButton("Learn More", tool.route, "button button-small button-secondary") : linkButton("Open", campaignLink(tool.linkKey), "button button-small button-secondary")}
+            </article>
+          `).join("")}
+        </div>
+      </article>
+
+      <article class="panel coming-later-card">
+        <p class="eyebrow">Coming later</p>
+        <h2>Campaign tools unlock when we begin adventuring</h2>
+        <ul class="coming-list">
+          ${home.comingLater.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="panel source-card">
+        <p class="eyebrow">For Micheal / DM</p>
+        <h2>Edit the hub</h2>
+        <p>Static admin links live here without making the visitor navigation feel like a control panel.</p>
+        <div class="button-stack">
+          ${routeButton("DM Admin", "admin", "button button-small button-secondary")}
+          ${linkButton("GitHub Repo", campaignLink("githubRepo"), "button button-small button-secondary")}
+        </div>
+      </article>
+    </section>
+
+    <footer class="site-footer">
+      <strong>${escapeHtml(home.footerNote)}</strong>
+      <span>Be kind. Be curious. Have fun.</span>
+    </footer>
+  `;
+}
+
+function renderCampaignDashboardHome() {
   const campaign = DATA.campaign;
   const next = campaign.nextSession;
   const recap = latestSession();
@@ -221,18 +338,30 @@ function renderHome() {
 }
 
 function renderQuickLinkCard(item) {
-  const action = item.route
-    ? routeButton(item.label, item.route, "button button-small")
-    : linkButton(item.label, campaignLink(item.linkKey), "button button-small");
+  const variant = item.variant ? ` quick-link-${escapeHtml(item.variant)}` : "";
+  const href = item.route ? `#${escapeHtml(item.route)}` : escapeHtml(campaignLink(item.linkKey));
+  const isExternal = !item.route;
+
+  if (!item.route && !isRealLink(campaignLink(item.linkKey))) {
+    return `
+      <article class="quick-link-card quick-link-disabled${variant}" aria-disabled="true">
+        <div>
+          <strong>${escapeHtml(item.label)}</strong>
+          <span>${escapeHtml(item.description)}</span>
+        </div>
+        <span class="quick-card-action">Link not added yet</span>
+      </article>
+    `;
+  }
 
   return `
-    <article class="quick-link-card">
+    <a class="quick-link-card${variant}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ""}>
       <div>
         <strong>${escapeHtml(item.label)}</strong>
         <span>${escapeHtml(item.description)}</span>
       </div>
-      ${action}
-    </article>
+      <span class="quick-card-action">Open</span>
+    </a>
   `;
 }
 
@@ -369,8 +498,16 @@ function renderRules() {
 }
 
 function renderCharacters() {
+  if (!DATA.siteStatus.campaignActive) {
+    return renderComingLaterPage(
+      "Characters Coming Later",
+      "There is no active party yet. Once the campaign starts, this page will show player characters, D&D Beyond sheet links, roles, AC, HP, and short summaries.",
+      ["Party roster", "Character sheet links", "Player names", "Class and role summaries"]
+    );
+  }
+
   return `
-    ${pageHeader("Characters", "The current party roster. Edit these cards in data.js.")}
+    ${pageHeader("Characters", "Party roster cards edited from data.js.")}
     <section class="character-grid">
       ${DATA.party.map(renderCharacterCard).join("")}
     </section>
@@ -378,6 +515,14 @@ function renderCharacters() {
 }
 
 function renderCampaign() {
+  if (!DATA.siteStatus.campaignActive) {
+    return renderComingLaterPage(
+      "Campaign Area - Not Started Yet",
+      "No campaign has started yet. We are setting up the table, tools, and starter guide first. Campaign notes, maps, quests, NPCs, and open questions will live here later.",
+      DATA.starterHome.comingLater
+    );
+  }
+
   const campaign = DATA.campaignDetails;
   return `
     ${pageHeader(DATA.campaign.name, DATA.campaign.tagline)}
@@ -419,6 +564,14 @@ function renderCampaign() {
 }
 
 function renderSessions() {
+  if (!DATA.siteStatus.campaignActive) {
+    return renderComingLaterPage(
+      "Session Recaps Coming Later",
+      "There are no sessions to recap yet. Once the campaign starts, this page will track what happened, who attended, loot, NPCs, clues, and the next objective.",
+      ["Session archive", "Major events", "Loot and clues", "Next objective"]
+    );
+  }
+
   return `
     ${pageHeader("Sessions", "Recaps, loot, clues, and next objectives.")}
     <section class="session-list">
@@ -449,6 +602,27 @@ function renderSessions() {
   `;
 }
 
+function renderComingLaterPage(title, text, items) {
+  return `
+    ${pageHeader(title, text)}
+    <section class="content-grid">
+      <article class="panel parchment-card wide-panel">
+        <p class="eyebrow">No campaign yet</p>
+        <h2>The tavern is still being built</h2>
+        <p>${escapeHtml(DATA.siteStatus.message)}</p>
+        <ul class="coming-list">
+          ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+        <div class="button-stack">
+          ${routeButton("Start Here", "start", "button button-small")}
+          ${routeButton("Tools Guide", "tools", "button button-small button-secondary")}
+          ${routeButton("Help / Glossary", "help", "button button-small button-secondary")}
+        </div>
+      </article>
+    </section>
+  `;
+}
+
 function renderJoin() {
   return `
     ${pageHeader("Join the Game", "A step-by-step onboarding path for new players.")}
@@ -470,7 +644,7 @@ function renderJoin() {
 function renderAdmin() {
   const admin = DATA.admin;
   return `
-    ${pageHeader("DM Admin", "Static editing links and source files for the campaign hub.")}
+    ${pageHeader("DM Admin", "Static editing links and source files for the Dungeons Hub.")}
     <section class="content-grid">
       <article class="panel wide-panel">
         <p class="eyebrow">Static site note</p>

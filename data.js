@@ -1,7 +1,13 @@
 const SITE_DATA = {
+  siteStatus: {
+    campaignActive: false,
+    campaignName: "",
+    message: "No active campaign yet. We are setting up the table, tools, and beginner guide first."
+  },
+
   campaign: {
     name: "Campaign Name",
-    tagline: "A lightweight home base for game night links, table rules, recaps, characters, and beginner help.",
+    tagline: "A lightweight D&D starter hub for game night links, table rules, future recaps, characters, and beginner help.",
     partyLevel: "TBD",
     currentQuest: "TBD - the DM will add the current objective.",
     nextSession: {
@@ -11,14 +17,14 @@ const SITE_DATA = {
       status: "Scheduling"
     },
     links: {
-      discordInvite: "#",
-      discordVoice: "#",
-      discordSchedule: "#",
-      discordRecaps: "#",
-      dndBeyondCampaign: "#",
-      dndBeyondRules: "#",
-      owlbearRoom: "#",
-      roll20Game: "#",
+      discordInvite: "https://discord.com/download",
+      discordVoice: "https://discord.com/app",
+      discordSchedule: "https://discord.com/app",
+      discordRecaps: "https://discord.com/app",
+      dndBeyondCampaign: "https://www.dndbeyond.com/characters",
+      dndBeyondRules: "https://www.dndbeyond.com/sources/dnd/free-rules",
+      owlbearRoom: "https://www.owlbear.rodeo/",
+      roll20Game: "https://roll20.net/",
       githubRepo: "https://github.com/elderMicheal/dungeons-hub",
       githubPages: "https://dungeons.michealburford.com",
       githubEditData: "https://github.com/elderMicheal/dungeons-hub/edit/main/data.js",
@@ -29,43 +35,154 @@ const SITE_DATA = {
 
   quickLinks: [
     {
-      label: "Join Voice",
-      description: "Open the voice channel for live play.",
-      linkKey: "discordVoice"
-    },
-    {
-      label: "Open Map",
-      description: "Open the active Owlbear or Roll20 map.",
-      linkKey: "owlbearRoom"
-    },
-    {
-      label: "D&D Beyond Campaign",
-      description: "Open campaign characters, sheets, and shared content.",
-      linkKey: "dndBeyondCampaign"
+      label: "Start Here",
+      description: "Begin the guide.",
+      route: "start",
+      variant: "primary"
     },
     {
       label: "Join Discord",
-      description: "Open the group server or invite.",
+      description: "Open Discord. Invite later.",
+      linkKey: "discordInvite",
+      variant: "secondary"
+    },
+    {
+      label: "D&D Beyond",
+      description: "Make your D&D account.",
+      linkKey: "dndBeyondCampaign"
+    },
+    {
+      label: "Tools Guide",
+      description: "Learn the tools.",
+      route: "tools"
+    },
+    {
+      label: "Help / Glossary",
+      description: "Terms and quick answers.",
+      route: "help"
+    },
+    {
+      label: "Rules",
+      description: "Read the table expectations.",
+      route: "rules",
+      variant: "quiet"
+    },
+    {
+      label: "Roles",
+      description: "Learn what the DM and players do.",
+      route: "roles",
+      variant: "quiet"
+    }
+  ],
+
+  starterHome: {
+    hero: {
+      title: "Dungeons Hub",
+      subtitle: "A beginner-friendly D&D launchpad for Micheal and the crew.",
+      intro: "New to D&D? Start here. Learn the tools, table roles, basic rules, and how to join without knowing everything first."
+    },
+    whatThisIs: "This is the home base for getting our D&D group organized. It explains how to join, how the tools work, what the basic terms mean, and what to do if you have never played before.",
+    whatYouNeed: [
+      "A Discord account for voice and group chat.",
+      "A D&D Beyond account for character sheets.",
+      "A willingness to ask questions.",
+      "No previous D&D experience required."
+    ],
+    optionalNeed: "Owlbear Rodeo or Roll20 may be used later for maps once a campaign starts.",
+    quickStart: [
+      "Join Discord so you can hear the group and ask questions.",
+      "Create a D&D Beyond account for character sheets.",
+      "Read Start Here if you have never played.",
+      "Use Help / Glossary when a word sounds made up."
+    ],
+    noCampaign: {
+      title: "No active campaign yet.",
+      text: "We are setting up the table, tools, and beginner guide first. Once a campaign starts, this page will add party info, session recaps, maps, and campaign notes."
+    },
+    quickHelp: [
+      {
+        title: "I've never played D&D",
+        text: "Short, friendly guide to getting comfortable at the table.",
+        route: "start"
+      },
+      {
+        title: "What is a DM?",
+        text: "The role of the Dungeon Master, explained plainly.",
+        route: "roles"
+      },
+      {
+        title: "What do I do on my turn?",
+        text: "Combat, skills, choices, and asking the DM what to roll.",
+        route: "help"
+      },
+      {
+        title: "What is a character sheet?",
+        text: "Abilities, hit points, attacks, spells, and equipment.",
+        route: "help"
+      },
+      {
+        title: "What tools do we use?",
+        text: "Discord, D&D Beyond, and future map tools.",
+        route: "tools"
+      },
+      {
+        title: "What do all these terms mean?",
+        text: "Open the glossary for quick definitions.",
+        route: "help"
+      }
+    ],
+    toolsPreview: [
+      {
+      title: "Discord",
+      text: "Voice chat, group chat, scheduling, questions, and announcements. A private invite can replace this public link later.",
       linkKey: "discordInvite"
+      },
+      {
+      title: "D&D Beyond",
+      text: "Character sheets, character builder, and basic rules lookup.",
+      linkKey: "dndBeyondCampaign"
+      },
+      {
+      title: "Owlbear / Roll20",
+      text: "Map tools we may use later once a campaign starts.",
+      route: "tools"
+      }
+    ],
+    comingLater: [
+      "Campaign notes",
+      "Party roster",
+      "Session recaps",
+      "Maps",
+      "House rules",
+      "Loot tracker"
+    ],
+    footerNote: "Dungeons Hub is Micheal's table. Built for friends, made for adventure."
+  },
+
+  futureLinks: [
+    {
+      label: "Campaign",
+      description: "Coming later",
+      route: "campaign"
     },
     {
-      label: "Schedule Channel",
-      description: "Check scheduling and attendance messages.",
-      linkKey: "discordSchedule"
+      label: "Characters",
+      description: "Coming later",
+      route: "characters"
     },
     {
-      label: "Recap Channel",
-      description: "Open the Discord recap or notes channel.",
-      linkKey: "discordRecaps"
+      label: "Sessions",
+      description: "Coming later",
+      route: "sessions"
     },
     {
-      label: "GitHub Repo",
-      description: "Open the source repository for this static site.",
-      linkKey: "githubRepo"
+      label: "Maps",
+      description: "Coming later",
+      route: "tools"
     },
     {
       label: "DM Admin",
-      description: "Open static editing guidance and file links.",
+      description: "Static edit links",
       route: "admin"
     }
   ],
@@ -81,11 +198,11 @@ const SITE_DATA = {
     checklist: [
       "Join Discord.",
       "Create a D&D Beyond account.",
-      "Join the campaign link.",
-      "Create or choose a character.",
-      "Open the map.",
+      "Read the Start Here guide.",
+      "Look through the Help / Glossary page.",
       "Test your microphone.",
-      "Read the table rules."
+      "Read the table rules.",
+      "Wait for Micheal to add the campaign link when the campaign starts."
     ]
   },
 
@@ -93,7 +210,7 @@ const SITE_DATA = {
     {
       name: "D&D Beyond",
       linkKey: "dndBeyondCampaign",
-      buttonLabel: "Open Campaign",
+      buttonLabel: "Open D&D Beyond",
       what: "A website for character sheets, character building, rules lookup, leveling, spells, features, and equipment.",
       playersUse: "Players use it to open their sheet, create or level a character, check attacks and spells, and look up basic rules.",
       dmUse: "The DM uses it to keep the campaign roster organized and help players check rules or character options."
@@ -101,7 +218,7 @@ const SITE_DATA = {
     {
       name: "Discord",
       linkKey: "discordInvite",
-      buttonLabel: "Join Discord",
+      buttonLabel: "Open Discord",
       what: "The group voice and text space for game night, scheduling, announcements, recaps, and side questions.",
       playersUse: "Players use it for voice chat, session scheduling, between-session questions, and table community.",
       dmUse: "The DM uses it to run voice chat, post reminders, share recaps, and keep table communication in one place."
@@ -109,7 +226,7 @@ const SITE_DATA = {
     {
       name: "Owlbear Rodeo",
       linkKey: "owlbearRoom",
-      buttonLabel: "Open Map",
+      buttonLabel: "Open Owlbear Rodeo",
       what: "A lightweight virtual tabletop, or VTT, for maps, tokens, movement, positioning, fog, and visual combat reference.",
       playersUse: "Players use it to see the scene, move their token when allowed, and understand where characters and enemies are.",
       dmUse: "The DM uses it to prepare maps, control hidden areas, place enemies, and show important locations."
@@ -396,39 +513,39 @@ const SITE_DATA = {
   joinSteps: [
     {
       title: "Join Discord",
-      text: "Discord is where the group uses voice chat, scheduling, reminders, and between-session questions.",
+      text: "Discord is where the group uses voice chat, scheduling, reminders, and between-session questions. Use the public Discord link for setup until Micheal adds a private group invite.",
       linkKey: "discordInvite",
-      buttonLabel: "Join Discord"
+      buttonLabel: "Open Discord"
     },
     {
       title: "Create a D&D Beyond account",
       text: "D&D Beyond is where most players keep their character sheet and look up rules.",
       linkKey: "dndBeyondCampaign",
-      buttonLabel: "Open Campaign"
+      buttonLabel: "Open D&D Beyond"
     },
     {
-      title: "Join the campaign",
-      text: "Use the campaign link so the DM can see your character and help you level up.",
+      title: "Wait for the campaign link",
+      text: "There is no active campaign yet. Once one exists, Micheal can replace this with the D&D Beyond campaign invite.",
       linkKey: "dndBeyondCampaign",
-      buttonLabel: "Join Campaign"
+      buttonLabel: "Open D&D Beyond"
     },
     {
-      title: "Make or claim a character",
-      text: "Choose an existing character or make a new one with DM approval.",
+      title: "Make or claim a character later",
+      text: "Once the table decides what to play, create or choose a character with DM approval.",
       linkKey: "dndBeyondCampaign",
-      buttonLabel: "Create Character"
+      buttonLabel: "Open Character Builder"
     },
     {
       title: "Open your character sheet",
       text: "Your sheet lists your hit points, armor class, attacks, spells, skills, and equipment.",
       linkKey: "dndBeyondCampaign",
-      buttonLabel: "Open Sheet"
+      buttonLabel: "Open D&D Beyond"
     },
     {
-      title: "Open the map",
-      text: "The map shows where characters, enemies, and important places are during play.",
+      title: "Map tools come later",
+      text: "Owlbear Rodeo or Roll20 may be used once a campaign starts. For now, just know these are map tools.",
       linkKey: "owlbearRoom",
-      buttonLabel: "Open Map"
+      buttonLabel: "Open Owlbear"
     },
     {
       title: "Read house rules",
@@ -437,32 +554,32 @@ const SITE_DATA = {
       buttonLabel: "Read Rules"
     },
     {
-      title: "Attend session zero or an intro session",
-      text: "Session zero is where the group sets expectations, builds characters, and answers setup questions.",
+      title: "Attend session zero or an intro chat",
+      text: "Session zero is where the group sets expectations, talks about character ideas, and answers setup questions.",
       linkKey: "discordSchedule",
-      buttonLabel: "Check Schedule"
+      buttonLabel: "Open Discord"
     }
   ],
 
   helpLinks: [
     {
       label: "D&D Beyond Help",
-      url: "#",
+      url: "https://dndbeyond-support.wizards.com/hc/en-us",
       description: "Character sheets, rules lookup, account help, and campaign tools."
     },
     {
       label: "Discord Support",
-      url: "#",
+      url: "https://support.discord.com/hc/en-us",
       description: "Voice, text channels, account setup, and server basics."
     },
     {
       label: "Owlbear Rodeo Docs",
-      url: "#",
+      url: "https://docs.owlbear.rodeo/",
       description: "Map rooms, tokens, scenes, and player basics."
     },
     {
       label: "Roll20 Help",
-      url: "#",
+      url: "https://help.roll20.net/hc/en-us",
       description: "Virtual tabletop, character sheets, maps, dice, and game setup."
     }
   ],
@@ -517,7 +634,7 @@ const SITE_DATA = {
       },
       {
         question: "What do I need before my first session?",
-        answer: "Join Discord, create a D&D Beyond account, join the campaign link, open or create a character, test your microphone, and read the table rules."
+        answer: "Join Discord, create a D&D Beyond account, test your microphone, read the table rules, and ask questions. The campaign link and map will come later."
       },
       {
         question: "What do I do on my turn?",
@@ -843,7 +960,7 @@ const SITE_DATA = {
       },
       {
         need: "I need the map",
-        destination: "Use the map panel on the Home page or open Owlbear/Roll20."
+        destination: "Maps come later. Owlbear Rodeo or Roll20 will be linked when a campaign starts."
       },
       {
         need: "I need voice chat",
@@ -851,7 +968,7 @@ const SITE_DATA = {
       },
       {
         need: "I need to know what happened last time",
-        destination: "Go to Sessions."
+        destination: "Go to Sessions once the campaign has started."
       },
       {
         need: "I need the local table rules",
