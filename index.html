@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight campaign hub for a small Dungeons & Dragons group.">
+  <title>Dungeons Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Dungeons Hub home">
+      <span class="brand-mark" aria-hidden="true">DH</span>
+      <span>
+        <strong>Dungeons Hub</strong>
+        <small>Campaign binder</small>
+      </span>
+    </a>
+    <button id="navToggle" class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">
+      Menu
+    </button>
+    <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+      <a href="#home" data-route-link="home">Home</a>
+      <a href="#start" data-route-link="start">Start Here</a>
+      <a href="#tools" data-route-link="tools">Tools</a>
+      <a href="#roles" data-route-link="roles">Roles</a>
+      <a href="#rules" data-route-link="rules">Rules</a>
+      <a href="#characters" data-route-link="characters">Characters</a>
+      <a href="#campaign" data-route-link="campaign">Campaign</a>
+      <a href="#sessions" data-route-link="sessions">Sessions</a>
+      <a href="#help" data-route-link="help">Help</a>
+      <a href="#admin" data-route-link="admin">DM Admin</a>
+      <a href="#join" data-route-link="join">Join</a>
+    </nav>
+  </header>
+
+  <main id="app" class="app-shell" tabindex="-1"></main>
+
+  <noscript>
+    <section class="noscript">
+      <h1>Dungeons Hub needs JavaScript</h1>
+      <p>This static site uses a small amount of JavaScript for navigation, dice rolling, and initiative tracking.</p>
+    </section>
+  </noscript>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
