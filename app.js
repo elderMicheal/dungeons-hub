@@ -448,8 +448,29 @@ function renderPhraseCard(item) {
   `;
 }
 
+function renderGuideCard(item) {
+  return `
+    <article class="definition-card">
+      <h3>${escapeHtml(item.name || item.title || item.label)}</h3>
+      <p>${escapeHtml(item.text || item.description)}</p>
+    </article>
+  `;
+}
+
+function renderReferenceCard(item) {
+  return `
+    <article class="reference-card">
+      <p class="eyebrow">${escapeHtml(item.type)}</p>
+      <h3>${escapeHtml(item.label)}</h3>
+      <p>${escapeHtml(item.description)}</p>
+      ${linkButton("Open Reference", item.url, "button button-small button-secondary")}
+    </article>
+  `;
+}
+
 function renderStart() {
   const start = DATA.start;
+  const creation = start.characterCreation;
 
   return `
     ${pageHeader("Start Here", "A step-by-step beginner guide for people coming in completely blind to D&D or tabletop RPGs.")}
@@ -471,6 +492,103 @@ function renderStart() {
         <ol class="step-list big-steps">
           ${start.coreLoop.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ol>
+      </article>
+
+      <article class="panel parchment-card wide-panel">
+        <p class="eyebrow">Character creation</p>
+        <h2>How a character is created</h2>
+        <p>${escapeHtml(creation.note)}</p>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Fundamental rules before you build</h2>
+        <ul class="clean-list two-column-list">
+          ${creation.fundamentalGuidelines.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Ask the DM first</h2>
+        <p>These questions prevent wasted work and help the whole party fit the same game.</p>
+        <ul class="clean-list two-column-list">
+          ${creation.dmQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Character creation step by step</h2>
+        <div class="creation-step-grid">
+          ${creation.creationSteps.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>The pieces of a character</h2>
+        <p>A finished character is a stack of choices. Some are rules choices, some are roleplaying choices, and all of them should be easy for the DM to approve.</p>
+        <div class="definition-grid">
+          ${creation.characterParts.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Ability scores in plain language</h2>
+        <p>Ability scores are the six core stats. Most rolls connect back to one of these.</p>
+        <div class="definition-grid">
+          ${creation.abilityScores.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Classes / professions</h2>
+        <p>Your class is your main rule package and adventuring profession. It affects how you fight, solve problems, survive danger, and grow when you level up.</p>
+        <div class="definition-grid">
+          ${creation.classes.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Species, race, and ancestry</h2>
+        <p>Different sources use different terms. Older D&D material often says race, newer D&D material often says species, and other RPGs may say ancestry. The DM decides which options fit the table.</p>
+        <div class="definition-grid">
+          ${creation.species.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Backgrounds</h2>
+        <div class="quick-card-list">
+          ${creation.backgrounds.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Traits, features, flaws, and feats</h2>
+        <div class="quick-card-list">
+          ${creation.traits.map(renderGuideCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel parchment-card">
+        <h2>Build it in D&D Beyond</h2>
+        <ol class="step-list">
+          ${creation.dndBeyondSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+        ${linkButton("Open D&D Beyond Character Builder", "https://www.dndbeyond.com/My-Characters", "button button-small")}
+      </article>
+
+      <article class="panel">
+        <h2>Beginner build advice</h2>
+        <ul class="clean-list">
+          ${creation.beginnerBuildAdvice.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Official and community references</h2>
+        <p>Use these when you want more detail. Official rules settle rule questions. Community guides are helpful, but the DM still decides what applies at this table.</p>
+        <div class="reference-grid">
+          ${creation.references.map(renderReferenceCard).join("")}
+        </div>
       </article>
 
       <section class="lesson-grid" aria-label="Beginner lessons">

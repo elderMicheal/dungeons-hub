@@ -601,6 +601,8 @@ h3,
 .help-tile-grid,
 .tool-preview-grid,
 .definition-grid,
+.creation-step-grid,
+.reference-grid,
 .glossary-grid,
 .admin-file-grid,
 .quick-card-list,
@@ -618,6 +620,7 @@ h3,
 .help-tile,
 .tool-preview-grid article,
 .definition-card,
+.reference-card,
 .quick-character,
 .tool-link-row,
 .admin-file-card {
@@ -649,6 +652,7 @@ h3,
 
 .tool-preview-grid article,
 .definition-card,
+.reference-card,
 .admin-file-card,
 .tool-link-row {
   padding: 0.85rem;
@@ -657,6 +661,7 @@ h3,
 .tool-preview-grid h3,
 .definition-card h3,
 .definition-card dt,
+.reference-card h3,
 .info-list dt,
 .admin-file-card h3 {
   margin: 0 0 0.25rem;
@@ -669,9 +674,24 @@ h3,
 .tool-preview-grid p,
 .definition-card p,
 .definition-card dd,
+.reference-card p,
 .info-list dd {
   margin: 0 0 0.75rem;
   color: var(--muted);
+}
+
+.reference-card {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+}
+
+.reference-card .eyebrow {
+  margin-bottom: 0;
+}
+
+.two-column-list {
+  columns: 1;
 }
 
 .parchment-card .definition-card,
@@ -1147,6 +1167,20 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .creation-step-grid,
+  .reference-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .two-column-list {
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  .two-column-list li {
+    break-inside: avoid;
+  }
+
   .wide-panel {
     grid-column: 1 / -1;
   }
@@ -1154,6 +1188,8 @@ code {
   .help-tile-grid,
   .tool-preview-grid,
   .definition-grid,
+  .creation-step-grid,
+  .reference-grid,
   .admin-file-grid,
   .glossary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1212,6 +1248,8 @@ code {
   .help-tile-grid,
   .tool-preview-grid,
   .definition-grid,
+  .creation-step-grid,
+  .reference-grid,
   .admin-file-grid,
   .glossary-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

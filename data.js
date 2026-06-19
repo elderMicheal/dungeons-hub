@@ -207,6 +207,336 @@ const SITE_DATA = {
       "Roll the die, usually a d20, and add the number your sheet tells you.",
       "The DM explains the result, then the story moves forward."
     ],
+    characterCreation: {
+      note: "Character creation is part rules, part imagination, and part table agreement. The DM decides what rules version, books, species, classes, starting level, and house rules are allowed. Build the character with the DM's campaign in mind instead of locking in a random internet build.",
+      fundamentalGuidelines: [
+        "Ask the DM what rules version the table is using before building. Some groups use 2024 rules, some use 2014 rules, and some mix them.",
+        "Ask what level to start at. New campaigns often start at level 1, but the DM may choose another level.",
+        "Use only sources the DM approves. Official books, free rules, homebrew, and third-party options are not automatically allowed.",
+        "Do not assume every race, species, class, subclass, feat, spell, or item is available.",
+        "Make a character who wants to cooperate with the party. A loner can be fun, but they still need a reason to play with the group.",
+        "Keep the backstory short at first. One paragraph and a few clear motivations are usually better than five pages.",
+        "Build someone competent enough to contribute. They do not need to be optimized, but they should be able to help the group.",
+        "Avoid secret character twists that force the DM or other players into a bad time.",
+        "When in doubt, choose simple options and learn them well."
+      ],
+      dmQuestions: [
+        "What rules version are we using: 2024, 2014, or a mix?",
+        "What level do we start at?",
+        "Which books, websites, and options are allowed?",
+        "Are any classes, species, backgrounds, feats, or spells banned?",
+        "How are ability scores generated: standard array, point buy, or rolling?",
+        "Do we use starting equipment, starting gold, or DM-given gear?",
+        "What tone is the game: heroic, spooky, silly, gritty, mystery, survival, or something else?",
+        "Should the characters already know each other?",
+        "Does the party need anything specific, like healing, front line, scouting, or social skills?",
+        "Are there house rules I should know before choosing options?"
+      ],
+      creationSteps: [
+        {
+          title: "1. Start with a simple concept",
+          text: "Pick a plain idea before touching the rules. Examples: careful archer, kind healer, curious wizard, loud sword fighter, sneaky investigator, cursed magic user, protective bodyguard."
+        },
+        {
+          title: "2. Choose a class",
+          text: "The class is the character's main adventuring job. It controls most of your abilities, combat style, magic, hit points, proficiencies, and future level-up choices."
+        },
+        {
+          title: "3. Choose a species, race, or ancestry",
+          text: "Older D&D material often says race. Newer material often says species. Some other games say ancestry. This choice describes what kind of fantasy people your character comes from and usually gives traits such as size, speed, senses, or special abilities."
+        },
+        {
+          title: "4. Choose a background",
+          text: "The background is who your character was before adventuring: soldier, criminal, sage, acolyte, artisan, entertainer, farmer, guard, and so on. Depending on the rules version, it may affect skills, tools, equipment, ability scores, or feats."
+        },
+        {
+          title: "5. Set ability scores",
+          text: "Ability scores are the six core stats: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your best scores should usually support your class's main actions."
+        },
+        {
+          title: "6. Pick skills and proficiencies",
+          text: "Proficiency means your character is trained at something. Skills, tools, weapons, armor, and saving throws may all use proficiency."
+        },
+        {
+          title: "7. Choose equipment and spells",
+          text: "Equipment covers weapons, armor, tools, supplies, and starting gear. Spellcasting classes also choose spells, cantrips, or prepared spells depending on the class."
+        },
+        {
+          title: "8. Add personality and ties",
+          text: "Give the character a name, a basic personality, one thing they want, one thing they fear, and one reason they would travel with the party."
+        },
+        {
+          title: "9. Review with the DM",
+          text: "Before game night, send the character sheet to the DM. The DM can catch illegal options, campaign mismatches, missing choices, or confusing rules."
+        }
+      ],
+      characterParts: [
+        {
+          name: "Concept",
+          text: "The short idea that makes the character easy to understand. Concept comes before optimization."
+        },
+        {
+          name: "Class / Profession",
+          text: "The main adventuring role and rule package: fighter, rogue, cleric, wizard, bard, ranger, and so on."
+        },
+        {
+          name: "Species / Race / Ancestry",
+          text: "The kind of people your character belongs to. The exact word depends on rules version and game system."
+        },
+        {
+          name: "Background",
+          text: "What shaped your character before adventuring. This connects story to skills, tools, gear, and sometimes ability scores or feats."
+        },
+        {
+          name: "Ability Scores",
+          text: "The six core numbers that describe physical, mental, and social strengths."
+        },
+        {
+          name: "Proficiencies",
+          text: "Training bonuses for skills, saves, weapons, armor, tools, and other capabilities."
+        },
+        {
+          name: "Features",
+          text: "Special rules from class, species, background, feats, spells, or other choices."
+        },
+        {
+          name: "Equipment",
+          text: "Weapons, armor, adventuring gear, tools, supplies, money, and special items."
+        },
+        {
+          name: "Personality",
+          text: "How the character behaves: habits, goals, fears, beliefs, bonds, flaws, and what makes them fun to play."
+        }
+      ],
+      abilityScores: [
+        {
+          name: "Strength",
+          text: "Physical power. Useful for heavy weapons, athletics, lifting, pushing, grappling, and wearing some armor."
+        },
+        {
+          name: "Dexterity",
+          text: "Agility and reflexes. Useful for stealth, initiative, ranged attacks, finesse weapons, armor class, and avoiding danger."
+        },
+        {
+          name: "Constitution",
+          text: "Toughness and stamina. Useful for hit points, resisting poison, holding concentration, and surviving punishment."
+        },
+        {
+          name: "Intelligence",
+          text: "Reasoning and study. Useful for knowledge skills, investigation, and wizard magic."
+        },
+        {
+          name: "Wisdom",
+          text: "Awareness and judgment. Useful for perception, insight, survival, and classes like cleric, druid, monk, and ranger."
+        },
+        {
+          name: "Charisma",
+          text: "Presence and force of personality. Useful for persuasion, deception, intimidation, performance, and classes like bard, sorcerer, paladin, and warlock."
+        }
+      ],
+      classes: [
+        {
+          name: "Barbarian",
+          text: "Durable front-line warrior built around rage, toughness, and big physical hits."
+        },
+        {
+          name: "Bard",
+          text: "Flexible magic-and-skill character who supports allies, handles social scenes, and solves problems creatively."
+        },
+        {
+          name: "Cleric",
+          text: "Divine spellcaster who can heal, protect, fight, and bring strong utility depending on domain or subclass."
+        },
+        {
+          name: "Druid",
+          text: "Nature-based spellcaster with strong control, support, survival tools, and often shapeshifting."
+        },
+        {
+          name: "Fighter",
+          text: "Weapon expert and one of the easiest first classes. Good for learning attacks, armor, and tactical positioning."
+        },
+        {
+          name: "Monk",
+          text: "Fast martial artist using movement, discipline, unarmed strikes, and precise defensive tools."
+        },
+        {
+          name: "Paladin",
+          text: "Armored warrior with divine magic, protection, burst damage, and a strong oath or code."
+        },
+        {
+          name: "Ranger",
+          text: "Explorer and skirmisher with weapons, tracking, survival tools, and some nature magic."
+        },
+        {
+          name: "Rogue",
+          text: "Skill expert who uses stealth, precision, mobility, and clever positioning."
+        },
+        {
+          name: "Sorcerer",
+          text: "Innate spellcaster whose magic comes from bloodline, fate, strange power, or supernatural origin."
+        },
+        {
+          name: "Warlock",
+          text: "Pact-based magic user with fewer spell slots, strong repeatable tricks, and unusual powers."
+        },
+        {
+          name: "Wizard",
+          text: "Studied spellcaster with a spellbook, broad utility, and many options to learn over time."
+        }
+      ],
+      species: [
+        {
+          name: "Human",
+          text: "Flexible and familiar. Often a good beginner pick because the concept is easy to picture."
+        },
+        {
+          name: "Elf",
+          text: "Graceful, long-lived, and often tied to keen senses, magic, agility, or old traditions."
+        },
+        {
+          name: "Dwarf",
+          text: "Sturdy and resilient. Often tied to endurance, craft, stone, armor, and strong communities."
+        },
+        {
+          name: "Halfling",
+          text: "Small, brave, lucky, and often good for nimble or quietly heroic characters."
+        },
+        {
+          name: "Dragonborn",
+          text: "Draconic people often associated with breath weapons, elemental themes, and bold presence."
+        },
+        {
+          name: "Gnome",
+          text: "Small, clever, curious, and often tied to invention, illusion, or strange knowledge."
+        },
+        {
+          name: "Tiefling",
+          text: "People with infernal or other supernatural heritage. Good for outsider, dramatic, or magic-flavored concepts."
+        },
+        {
+          name: "Orc / Half-Orc",
+          text: "Often strong, intense, and physically capable. Availability and exact rules depend on the source and DM."
+        },
+        {
+          name: "Other options",
+          text: "Many books add more choices. Do not assume they are available until the DM approves them."
+        }
+      ],
+      backgrounds: [
+        {
+          name: "What it means",
+          text: "Background answers: what did this person do before adventure? It gives the character a normal-life anchor."
+        },
+        {
+          name: "Mechanical impact",
+          text: "Depending on rules version, it can grant skills, tools, languages, equipment, ability score increases, or an origin feat."
+        },
+        {
+          name: "Story impact",
+          text: "It tells the DM what kinds of people, places, habits, or obligations might matter to your character."
+        },
+        {
+          name: "Beginner advice",
+          text: "Pick a background that explains your skills and gives the DM an easy hook. Soldier, sage, criminal, acolyte, entertainer, artisan, guard, and farmer are all easy to understand."
+        }
+      ],
+      traits: [
+        {
+          name: "Mechanical traits",
+          text: "Rules text that changes what your character can do: darkvision, extra movement, spellcasting, weapon training, a class feature, or a feat."
+        },
+        {
+          name: "Personality traits",
+          text: "Small behaviors that make the character feel alive: polite, suspicious, reckless, curious, formal, protective, awkward, charming."
+        },
+        {
+          name: "Ideals",
+          text: "Values the character believes in: freedom, honor, knowledge, family, faith, survival, justice, glory, peace."
+        },
+        {
+          name: "Bonds",
+          text: "People, places, promises, objects, or duties the character cares about."
+        },
+        {
+          name: "Flaws",
+          text: "Problems that create drama without ruining the table: pride, guilt, impatience, fear, greed, naivety, stubbornness."
+        },
+        {
+          name: "Feats",
+          text: "Special perks that grant new abilities. In newer rules, backgrounds may grant an origin feat. The DM decides what feat options are allowed."
+        }
+      ],
+      dndBeyondSteps: [
+        "Create or sign in to a D&D Beyond account.",
+        "Open My Characters or the character builder.",
+        "Use the DM's campaign link once Micheal adds one. Until then, build a test character privately.",
+        "Pick the rules/source options the DM approved.",
+        "Choose class, species, background, and ability scores.",
+        "Select skills, proficiencies, equipment, and spells if your class uses magic.",
+        "Open the final character sheet and check AC, HP, attacks, saving throws, skills, equipment, and spell list.",
+        "Send the character sheet link to the DM for approval before session zero or game night."
+      ],
+      beginnerBuildAdvice: [
+        "For the first character, simple is good. Fighter, rogue, cleric, and wizard are classic anchors, but any class can work if you are willing to ask questions.",
+        "Do not chase a powerful internet build before you understand the table. A character that fits the group is better than a spreadsheet monster.",
+        "Put your highest score in the ability your class actually uses most.",
+        "Pick two or three things your character is good at. You do not need to be good at everything.",
+        "If you want magic but feel nervous, choose a smaller spell list or ask someone to help you pick reliable spells.",
+        "If you want the easiest combat turn, choose a weapon-focused character and learn movement, attack rolls, damage, and reactions first.",
+        "If you want social scenes, choose skills and personality that make you comfortable talking in character or describing what you say.",
+        "A good beginner backstory answers: Where did I come from? What do I want? Why am I with the party?"
+      ],
+      references: [
+        {
+          type: "Official rules",
+          label: "D&D Beyond: Creating a Character",
+          url: "https://www.dndbeyond.com/sources/dnd/br-2024/creating-a-character",
+          description: "Official free/basic rules walkthrough for class, origin, ability scores, alignment, and sheet details."
+        },
+        {
+          type: "Official tool",
+          label: "D&D Beyond Character Builder",
+          url: "https://www.dndbeyond.com/My-Characters",
+          description: "Build and manage a digital sheet, track HP, spells, attacks, inventory, and rolls."
+        },
+        {
+          type: "Rules reference",
+          label: "Roll20 D&D 5E Compendium",
+          url: "https://roll20.net/compendium/dnd5e/BookIndex",
+          description: "Searchable 5E rules reference with classes, rules, spells, items, monsters, and basic rules material."
+        },
+        {
+          type: "Tool guide",
+          label: "Roll20 D&D 5E Sheet Tutorial",
+          url: "https://help.roll20.net/hc/en-us/articles/360037773573-D-D-5E-by-Roll20",
+          description: "Useful if the table later uses Roll20 sheets or Roll20 as the virtual tabletop."
+        },
+        {
+          type: "Community guide",
+          label: "RPGBOT: DnD Characters",
+          url: "https://rpgbot.net/dnd5/characters/",
+          description: "Community character-building guides. Useful for deeper class, species, feat, and build advice."
+        },
+        {
+          type: "Community guide",
+          label: "RPGBOT: 2024 Class Guides",
+          url: "https://rpgbot.net/2024-dnd/classes/",
+          description: "Deep class and subclass handbooks for current 2024 D&D rules."
+        },
+        {
+          type: "Community wiki",
+          label: "r/DnD Getting Started",
+          url: "https://www.reddit.com/r/DnD/wiki/getting_started/",
+          description: "Community-maintained getting-started advice, edition notes, and beginner resource pointers."
+        },
+        {
+          type: "Community wiki",
+          label: "r/DnD Resource Index",
+          url: "https://www.reddit.com/r/DnD/wiki/index/",
+          description: "Community resource threads, FAQs, tools, and pointers for new players."
+        }
+      ]
+    },
     lessons: [
       {
         title: "1. What is a roleplaying game?",
