@@ -17,6 +17,7 @@ const ROUTES = {
 const app = document.getElementById("app");
 const navToggle = document.getElementById("navToggle");
 const siteNav = document.getElementById("siteNav");
+const siteFooter = document.getElementById("siteFooter");
 
 let rollHistory = [];
 
@@ -48,6 +49,37 @@ function linkButton(label, url, className = "button") {
 
 function routeButton(label, route, className = "button") {
   return `<a class="${className}" href="#${escapeHtml(route)}">${escapeHtml(label)}</a>`;
+}
+
+function responsiveFooterLink(label, shortLabel, url) {
+  if (!isRealLink(url)) {
+    return `<span class="footer-link button-disabled" aria-disabled="true"><span>${escapeHtml(shortLabel)}</span><small>Link not added yet</small></span>`;
+  }
+
+  return `
+    <a class="footer-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">
+      <span class="footer-label-wide">${escapeHtml(label)}</span>
+      <span class="footer-label-short">${escapeHtml(shortLabel)}</span>
+    </a>
+  `;
+}
+
+function renderSiteFooter() {
+  if (!siteFooter) {
+    return;
+  }
+
+  siteFooter.innerHTML = `
+    <div class="footer-copy">
+      <strong>Dungeons Hub</strong>
+      <span>Micheal's D&D starter launchpad.</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      ${linkButton("Repo", campaignLink("githubRepo"), "footer-link")}
+      ${routeButton("Admin", "admin", "footer-link")}
+      ${responsiveFooterLink("www.michealburford.com", "Micheal", campaignLink("michealHome"))}
+    </nav>
+  `;
 }
 
 function pageHeader(title, text) {
@@ -214,11 +246,6 @@ function renderStarterHome() {
         </div>
       </article>
     </section>
-
-    <footer class="site-footer">
-      <strong>${escapeHtml(home.footerNote)}</strong>
-      <span>Be kind. Be curious. Have fun.</span>
-    </footer>
   `;
 }
 
@@ -988,7 +1015,11 @@ document.addEventListener("submit", (event) => {
 navToggle.addEventListener("click", () => {
   const isOpen = siteNav.classList.toggle("is-open");
   navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 });
 
 window.addEventListener("hashchange", renderRoute);
-window.addEventListener("DOMContentLoaded", renderRoute);
+window.addEventListener("DOMContentLoaded", () => {
+  renderSiteFooter();
+  renderRoute();
+});

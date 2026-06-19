@@ -16,8 +16,12 @@
         <small>Gather the party</small>
       </span>
     </a>
-    <button id="navToggle" class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false">
-      Menu
+    <button id="navToggle" class="nav-toggle" type="button" aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation menu">
+      <span class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </button>
     <nav id="siteNav" class="site-nav" aria-label="Main navigation">
       <a href="#home" data-route-link="home">Home</a>
@@ -31,6 +35,8 @@
   </header>
 
   <main id="app" class="app-shell" tabindex="-1"></main>
+
+  <footer id="siteFooter" class="site-footer" aria-label="Site footer"></footer>
 
   <noscript>
     <section class="noscript">
