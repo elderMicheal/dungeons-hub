@@ -366,12 +366,13 @@ function renderCampaignDashboardHome() {
 
 function renderQuickLinkCard(item) {
   const variant = item.variant ? ` quick-link-${escapeHtml(item.variant)}` : "";
+  const attention = item.route === "start" ? " quick-link-attention" : "";
   const href = item.route ? `#${escapeHtml(item.route)}` : escapeHtml(campaignLink(item.linkKey));
   const isExternal = !item.route;
 
   if (!item.route && !isRealLink(campaignLink(item.linkKey))) {
     return `
-      <article class="quick-link-card quick-link-disabled${variant}" aria-disabled="true">
+      <article class="quick-link-card quick-link-disabled${variant}${attention}" aria-disabled="true">
         <div>
           <strong>${escapeHtml(item.label)}</strong>
           <span>${escapeHtml(item.description)}</span>
@@ -382,7 +383,7 @@ function renderQuickLinkCard(item) {
   }
 
   return `
-    <a class="quick-link-card${variant}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ""}>
+    <a class="quick-link-card${variant}${attention}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ""}>
       <div>
         <strong>${escapeHtml(item.label)}</strong>
         <span>${escapeHtml(item.description)}</span>
@@ -468,6 +469,108 @@ function renderReferenceCard(item) {
   `;
 }
 
+function renderCreationTimeline(steps) {
+  return `
+    <ol class="creation-timeline" aria-label="Character creation timeline">
+      ${steps.map((step, index) => `
+        <li>
+          <span class="timeline-badge">${index + 1}</span>
+          <div>
+            <h3>${escapeHtml(step.title.replace(/^\d+\.\s*/, ""))}</h3>
+            <p>${escapeHtml(step.text)}</p>
+          </div>
+        </li>
+      `).join("")}
+    </ol>
+  `;
+}
+
+function renderRaceTable(rows) {
+  return `
+    <div class="table-scroll">
+      <table class="guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Race / Species</th>
+            <th scope="col">Plain-English Summary</th>
+            <th scope="col">Good For</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <th scope="row">${escapeHtml(row.name)}</th>
+              <td>${escapeHtml(row.summary)}</td>
+              <td>${escapeHtml(row.beginnerUse)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderClassTable(rows) {
+  return `
+    <div class="table-scroll">
+      <table class="guide-table">
+        <thead>
+          <tr>
+            <th scope="col">Class</th>
+            <th scope="col">Role</th>
+            <th scope="col">Beginner Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <th scope="row">${escapeHtml(row.name)}</th>
+              <td>${escapeHtml(row.role)}</td>
+              <td>${escapeHtml(row.beginnerNote)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderExampleCharacterTable(rows) {
+  const statKeys = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+
+  return `
+    <div class="table-scroll">
+      <table class="guide-table character-template-table">
+        <thead>
+          <tr>
+            <th scope="col">Template</th>
+            <th scope="col">Race / Class</th>
+            ${statKeys.map((key) => `<th scope="col">${key}</th>`).join("")}
+            <th scope="col">HP</th>
+            <th scope="col">AC</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((row) => `
+            <tr>
+              <th scope="row">
+                ${escapeHtml(row.name)}
+                <span>${escapeHtml(row.description)}</span>
+              </th>
+              <td>${escapeHtml(`${row.race} ${row.className} ${row.level}`)}</td>
+              ${statKeys.map((key) => `<td>${escapeHtml(row.stats[key])}</td>`).join("")}
+              <td>${escapeHtml(row.hp)}</td>
+              <td>${escapeHtml(row.ac)}</td>
+              <td>${escapeHtml(row.role)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function renderStart() {
   const start = DATA.start;
   const creation = start.characterCreation;
@@ -498,6 +601,11 @@ function renderStart() {
         <p class="eyebrow">Character creation</p>
         <h2>How a character is created</h2>
         <p>${escapeHtml(creation.note)}</p>
+        <div class="button-row">
+          ${linkButton("Create a Character", "https://www.dndbeyond.com/My-Characters", "button button-small")}
+          <button class="button button-small button-secondary" type="button" data-scroll-target="premade-characters">Use This Premade</button>
+          ${linkButton("Join Discord", campaignLink("discordInvite"), "button button-small button-secondary")}
+        </div>
       </article>
 
       <article class="panel wide-panel">
@@ -517,9 +625,7 @@ function renderStart() {
 
       <article class="panel wide-panel">
         <h2>Character creation step by step</h2>
-        <div class="creation-step-grid">
-          ${creation.creationSteps.map(renderGuideCard).join("")}
-        </div>
+        ${renderCreationTimeline(creation.creationSteps)}
       </article>
 
       <article class="panel wide-panel">
@@ -528,6 +634,31 @@ function renderStart() {
         <div class="definition-grid">
           ${creation.characterParts.map(renderGuideCard).join("")}
         </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Common races and species at a glance</h2>
+        <p>${escapeHtml(creation.summaryNote)}</p>
+        ${renderRaceTable(creation.raceSummaries)}
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Common classes at a glance</h2>
+        <p>Class is the biggest mechanical choice. It controls your main tools, combat rhythm, and level-up path.</p>
+        ${renderClassTable(creation.classSummaries)}
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Key traits and concepts</h2>
+        <p>These terms show up constantly while building and playing a character.</p>
+        <dl class="definition-grid">
+          ${creation.keyConcepts.map((item) => `
+            <div class="definition-card">
+              <dt>${escapeHtml(item.term)}</dt>
+              <dd>${escapeHtml(item.definition)}</dd>
+            </div>
+          `).join("")}
+        </dl>
       </article>
 
       <article class="panel wide-panel">
@@ -583,8 +714,27 @@ function renderStart() {
         </ul>
       </article>
 
+      <article id="premade-characters" class="panel wide-panel" tabindex="-1">
+        <h2>Premade example characters</h2>
+        <p>Use these as examples, not locked-in lore. The DM can approve one, adjust numbers, or turn one into a D&D Beyond sheet.</p>
+        ${renderExampleCharacterTable(creation.exampleCharacters)}
+      </article>
+
       <article class="panel wide-panel">
-        <h2>Official and community references</h2>
+        <h2>Before We Begin: Session Zero</h2>
+        <p>Session Zero is the setup conversation before a campaign starts. It keeps expectations, tone, tools, and character rules clear.</p>
+        <div class="quick-card-list">
+          ${creation.sessionZeroChecklist.map((item) => `
+            <article class="definition-card">
+              <h3>${escapeHtml(item.topic)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </article>
+          `).join("")}
+        </div>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>Helpful links</h2>
         <p>Use these when you want more detail. Official rules settle rule questions. Community guides are helpful, but the DM still decides what applies at this table.</p>
         <div class="reference-grid">
           ${creation.references.map(renderReferenceCard).join("")}
@@ -1145,6 +1295,16 @@ function setupGlossarySearch() {
 }
 
 document.addEventListener("click", (event) => {
+  const scrollButton = event.target.closest("[data-scroll-target]");
+  if (scrollButton) {
+    const target = document.getElementById(scrollButton.dataset.scrollTarget);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.focus?.({ preventScroll: true });
+    }
+    return;
+  }
+
   const rollButton = event.target.closest("[data-roll]");
   if (rollButton) {
     handleRoll(rollButton.dataset.roll);

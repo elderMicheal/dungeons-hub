@@ -534,6 +534,247 @@ const SITE_DATA = {
           label: "r/DnD Resource Index",
           url: "https://www.reddit.com/r/DnD/wiki/index/",
           description: "Community resource threads, FAQs, tools, and pointers for new players."
+        },
+        {
+          type: "Session Zero",
+          label: "Sly Flourish: Running Session Zeros",
+          url: "https://slyflourish.com/running_session_zeros.html",
+          description: "Practical advice for aligning expectations, tying characters together, and setting boundaries before a campaign."
+        },
+        {
+          type: "First game advice",
+          label: "Sly Flourish: Starting Your First D&D Game",
+          url: "https://slyflourish.com/starting_strong_at_your_first_dnd_game.html",
+          description: "Community advice for getting a first game running without overloading new players or DMs."
+        },
+        {
+          type: "Official rules",
+          label: "D&D Beyond Free Rules",
+          url: "https://www.dndbeyond.com/sources/dnd/free-rules",
+          description: "Official free rules reference for players who want to read beyond this quick guide."
+        }
+      ],
+      summaryNote: "Exact traits, ability bonuses, names, and source availability vary between 2014 rules, 2024 rules, table house rules, and purchased books. Treat these tables as orientation, then confirm with the DM.",
+      raceSummaries: [
+        {
+          name: "Human",
+          summary: "Versatile, familiar, and easy to picture.",
+          beginnerUse: "Good for nearly any class or first character concept."
+        },
+        {
+          name: "Dwarf",
+          summary: "Sturdy, tough, and often tied to craft, stone, armor, and endurance.",
+          beginnerUse: "Great for fighters, clerics, paladins, and other durable builds."
+        },
+        {
+          name: "Elf",
+          summary: "Graceful, long-lived, perceptive, and often tied to magic, archery, or old traditions.",
+          beginnerUse: "Good for rogues, rangers, wizards, druids, and nimble characters."
+        },
+        {
+          name: "Halfling",
+          summary: "Small, brave, nimble, and often lucky or quietly heroic.",
+          beginnerUse: "Good for rogues, bards, rangers, and sneaky or cheerful characters."
+        },
+        {
+          name: "Dragonborn",
+          summary: "Draconic people with a bold presence and elemental flavor.",
+          beginnerUse: "Good for paladins, fighters, barbarians, sorcerers, and dramatic concepts."
+        },
+        {
+          name: "Gnome",
+          summary: "Small, clever, curious, and often tied to invention, illusion, or strange knowledge.",
+          beginnerUse: "Good for wizards, artificer-style concepts if allowed, and curious problem-solvers."
+        },
+        {
+          name: "Tiefling",
+          summary: "Charismatic outsiders with supernatural or infernal flavor.",
+          beginnerUse: "Good for bards, warlocks, sorcerers, and characters with a dramatic edge."
+        },
+        {
+          name: "Orc / Half-Orc",
+          summary: "Strong, intense, and physically capable, depending on the rules source.",
+          beginnerUse: "Good for barbarians, fighters, paladins, and hard-hitting warriors."
+        }
+      ],
+      classSummaries: [
+        {
+          name: "Barbarian",
+          role: "Front-line brawler",
+          beginnerNote: "High hit points, rage, and big melee hits. Straightforward in combat."
+        },
+        {
+          name: "Bard",
+          role: "Support and social expert",
+          beginnerNote: "Magic, skills, inspiration, and social flexibility. Lots of choices."
+        },
+        {
+          name: "Cleric",
+          role: "Divine support caster",
+          beginnerNote: "Healing, protection, armor, and strong spells. Good if you like helping the party."
+        },
+        {
+          name: "Druid",
+          role: "Nature caster",
+          beginnerNote: "Nature magic, control, support, and shapeshifting. Powerful but more complex."
+        },
+        {
+          name: "Fighter",
+          role: "Weapon and armor expert",
+          beginnerNote: "One of the easiest first classes. Learn attacks, armor, positioning, and tactics."
+        },
+        {
+          name: "Monk",
+          role: "Fast martial artist",
+          beginnerNote: "Mobile, precise, and resource-based. Best if you like movement and quick decisions."
+        },
+        {
+          name: "Paladin",
+          role: "Holy warrior",
+          beginnerNote: "Armor, melee damage, support magic, and big smites. Strong but has several systems."
+        },
+        {
+          name: "Ranger",
+          role: "Scout and skirmisher",
+          beginnerNote: "Weapons, exploration, survival, and some nature magic."
+        },
+        {
+          name: "Rogue",
+          role: "Stealth and skill expert",
+          beginnerNote: "Great skills, mobility, and Sneak Attack. Strong choice for careful players."
+        },
+        {
+          name: "Sorcerer",
+          role: "Innate spellcaster",
+          beginnerNote: "Charisma magic with fewer spells known. Easier than wizard in some ways, but spell choices matter."
+        },
+        {
+          name: "Warlock",
+          role: "Pact spellcaster",
+          beginnerNote: "Strange powers, reliable magical attacks, and fewer spell slots that refresh quickly."
+        },
+        {
+          name: "Wizard",
+          role: "Studied spellcaster",
+          beginnerNote: "Huge spell options and utility. Rewarding, but reading your spells matters."
+        }
+      ],
+      keyConcepts: [
+        {
+          term: "Ability Scores",
+          definition: "The six core stats: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."
+        },
+        {
+          term: "Ability Check",
+          definition: "A d20 roll to see if an action works when the result is uncertain."
+        },
+        {
+          term: "Skill",
+          definition: "A trained area connected to an ability score, such as Stealth, Perception, Persuasion, or History."
+        },
+        {
+          term: "Saving Throw",
+          definition: "A roll to resist danger, such as poison, a spell, a trap, or a sudden blast."
+        },
+        {
+          term: "Armor Class (AC)",
+          definition: "The number an attacker usually needs to meet or beat to hit you."
+        },
+        {
+          term: "Hit Points (HP)",
+          definition: "How much harm your character can take before dropping to 0 hit points."
+        },
+        {
+          term: "Proficiency Bonus",
+          definition: "A bonus added when your character is trained with a skill, save, weapon, tool, or other feature."
+        },
+        {
+          term: "Advantage",
+          definition: "Roll two d20s and use the higher result."
+        },
+        {
+          term: "Disadvantage",
+          definition: "Roll two d20s and use the lower result."
+        },
+        {
+          term: "Darkvision",
+          definition: "A trait that helps some characters see in darkness, within limits set by the rules."
+        }
+      ],
+      exampleCharacters: [
+        {
+          name: "Bruenor Stonehelm",
+          race: "Dwarf",
+          className: "Fighter",
+          level: 1,
+          stats: { STR: 17, DEX: 10, CON: 16, INT: 8, WIS: 13, CHA: 12 },
+          hp: 13,
+          ac: 18,
+          role: "Frontline warrior",
+          description: "Tough shield-and-axe fighter who stands in front and protects the party."
+        },
+        {
+          name: "Elara Dawnlight",
+          race: "Human",
+          className: "Cleric",
+          level: 1,
+          stats: { STR: 11, DEX: 11, CON: 15, INT: 9, WIS: 16, CHA: 14 },
+          hp: 10,
+          ac: 18,
+          role: "Healer and support",
+          description: "Armored divine caster who can heal allies, protect the group, and still fight."
+        },
+        {
+          name: "Tamsin Underbough",
+          race: "Halfling",
+          className: "Rogue",
+          level: 1,
+          stats: { STR: 8, DEX: 17, CON: 13, INT: 10, WIS: 13, CHA: 14 },
+          hp: 9,
+          ac: 15,
+          role: "Scout and skirmisher",
+          description: "Sneaky, quick, and useful for traps, locks, scouting, and precision damage."
+        },
+        {
+          name: "Rhogar Flameheart",
+          race: "Dragonborn",
+          className: "Barbarian",
+          level: 1,
+          stats: { STR: 16, DEX: 13, CON: 14, INT: 8, WIS: 12, CHA: 10 },
+          hp: 14,
+          ac: 14,
+          role: "Melee damage",
+          description: "Hard-hitting front-line bruiser who uses rage and draconic flavor."
+        }
+      ],
+      sessionZeroChecklist: [
+        {
+          topic: "Campaign premise",
+          text: "What kind of story are we playing, and what should characters care about?"
+        },
+        {
+          topic: "Tone and boundaries",
+          text: "Agree on serious, silly, scary, heroic, or gritty tone, plus any topics to avoid."
+        },
+        {
+          topic: "Allowed content",
+          text: "Confirm rules version, source books, homebrew, species, classes, feats, spells, and starting level."
+        },
+        {
+          topic: "House rules",
+          text: "Clarify any local changes before players make choices that depend on them."
+        },
+        {
+          topic: "Party integration",
+          text: "Decide whether characters know each other, why they cooperate, and what ties them together."
+        },
+        {
+          topic: "Tools and logistics",
+          text: "Confirm Discord, D&D Beyond, map tool, schedule, session length, microphone setup, and recap location."
+        },
+        {
+          topic: "First test scene",
+          text: "Optionally run a small scene or encounter so everyone can test sheets, rolls, and table flow."
         }
       ]
     },
