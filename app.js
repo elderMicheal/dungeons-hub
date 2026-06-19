@@ -426,20 +426,89 @@ function renderCharacterCard(character) {
   `;
 }
 
-function renderStart() {
+function renderStartLesson(lesson) {
   return `
-    ${pageHeader("Start Here", "A plain-language orientation for players who have never played D&D before.")}
-    <section class="content-grid">
+    <article class="panel start-lesson">
+      <h2>${escapeHtml(lesson.title)}</h2>
+      <p>${escapeHtml(lesson.summary)}</p>
+      <ul class="clean-list">
+        ${(lesson.points || []).map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+      </ul>
+      ${lesson.example ? `<div class="example-box"><strong>Example</strong><p>${escapeHtml(lesson.example)}</p></div>` : ""}
+    </article>
+  `;
+}
+
+function renderPhraseCard(item) {
+  return `
+    <article class="phrase-card">
+      <strong>${escapeHtml(item.situation)}</strong>
+      <p>${escapeHtml(item.phrase)}</p>
+    </article>
+  `;
+}
+
+function renderStart() {
+  const start = DATA.start;
+
+  return `
+    ${pageHeader("Start Here", "A step-by-step beginner guide for people coming in completely blind to D&D or tabletop RPGs.")}
+    <section class="start-guide">
       <article class="panel wide-panel">
+        <p class="eyebrow">Start here, brave fool</p>
         <h2>What this game is</h2>
-        ${DATA.start.intro.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
+        ${start.intro.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
       </article>
-      <article class="panel">
-        <h2>First Session Checklist</h2>
-        <ol class="step-list">
-          ${DATA.start.checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+
+      <article class="panel parchment-card wide-panel">
+        <p class="eyebrow">The big idea</p>
+        <h2>${escapeHtml(start.bigIdea.title)}</h2>
+        <p>${escapeHtml(start.bigIdea.text)}</p>
+      </article>
+
+      <article class="panel wide-panel">
+        <h2>The basic play loop</h2>
+        <ol class="step-list big-steps">
+          ${start.coreLoop.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ol>
       </article>
+
+      <section class="lesson-grid" aria-label="Beginner lessons">
+        ${start.lessons.map(renderStartLesson).join("")}
+      </section>
+
+      <article class="panel">
+        <h2>Useful phrases when you are new</h2>
+        <p>These are normal things to say at the table. You are not slowing the game down by asking clear questions.</p>
+        <div class="phrase-grid">
+          ${start.commonPhrases.map(renderPhraseCard).join("")}
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Table mindset</h2>
+        <ul class="clean-list">
+          ${start.tableMindset.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      </article>
+
+      <article class="panel parchment-card">
+        <h2>Before your first session</h2>
+        <ol class="step-list">
+          ${start.checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+      </article>
+
+      <article class="panel">
+        <h2>Next places to click</h2>
+        <p>Use these when you are done with the beginner walkthrough.</p>
+        <div class="button-row">
+          ${routeButton("Open Help / Glossary", "help", "button button-small")}
+          ${routeButton("Tools Guide", "tools", "button button-small button-secondary")}
+          ${routeButton("Table Rules", "rules", "button button-small button-secondary")}
+        </div>
+      </article>
+
       <article class="panel">
         <h2>Your first move</h2>
         <p>When you are unsure what to do, say what your character wants. Examples: "I look for tracks," "I ask the guard what happened," or "I stand between the monster and the wizard."</p>

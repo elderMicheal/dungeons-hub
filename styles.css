@@ -361,6 +361,8 @@ h3,
 .starter-grid,
 .dashboard-grid,
 .content-grid,
+.start-guide,
+.lesson-grid,
 .card-grid,
 .character-grid,
 .session-list,
@@ -445,6 +447,7 @@ h3,
 
 .button-stack,
 .quick-actions,
+.button-row,
 .dice-buttons,
 .initiative-actions {
   display: flex;
@@ -536,6 +539,62 @@ h3,
 .step-list,
 .tutorial-list {
   color: var(--muted);
+}
+
+.big-steps {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.5rem;
+}
+
+.start-lesson {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.start-lesson h2 {
+  margin-bottom: 0;
+}
+
+.start-lesson p {
+  margin: 0;
+}
+
+.example-box,
+.phrase-card {
+  border: 1px solid rgba(198, 184, 159, 0.18);
+  border-radius: 10px;
+  background: rgba(21, 17, 14, 0.58);
+}
+
+.example-box {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.8rem;
+}
+
+.example-box strong,
+.phrase-card strong {
+  color: var(--text);
+}
+
+.example-box p {
+  color: var(--muted);
+}
+
+.phrase-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.phrase-card {
+  padding: 0.75rem;
+}
+
+.phrase-card p {
+  margin: 0.25rem 0 0;
+  color: var(--gold);
+  font-weight: 700;
 }
 
 .future-mini-grid,
@@ -1083,6 +1142,11 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lesson-grid,
+  .phrase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .wide-panel {
     grid-column: 1 / -1;
   }
@@ -1133,6 +1197,10 @@ code {
 
   .content-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lesson-grid {
+    grid-column: 1 / -1;
   }
 
   .card-grid,

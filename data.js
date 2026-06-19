@@ -190,11 +190,181 @@ const SITE_DATA = {
 
   start: {
     intro: [
-      "Dungeons & Dragons is a group storytelling game with rules. The players describe what their characters try to do, dice help decide uncertain outcomes, and everyone builds the story together.",
-      "The Dungeon Master, or DM, describes the world, plays the people and monsters in it, and decides when the rules or dice are needed.",
-      "Each player controls one main character. The party is the group of player characters working together.",
-      "You do not need to know every rule before playing. Start by saying what your character is trying to do. The DM will tell you what to roll when a roll is needed.",
-      "Your character sheet does most of the math. It lists your armor, hit points, skills, attacks, spells, equipment, and special features."
+      "Dungeons & Dragons is a tabletop roleplaying game. That means a group of people talks through an adventure together, each player controls a fictional character, and rules plus dice help decide what happens when the outcome is uncertain.",
+      "If you have never played any roleplaying game before, think of it as cooperative make-believe with structure. You are not trying to beat the other players. You are working with them to solve problems, survive trouble, and create memorable scenes.",
+      "You do not need to memorize the rules before showing up. The most important skill is simple: say what your character is trying to do. The DM will help translate that into the rules when rules are needed."
+    ],
+    bigIdea: {
+      title: "The whole game in one sentence",
+      text: "The DM describes a situation, the players say what their characters do, dice are rolled when the result is uncertain, and the group reacts to what happens next."
+    },
+    coreLoop: [
+      "Listen to what the DM says is happening.",
+      "Picture where your character is and what they care about.",
+      "Say what your character tries to do in plain language.",
+      "If the result is obvious, the DM may just say what happens.",
+      "If the result is uncertain or risky, the DM asks for a roll.",
+      "Roll the die, usually a d20, and add the number your sheet tells you.",
+      "The DM explains the result, then the story moves forward."
+    ],
+    lessons: [
+      {
+        title: "1. What is a roleplaying game?",
+        summary: "A roleplaying game is a conversation where everyone controls part of a shared imaginary situation.",
+        points: [
+          "The DM controls the world: places, weather, danger, enemies, helpful people, and consequences.",
+          "Each player controls one main character: what they say, what they try, and how they react.",
+          "The rules give the table a fair way to handle risk, limits, combat, magic, and character abilities.",
+          "The dice add uncertainty. They do not replace common sense or player choices."
+        ],
+        example: "DM: The old door is swollen shut. Player: I put my shoulder into it and try to force it open. DM: Roll a Strength check."
+      },
+      {
+        title: "2. What do I actually do as a player?",
+        summary: "You make choices for your character. You do not need to speak in a fancy voice or know the perfect rule.",
+        points: [
+          "Ask questions about what your character can see, hear, or remember.",
+          "Tell the DM what your character tries to do.",
+          "Work with the party instead of treating the table like a solo game.",
+          "Use your character sheet when the DM asks for a roll, attack, spell, skill, or saving throw.",
+          "If you are stuck, say what you want, not what rule you think applies."
+        ],
+        example: "Instead of saying, 'Can I use Investigation?', you can say, 'I check the desk for hidden notes.' The DM will tell you whether to roll Investigation."
+      },
+      {
+        title: "3. What does the DM do?",
+        summary: "The Dungeon Master runs the situation so the players have something to respond to.",
+        points: [
+          "The DM describes scenes, obstacles, creatures, and other people in the world.",
+          "The DM asks for rolls when an action has risk or uncertainty.",
+          "The DM plays enemies and non-player characters, often called NPCs.",
+          "The DM makes rulings when the rules are unclear or when speed matters.",
+          "The DM is not the enemy. The DM creates challenge, but the goal is a good game."
+        ],
+        example: "The DM might say, 'The bridge is cracked and swaying. You can cross slowly, look for another way, or try something else.'"
+      },
+      {
+        title: "4. What is my character?",
+        summary: "Your character is your piece of the story: a person in the fantasy world with abilities, limits, gear, and opinions.",
+        points: [
+          "A character has a name, class, level, ancestry or species, equipment, and special features.",
+          "The class is the character's main adventuring style, such as fighter, rogue, cleric, wizard, bard, or ranger.",
+          "The sheet tracks numbers so you do not have to remember everything.",
+          "You can describe personality in simple terms: brave, nervous, curious, loud, careful, kind, greedy, protective.",
+          "You are allowed to make imperfect choices. Good stories often come from messy decisions."
+        ],
+        example: "A fighter might stand in front and protect others. A rogue might scout ahead. A cleric might heal and support. These are habits, not strict jobs."
+      },
+      {
+        title: "5. How do dice work?",
+        summary: "Dice decide uncertain outcomes. The most common die is the d20, a twenty-sided die.",
+        points: [
+          "When the DM asks for a d20 roll, roll the d20 and add the bonus from your sheet.",
+          "Higher is usually better.",
+          "The DM compares your total to a target number called a DC, or to an enemy's Armor Class for attacks.",
+          "Advantage means roll two d20s and use the higher result.",
+          "Disadvantage means roll two d20s and use the lower result.",
+          "Other dice, like d4, d6, d8, d10, and d12, are often used for damage or healing."
+        ],
+        example: "If you roll 14 and your sheet says +3, your total is 17."
+      },
+      {
+        title: "6. When do I roll?",
+        summary: "Do not roll first and ask later. Describe the action, then wait for the DM to ask for a roll if one is needed.",
+        points: [
+          "If something is easy and there is no pressure, the DM may say it works without a roll.",
+          "If something is impossible, a high roll may not make it happen.",
+          "If something is risky, contested, hidden, rushed, or dramatic, the DM may ask for a roll.",
+          "The DM chooses the type of roll because the situation determines the rule.",
+          "A failed roll is not always a dead end. It may mean delay, cost, danger, noise, or a partial result."
+        ],
+        example: "Opening an unlocked door usually needs no roll. Picking a locked door while guards are nearby probably does."
+      },
+      {
+        title: "7. What is a character sheet?",
+        summary: "The character sheet is the control panel for your character.",
+        points: [
+          "Armor Class, or AC, shows how hard you are to hit.",
+          "Hit points, or HP, show how much damage you can take before going down.",
+          "Skills are things your character may be trained to do, like Stealth, Persuasion, or Perception.",
+          "Attacks show what weapons or powers you can use in combat.",
+          "Spells are magical options, if your character has them.",
+          "Features are special abilities from your class, ancestry or species, background, or other choices."
+        ],
+        example: "If the DM asks for Perception, look for Perception on your sheet and roll a d20 plus that number."
+      },
+      {
+        title: "8. How does a normal scene work?",
+        summary: "Most of the game is not combat. It is exploring, asking questions, making plans, and trying things.",
+        points: [
+          "Ask what your character notices if you are unsure what matters.",
+          "Talk to NPCs like they are people, not vending machines for quests.",
+          "Tell the group your plan before doing something risky.",
+          "Share the spotlight. If someone has not talked in a while, leave room for them.",
+          "You can always ask, 'What are my options here?'"
+        ],
+        example: "A village scene might involve asking locals questions, checking a ruined house, buying supplies, and deciding where to travel next."
+      },
+      {
+        title: "9. How does combat work?",
+        summary: "Combat is turn-based so everyone gets a fair chance to act.",
+        points: [
+          "The DM says combat starts.",
+          "Everyone rolls initiative to set turn order.",
+          "On your turn, you can usually move and take one main action.",
+          "Some characters also have a bonus action.",
+          "Some situations let you use a reaction outside your turn.",
+          "Common actions include Attack, Cast a Spell, Dash, Disengage, Dodge, Help, Hide, Ready, Search, and Use an Object.",
+          "When your turn comes up, say what you want to accomplish. The table can help with the exact buttons or numbers."
+        ],
+        example: "Player: I move behind the fallen cart and shoot the nearest skeleton with my bow. DM: Great, roll an attack."
+      },
+      {
+        title: "10. How do I avoid feeling lost?",
+        summary: "Feeling lost at first is normal. You are learning a game, a character sheet, and a group style all at once.",
+        points: [
+          "Ask short questions as soon as you are confused.",
+          "Say your goal in plain language: 'I want to protect them,' 'I want to escape,' or 'I want to find the clue.'",
+          "Use Help / Glossary when a word sounds unfamiliar.",
+          "Let the DM know if too much is happening too fast.",
+          "Take simple notes: names, places, promises, clues, and things the party still needs to do."
+        ],
+        example: "Good beginner question: 'What can I do on my turn that would help right now?'"
+      }
+    ],
+    commonPhrases: [
+      {
+        situation: "You do not know what to do",
+        phrase: "What do I see, and what seems urgent?"
+      },
+      {
+        situation: "You want to try something",
+        phrase: "I want to try to..."
+      },
+      {
+        situation: "You do not know which skill applies",
+        phrase: "Which roll should I make for that?"
+      },
+      {
+        situation: "Combat reaches your turn",
+        phrase: "I want to move here and attack/cast/help/hide."
+      },
+      {
+        situation: "A rule is confusing",
+        phrase: "Can someone walk me through that once?"
+      },
+      {
+        situation: "You need a quick option",
+        phrase: "What is the simple useful thing I can do?"
+      }
+    ],
+    tableMindset: [
+      "D&D is cooperative. Help the party and let other people have moments.",
+      "You can make jokes, but do not drown out the scene.",
+      "Do not move another player's token or edit another player's character sheet.",
+      "Player-versus-player conflict needs consent and DM approval.",
+      "Respect boundaries. If something at the table is uncomfortable, say so or message the DM.",
+      "The goal is not perfect play. The goal is a fun shared night."
     ],
     checklist: [
       "Join Discord.",
