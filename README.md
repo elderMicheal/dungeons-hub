@@ -2,11 +2,11 @@
 
 Static D&D starter hub for dungeons.michealburford.com.
 
-The public site is HTML, CSS, and vanilla JavaScript. It has no database, custom backend, custom accounts, or build step.
+The public site is HTML, CSS, and vanilla JavaScript. It has no database, custom backend, user accounts, OAuth requirement, CMS service, or build step.
 
 Repository: https://github.com/elderMicheal/dungeons-hub
 
-## Admin Editing
+## Admin Lite
 
 Open:
 
@@ -14,20 +14,34 @@ Open:
 https://dungeons.michealburford.com/admin/
 ```
 
-Expected workflow:
+Admin Lite is a browser-only editor for public content files. It:
 
-1. Micheal or the DM opens `/admin/`.
-2. They sign in with GitHub.
-3. They edit a form section.
-4. They click Publish.
-5. Decap CMS commits JSON changes to `main`.
-6. Netlify redeploys the static site.
-7. The public site updates after deployment.
+- loads JSON from `content/`,
+- renders editable form fields,
+- saves drafts in this browser with `localStorage`,
+- downloads updated JSON files,
+- never logs in,
+- never talks to a backend,
+- never publishes directly to GitHub.
+
+This is intentional. A static site can read public files, but it cannot safely write back to the repository without OAuth, a backend, or a CMS service.
+
+## Publish Edited Content
+
+1. Open `/admin/`.
+2. Choose a content file.
+3. Edit the form fields.
+4. Click `Save Draft Here` if you are still working.
+5. Click `Download JSON` when ready.
+6. Replace the matching file under `content/`.
+7. Commit and push the repo.
+8. GitHub Pages redeploys the public site.
 
 ## Editable Content
 
 Public content lives in `content/`:
 
+- `content/site-settings.json`
 - `content/table-at-a-glance.json`
 - `content/how-we-play.json`
 - `content/character-creation.json`
@@ -36,6 +50,8 @@ Public content lives in `content/`:
 - `content/campaign-status.json`
 - `content/help-and-glossary.json`
 - `content/house-rules/index.json`
+- `content/house-rules/rule-of-cool.json`
+- `content/house-rules/roleplay-first.json`
 - `content/sessions/index.json`
 - `content/change-log/index.json`
 
@@ -43,37 +59,38 @@ The public site loads these files with `fetch()`. If content fails to load, the 
 
 ## Update Links
 
-Use the Decap CMS section:
+Use Admin Lite:
 
 ```text
-Tools & Links
+Tools and Links
 ```
 
 Leave unknown links blank. The public UI shows `Link not added yet` instead of rendering dead `#` links.
 
 ## House Rules
 
-Use the Decap CMS section:
+Use Admin Lite:
 
 ```text
-House Rules
+House Rules Index
+House Rule: Rule of Cool
+House Rule: Roleplay First
 ```
 
 Mark old rules `Retired` instead of deleting them. The public Rules page shows active/revised rules by default and preserves the log data.
 
-## Netlify Setup
+## Deploy
 
-Use Netlify static deployment:
+The current lightweight path is GitHub Pages:
 
 ```text
-Private GitHub repository
-Netlify site connected to main branch
-Publish directory: .
-Build command: empty
-Custom domain: dungeons.michealburford.com
+Push changes to main.
+GitHub Pages publishes the static site.
 ```
 
-Set up Netlify GitHub OAuth for Decap CMS. Only Micheal Burford and the Dungeon Master should have GitHub write access to the private repository.
+No build command is required.
+
+Netlify or Cloudflare Pages can also host the same files as a static site, but Admin Lite still cannot publish without adding an auth/write service.
 
 ## Custom Domain
 
@@ -83,7 +100,7 @@ The `CNAME` file contains:
 dungeons.michealburford.com
 ```
 
-DNS for the `dungeons` subdomain must point to Netlify. Configure the custom domain in Netlify, then update DNS using the records Netlify provides.
+DNS for the `dungeons` subdomain must point to the selected static host.
 
 ## Local Preview
 
@@ -97,15 +114,8 @@ Open:
 
 ```text
 http://localhost:8017/#home
-```
-
-The admin page can be previewed at:
-
-```text
 http://localhost:8017/admin/
 ```
-
-GitHub sign-in and publishing require the Netlify-hosted site and OAuth setup.
 
 ## Routes
 

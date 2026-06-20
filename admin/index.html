@@ -5,69 +5,765 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <meta http-equiv="Cache-Control" content="no-store">
-  <title>Dungeons Hub Admin</title>
+  <title>Dungeons Hub Admin Lite</title>
   <style>
+    :root {
+      --bg: #060504;
+      --surface: #12100d;
+      --surface-2: #1d1711;
+      --paper: #ead9b8;
+      --paper-ink: #24190f;
+      --text: #f7ead4;
+      --muted: #cbb995;
+      --gold: #efb84f;
+      --red: #8f342c;
+      --border: #5a452f;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #060504;
-      color: #f7ead4;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(239, 184, 79, 0.16), transparent 20rem),
+        linear-gradient(180deg, #060504 0%, #100a08 48%, #060504 100%);
+      color: var(--text);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
     }
 
-    .admin-load-help {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 9999;
-      max-width: min(28rem, calc(100vw - 2rem));
-      border: 1px solid rgba(239, 184, 79, 0.45);
-      border-radius: 10px;
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    header,
+    main {
+      width: min(1100px, 100%);
+      margin: 0 auto;
       padding: 1rem;
-      background: rgba(18, 16, 13, 0.96);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
     }
 
-    .admin-load-help strong {
-      display: block;
-      margin-bottom: 0.35rem;
-      color: #efb84f;
+    header {
+      display: grid;
+      gap: 0.75rem;
+      padding-top: 1.25rem;
     }
 
-    .admin-load-help p {
-      margin: 0.35rem 0;
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.15;
     }
 
-    .admin-load-help code {
+    h1 {
+      font-size: clamp(2rem, 8vw, 4.2rem);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    code {
       color: #fff0c2;
+    }
+
+    a {
+      color: #fff0c2;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .shell {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .panel,
+    .field-panel {
+      border: 1px solid rgba(90, 69, 47, 0.86);
+      border-radius: 14px;
+      background: rgba(18, 16, 13, 0.94);
+      box-shadow: 0 18px 42px var(--shadow);
+    }
+
+    .panel {
+      padding: 1rem;
+    }
+
+    .notice {
+      display: grid;
+      gap: 0.65rem;
+      border-color: rgba(239, 184, 79, 0.44);
+      background: linear-gradient(145deg, rgba(42, 29, 13, 0.95), rgba(18, 16, 13, 0.95));
+    }
+
+    .notice strong {
+      color: #fff0c2;
+    }
+
+    .controls {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    label {
+      display: grid;
+      gap: 0.35rem;
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    select,
+    input,
+    textarea,
+    button {
+      min-height: 44px;
+      border: 1px solid rgba(198, 184, 159, 0.22);
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      background: rgba(6, 5, 4, 0.9);
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    input[type="checkbox"] {
+      width: 1.3rem;
+      min-height: 1.3rem;
+      accent-color: var(--gold);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    button,
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.85rem;
+      border-color: rgba(239, 184, 79, 0.36);
+      background: rgba(29, 23, 17, 0.98);
+      color: var(--text);
+      font-weight: 850;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, #efb84f, #c98a2a);
+      color: #1c1007;
+      border-color: rgba(255, 226, 142, 0.65);
+    }
+
+    button.danger {
+      border-color: rgba(203, 67, 52, 0.52);
+      background: rgba(66, 18, 14, 0.92);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .status {
+      min-height: 1.5rem;
+      color: #fff0c2;
+      font-weight: 750;
+    }
+
+    .editor {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .field-panel {
+      display: grid;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      background: linear-gradient(145deg, rgba(18, 16, 13, 0.98), rgba(9, 8, 7, 0.98));
+    }
+
+    .field-panel legend {
+      padding: 0 0.35rem;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .field-label {
+      color: var(--text);
+      font-size: 0.94rem;
+      font-weight: 850;
+    }
+
+    .field-path {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 650;
+      word-break: break-word;
+    }
+
+    .field-help {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .check-field {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .array-list {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .array-item {
+      display: grid;
+      gap: 0.6rem;
+      border: 1px solid rgba(198, 184, 159, 0.15);
+      border-radius: 10px;
+      padding: 0.75rem;
+      background: rgba(21, 17, 14, 0.58);
+    }
+
+    .array-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .array-item-header strong {
+      color: #fff0c2;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .json-preview {
+      max-height: 18rem;
+      overflow: auto;
+      border: 1px solid rgba(198, 184, 159, 0.18);
+      border-radius: 10px;
+      padding: 0.85rem;
+      background: #050403;
+      color: #f8e8c7;
+      white-space: pre;
+    }
+
+    @media (min-width: 800px) {
+      .controls {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+      }
+
+      .shell {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.4fr);
+        align-items: start;
+      }
+
+      .editor-panel {
+        grid-column: 1 / -1;
+      }
     }
   </style>
 </head>
 <body>
-  <noscript>
-    <div class="admin-load-help">
-      <strong>JavaScript is required</strong>
-      <p>The admin editor needs JavaScript to load Decap CMS.</p>
-    </div>
-  </noscript>
-  <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
-  <script>
-    window.setTimeout(function () {
-      var text = document.body.textContent || "";
-      var alreadyReady = /Login with GitHub|Dungeons Hub Admin|Table at a Glance|How We Play Here/i.test(text);
-      var stillLoading = /Loading configuration/i.test(text);
+  <header>
+    <p class="eyebrow">Dungeons Hub</p>
+    <h1>Admin Lite</h1>
+    <p>Browser-only public content editor. No login, no OAuth, no backend, no publishing API.</p>
+  </header>
 
-      if (stillLoading && !alreadyReady) {
-        var help = document.createElement("div");
-        help.className = "admin-load-help";
-        help.innerHTML = [
-          "<strong>Admin is still loading</strong>",
-          "<p>Try a hard refresh first: <code>Ctrl+F5</code>.</p>",
-          "<p>If this stays stuck, open <code>/admin/config.yml</code>. If that file does not load, the CMS cannot read its configuration.</p>",
-          "<p>Publishing still requires Netlify GitHub OAuth and repository write access.</p>"
-        ].join("");
-        document.body.appendChild(help);
+  <main class="shell">
+    <section class="panel notice">
+      <h2>Important Limit</h2>
+      <p><strong>This page cannot publish changes by itself.</strong> A static website has no safe way to write back to GitHub without OAuth, a backend, or a CMS service.</p>
+      <p>Use this page to edit public JSON through forms, save a local draft, and download the updated file. Micheal can then replace the matching file in <code>/content/</code> and push the repo.</p>
+      <p>Do not enter secret DM notes, spoilers, private player info, passwords, tokens, or API keys. Content files are public.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Choose Content</h2>
+      <div class="controls">
+        <label for="filePicker">
+          Content file
+          <select id="filePicker"></select>
+        </label>
+        <div class="button-row">
+          <button id="loadFileButton" class="primary" type="button">Load</button>
+          <a class="button-link" href="/#admin">Workflow</a>
+          <a class="button-link" href="/">Public Site</a>
+        </div>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel editor-panel">
+      <div class="button-row">
+        <button id="saveDraftButton" type="button" disabled>Save Draft Here</button>
+        <button id="resetDraftButton" class="danger" type="button" disabled>Reset Draft</button>
+        <button id="downloadButton" class="primary" type="button" disabled>Download JSON</button>
+        <button id="copyButton" type="button" disabled>Copy JSON</button>
+        <button id="exportDraftsButton" type="button">Export All Drafts</button>
+      </div>
+      <div id="editor" class="editor" aria-live="polite">
+        <p class="empty">Choose a file and click Load.</p>
+      </div>
+    </section>
+
+    <section class="panel editor-panel">
+      <h2>Preview</h2>
+      <pre id="jsonPreview" class="json-preview">{}</pre>
+    </section>
+  </main>
+
+  <noscript>
+    <section class="panel">
+      <h2>JavaScript is required</h2>
+      <p>This editor uses JavaScript to load and edit the public JSON files.</p>
+    </section>
+  </noscript>
+
+  <script>
+    const CONTENT_FILES = [
+      { label: "Site Settings", path: "/content/site-settings.json" },
+      { label: "Table at a Glance", path: "/content/table-at-a-glance.json" },
+      { label: "How We Play Here", path: "/content/how-we-play.json" },
+      { label: "Character Creation", path: "/content/character-creation.json" },
+      { label: "Tone and Boundaries", path: "/content/tone-and-boundaries.json" },
+      { label: "Tools and Links", path: "/content/tools-and-links.json" },
+      { label: "Campaign Status", path: "/content/campaign-status.json" },
+      { label: "Help and Glossary", path: "/content/help-and-glossary.json" },
+      { label: "House Rules Index", path: "/content/house-rules/index.json" },
+      { label: "House Rule: Rule of Cool", path: "/content/house-rules/rule-of-cool.json" },
+      { label: "House Rule: Roleplay First", path: "/content/house-rules/roleplay-first.json" },
+      { label: "Sessions Index", path: "/content/sessions/index.json" },
+      { label: "Change Log Index", path: "/content/change-log/index.json" }
+    ];
+
+    const ARRAY_TEMPLATES = {
+      "/content/sessions/index.json|sessions": {
+        sessionNumber: 1,
+        date: "",
+        title: "",
+        attendance: [],
+        summary: [],
+        majorEvents: [],
+        npcsMet: [],
+        lootGained: [],
+        cluesFound: [],
+        unresolvedQuestions: [],
+        nextObjective: "",
+        status: "Draft"
+      },
+      "/content/house-rules/index.json|rules": {
+        title: "",
+        category: "Other",
+        status: "Proposed",
+        shortVersion: "",
+        fullExplanation: "",
+        whyTheTableUsesIt: "",
+        exampleInPlay: "",
+        exceptions: "",
+        dateAdded: "",
+        lastRevised: "",
+        versionNumber: 1,
+        replacesRule: "",
+        optionalNotes: ""
+      },
+      "/content/change-log/index.json|entries": {
+        date: "",
+        title: "",
+        category: "",
+        whatChanged: "",
+        whyItChanged: "",
+        relatedHouseRule: "",
+        status: "Draft"
       }
-    }, 8000);
+    };
+
+    const state = {
+      file: null,
+      original: null,
+      draft: null
+    };
+
+    const filePicker = document.getElementById("filePicker");
+    const loadFileButton = document.getElementById("loadFileButton");
+    const saveDraftButton = document.getElementById("saveDraftButton");
+    const resetDraftButton = document.getElementById("resetDraftButton");
+    const downloadButton = document.getElementById("downloadButton");
+    const copyButton = document.getElementById("copyButton");
+    const exportDraftsButton = document.getElementById("exportDraftsButton");
+    const editor = document.getElementById("editor");
+    const jsonPreview = document.getElementById("jsonPreview");
+    const status = document.getElementById("status");
+
+    function setStatus(message) {
+      status.textContent = message;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function labelFromKey(key) {
+      return String(key || "value")
+        .replace(/[-_]/g, " ")
+        .replace(/([a-z])([A-Z])/g, "$1 $2")
+        .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function draftKey(path) {
+      return `dungeons-admin-draft:${path}`;
+    }
+
+    function clone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function getByPath(root, path) {
+      return path.reduce((current, key) => current?.[key], root);
+    }
+
+    function setByPath(root, path, value) {
+      const parentPath = path.slice(0, -1);
+      const key = path[path.length - 1];
+      const parent = getByPath(root, parentPath);
+      parent[key] = value;
+    }
+
+    function blankFromTemplate(value) {
+      if (Array.isArray(value)) {
+        return [];
+      }
+
+      if (value && typeof value === "object") {
+        return Object.fromEntries(
+          Object.entries(value).map(([key, child]) => [key, blankFromTemplate(child)])
+        );
+      }
+
+      if (typeof value === "number") {
+        return 0;
+      }
+
+      if (typeof value === "boolean") {
+        return false;
+      }
+
+      return "";
+    }
+
+    function prettyJson(value) {
+      return JSON.stringify(value, null, 2);
+    }
+
+    function updatePreview() {
+      jsonPreview.textContent = state.draft ? prettyJson(state.draft) : "{}";
+    }
+
+    function fieldPathLabel(path) {
+      return path.map(String).join(".");
+    }
+
+    function templateKey(path) {
+      return `${state.file?.path || ""}|${fieldPathLabel(path)}`;
+    }
+
+    function renderEditor() {
+      if (!state.draft) {
+        editor.innerHTML = '<p class="empty">Choose a file and click Load.</p>';
+        updatePreview();
+        return;
+      }
+
+      editor.innerHTML = renderValue(state.draft, []);
+      updatePreview();
+      saveDraftButton.disabled = false;
+      resetDraftButton.disabled = false;
+      downloadButton.disabled = false;
+      copyButton.disabled = false;
+    }
+
+    function renderValue(value, path) {
+      if (Array.isArray(value)) {
+        return renderArray(value, path);
+      }
+
+      if (value && typeof value === "object") {
+        return renderObject(value, path);
+      }
+
+      return renderPrimitive(value, path);
+    }
+
+    function renderObject(value, path) {
+      const title = path.length ? labelFromKey(path[path.length - 1]) : state.file.label;
+      const fields = Object.entries(value).map(([key, child]) => renderValue(child, [...path, key])).join("");
+
+      return `
+        <fieldset class="field-panel">
+          <legend>${escapeHtml(title)}</legend>
+          ${fields || '<p class="empty">No fields yet.</p>'}
+        </fieldset>
+      `;
+    }
+
+    function renderArray(value, path) {
+      const label = path.length ? labelFromKey(path[path.length - 1]) : state.file.label;
+      const pathJson = escapeHtml(JSON.stringify(path));
+      const items = value.map((item, index) => `
+        <div class="array-item">
+          <div class="array-item-header">
+            <strong>${escapeHtml(label)} ${index + 1}</strong>
+            <button class="danger" type="button" data-remove-path="${pathJson}" data-index="${index}">Remove</button>
+          </div>
+          ${renderValue(item, [...path, index])}
+        </div>
+      `).join("");
+
+      return `
+        <fieldset class="field-panel">
+          <legend>${escapeHtml(label)}</legend>
+          <p class="field-help">${escapeHtml(fieldPathLabel(path)) || "Top-level list"}</p>
+          <div class="array-list">
+            ${items || '<p class="empty">No entries yet.</p>'}
+          </div>
+          <button type="button" data-add-path="${pathJson}">Add Entry</button>
+        </fieldset>
+      `;
+    }
+
+    function renderPrimitive(value, path) {
+      const label = labelFromKey(path[path.length - 1]);
+      const pathJson = escapeHtml(JSON.stringify(path));
+      const pathText = escapeHtml(fieldPathLabel(path));
+
+      if (typeof value === "boolean") {
+        return `
+          <label class="field-panel check-field">
+            <input type="checkbox" data-field-path="${pathJson}" ${value ? "checked" : ""}>
+            <span>
+              <span class="field-label">${escapeHtml(label)}</span>
+              <span class="field-path">${pathText}</span>
+            </span>
+          </label>
+        `;
+      }
+
+      if (typeof value === "number") {
+        return `
+          <label class="field-panel">
+            <span class="field-label">${escapeHtml(label)}</span>
+            <span class="field-path">${pathText}</span>
+            <input type="number" data-field-path="${pathJson}" value="${escapeHtml(value)}">
+          </label>
+        `;
+      }
+
+      const stringValue = String(value ?? "");
+      const useTextarea = stringValue.length > 90 || stringValue.includes("\n");
+      const control = useTextarea
+        ? `<textarea data-field-path="${pathJson}">${escapeHtml(stringValue)}</textarea>`
+        : `<input type="text" data-field-path="${pathJson}" value="${escapeHtml(stringValue)}">`;
+
+      return `
+        <label class="field-panel">
+          <span class="field-label">${escapeHtml(label)}</span>
+          <span class="field-path">${pathText}</span>
+          ${control}
+        </label>
+      `;
+    }
+
+    async function loadSelectedFile() {
+      const path = filePicker.value;
+      const file = CONTENT_FILES.find((item) => item.path === path);
+
+      try {
+        setStatus(`Loading ${file.label}...`);
+        const response = await fetch(path, { cache: "no-cache" });
+        if (!response.ok) {
+          throw new Error(`Could not load ${path}`);
+        }
+
+        const original = await response.json();
+        const savedDraft = localStorage.getItem(draftKey(path));
+        state.file = file;
+        state.original = original;
+        state.draft = savedDraft ? JSON.parse(savedDraft) : clone(original);
+        renderEditor();
+        setStatus(savedDraft ? `Loaded saved draft for ${file.label}.` : `Loaded ${file.label}.`);
+      } catch (error) {
+        editor.innerHTML = '<p class="empty">This file could not be loaded. Refresh and try again.</p>';
+        setStatus(error.message);
+      }
+    }
+
+    function saveDraft() {
+      if (!state.file || !state.draft) {
+        return;
+      }
+
+      localStorage.setItem(draftKey(state.file.path), prettyJson(state.draft));
+      setStatus(`Draft saved in this browser for ${state.file.label}.`);
+    }
+
+    function resetDraft() {
+      if (!state.file || !state.original) {
+        return;
+      }
+
+      localStorage.removeItem(draftKey(state.file.path));
+      state.draft = clone(state.original);
+      renderEditor();
+      setStatus(`Draft reset for ${state.file.label}.`);
+    }
+
+    function downloadCurrentJson() {
+      if (!state.file || !state.draft) {
+        return;
+      }
+
+      const blob = new Blob([prettyJson(state.draft) + "\n"], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = state.file.path.replace(/^\/?content\//, "content-").replace(/[\/\\]/g, "-");
+      link.click();
+      URL.revokeObjectURL(link.href);
+      setStatus(`Downloaded ${link.download}. Replace ${state.file.path} with this file to publish it.`);
+    }
+
+    async function copyCurrentJson() {
+      if (!state.draft) {
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(prettyJson(state.draft));
+        setStatus("JSON copied to clipboard.");
+      } catch (error) {
+        setStatus("Clipboard copy failed. Use Download JSON instead.");
+      }
+    }
+
+    function exportAllDrafts() {
+      const drafts = {};
+
+      CONTENT_FILES.forEach((file) => {
+        const saved = localStorage.getItem(draftKey(file.path));
+        if (saved) {
+          drafts[file.path] = JSON.parse(saved);
+        }
+      });
+
+      const blob = new Blob([prettyJson({
+        exportedAt: new Date().toISOString(),
+        note: "These are local Dungeons Hub admin drafts. Copy each entry into the matching content file before committing.",
+        drafts
+      }) + "\n"], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "dungeons-content-drafts.json";
+      link.click();
+      URL.revokeObjectURL(link.href);
+      setStatus(Object.keys(drafts).length ? "Exported saved drafts." : "No saved drafts to export.");
+    }
+
+    editor.addEventListener("input", (event) => {
+      const field = event.target.closest("[data-field-path]");
+      if (!field || !state.draft) {
+        return;
+      }
+
+      const path = JSON.parse(field.dataset.fieldPath);
+      let value = field.value;
+
+      if (field.type === "checkbox") {
+        value = field.checked;
+      } else if (field.type === "number") {
+        value = Number(field.value);
+      }
+
+      setByPath(state.draft, path, value);
+      updatePreview();
+    });
+
+    editor.addEventListener("click", (event) => {
+      const addButton = event.target.closest("[data-add-path]");
+      if (addButton) {
+        const path = JSON.parse(addButton.dataset.addPath);
+        const array = getByPath(state.draft, path);
+        const knownTemplate = ARRAY_TEMPLATES[templateKey(path)];
+        array.push(array.length ? blankFromTemplate(array[0]) : clone(knownTemplate ?? ""));
+        renderEditor();
+        setStatus("Entry added. Save the draft when you are done.");
+        return;
+      }
+
+      const removeButton = event.target.closest("[data-remove-path]");
+      if (removeButton) {
+        const path = JSON.parse(removeButton.dataset.removePath);
+        const array = getByPath(state.draft, path);
+        array.splice(Number(removeButton.dataset.index), 1);
+        renderEditor();
+        setStatus("Entry removed from this draft. Save the draft when you are done.");
+      }
+    });
+
+    loadFileButton.addEventListener("click", loadSelectedFile);
+    saveDraftButton.addEventListener("click", saveDraft);
+    resetDraftButton.addEventListener("click", resetDraft);
+    downloadButton.addEventListener("click", downloadCurrentJson);
+    copyButton.addEventListener("click", copyCurrentJson);
+    exportDraftsButton.addEventListener("click", exportAllDrafts);
+
+    CONTENT_FILES.forEach((file) => {
+      const option = document.createElement("option");
+      option.value = file.path;
+      option.textContent = file.label;
+      filePicker.appendChild(option);
+    });
+
+    loadSelectedFile();
   </script>
 </body>
 </html>

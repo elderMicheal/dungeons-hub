@@ -1552,27 +1552,29 @@ function renderJoin() {
 
 function renderAdmin() {
   return `
-    ${pageHeader("DM Admin", "Use the form-based content editor for public table information.")}
+    ${pageHeader("DM Admin", "Use the lightweight browser editor for public table information.")}
     <section class="content-grid">
       <article class="panel wide-panel">
-        <p class="eyebrow">Content editor</p>
-        <h2>Open Decap CMS</h2>
-        <p>The public site loads editable JSON content from <code>/content/</code>. Micheal and the DM can update public-facing text through the admin forms after Netlify GitHub OAuth is configured.</p>
+        <p class="eyebrow">Admin Lite</p>
+        <h2>No login, no backend, no OAuth</h2>
+        <p>The public site loads editable JSON content from <code>/content/</code>. The admin page is now a static browser-only editor: it loads those public files, renders forms, saves local drafts in this browser, and exports updated JSON files.</p>
+        <p>Because there is no backend or GitHub OAuth, this page cannot publish changes directly. To make edits live, replace the matching file in <code>/content/</code>, commit it, and push the repo.</p>
         <div class="button-stack">
-          <a class="button" href="/admin/">Open Admin</a>
+          <a class="button" href="/admin/">Open Admin Lite</a>
           ${linkButton("Open GitHub Repo", campaignLink("githubRepo"), "button button-secondary")}
         </div>
       </article>
 
       <article class="panel">
-        <h2>Publishing Workflow</h2>
+        <h2>Editing Workflow</h2>
         <ol class="step-list">
           <li>Open <code>/admin/</code>.</li>
-          <li>Sign in with GitHub.</li>
-          <li>Edit one public content section.</li>
-          <li>Click Publish.</li>
-          <li>Decap commits JSON changes to <code>main</code>.</li>
-          <li>Netlify detects the commit and redeploys the static site.</li>
+          <li>Choose a content file.</li>
+          <li>Edit the form fields.</li>
+          <li>Save a local draft if you are still working.</li>
+          <li>Download the updated JSON file.</li>
+          <li>Replace the matching file under <code>/content/</code>.</li>
+          <li>Commit and push the repo so the static host redeploys.</li>
         </ol>
       </article>
 
@@ -1587,7 +1589,12 @@ function renderAdmin() {
 
       <article class="panel wide-panel">
         <h2>Editable Sections</h2>
-        <p>The CMS sidebar includes Table at a Glance, How We Play Here, Character Creation, House Rules, Tone & Boundaries, Tools & Links, Campaign Status, Sessions & Recaps, Help & Glossary, and Change Log.</p>
+        <p>Admin Lite can edit Site Settings, Table at a Glance, How We Play Here, Character Creation, House Rules, Tone & Boundaries, Tools & Links, Campaign Status, Sessions & Recaps, Help & Glossary, and Change Log files.</p>
+      </article>
+
+      <article class="panel wide-panel parchment-card">
+        <h2>Why it works this way</h2>
+        <p>A static site can read public files, but it cannot safely write to GitHub by itself. Direct publishing requires adding an authentication service, a backend, or a CMS integration. For now, this keeps the site cheap, simple, and low-maintenance.</p>
       </article>
     </section>
   `;

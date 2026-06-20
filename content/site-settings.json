@@ -341,17 +341,18 @@
     }
   ],
   "admin": {
-    "intro": "Use /admin/ to edit public content through Decap CMS forms.",
+    "intro": "Use /admin/ to edit public content through a browser-only static form editor.",
     "workflow": [
       "Open /admin/.",
-      "Sign in with GitHub.",
       "Choose a content section.",
       "Edit the form fields.",
-      "Click Publish.",
-      "Wait for Netlify to redeploy."
+      "Save a local draft if needed.",
+      "Download the updated JSON file.",
+      "Replace the matching file in /content/.",
+      "Commit and push the repo so the static host redeploys."
     ],
     "warnings": [
-      "Only public-facing content belongs in this CMS.",
+      "Only public-facing content belongs in the static editor.",
       "Do not store secret DM notes, spoilers, private player information, passwords, tokens, or API keys."
     ],
     "files": []

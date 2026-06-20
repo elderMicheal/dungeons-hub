@@ -4,8 +4,8 @@
       "date": "2026-06-19",
       "title": "Added editable table rules and content admin structure",
       "category": "Admin",
-      "whatChanged": "Moved public-facing table guidance into structured content files and added Decap CMS admin scaffolding.",
-      "whyItChanged": "Micheal and the DM need to update public content without editing code.",
+      "whatChanged": "Moved public-facing table guidance into structured content files and added a browser-only Admin Lite editor.",
+      "whyItChanged": "Micheal and the DM need a low-burden way to edit public content without adding accounts, OAuth, or a backend.",
       "relatedHouseRule": "",
       "status": "Published"
     }
