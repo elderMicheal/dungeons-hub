@@ -21,6 +21,17 @@ const siteFooter = document.getElementById("siteFooter");
 
 let rollHistory = [];
 
+const ASSETS = {
+  back: "assets/dungeons-asset-back.png",
+  beyond: "assets/dungeons-asset-beyond.png",
+  book: "assets/dungeons-asset-book.png",
+  discord: "assets/dungeons-asset-discord.png",
+  home: "assets/dungeons-asset-home.png",
+  map: "assets/dungeons-asset-map.png",
+  tools: "assets/dungeons-asset-tools.png",
+  wizard: "assets/dungeons-asset-wizard.png"
+};
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -36,6 +47,19 @@ function isRealLink(url) {
 
 function campaignLink(key) {
   return DATA.campaign.links[key] || "#";
+}
+
+function assetUrl(key) {
+  return ASSETS[key] || key || "";
+}
+
+function assetIcon(key, className = "asset-icon") {
+  const src = assetUrl(key);
+  if (!src) {
+    return "";
+  }
+
+  return `<span class="${className}" aria-hidden="true"><img src="${escapeHtml(src)}" alt="" loading="lazy"></span>`;
 }
 
 function linkButton(label, url, className = "button") {
@@ -88,6 +112,24 @@ function pageHeader(title, text) {
       <p class="eyebrow">Dungeons Hub</p>
       <h1>${escapeHtml(title)}</h1>
       ${text ? `<p>${escapeHtml(text)}</p>` : ""}
+    </section>
+  `;
+}
+
+function renderStartHero() {
+  return `
+    <section class="page-hero start-page-hero">
+      <div class="start-hero-copy">
+        <p class="eyebrow">Start here, brave fool</p>
+        <h1>Start Here</h1>
+        <p>A step-by-step beginner guide for people coming in completely blind to D&D or tabletop RPGs.</p>
+        <div class="start-hero-chips" aria-label="What this guide covers">
+          <span>${assetIcon("book", "mini-icon")} What D&D is</span>
+          <span>${assetIcon("wizard", "mini-icon")} How characters work</span>
+          <span>${assetIcon("tools", "mini-icon")} What to click first</span>
+        </div>
+      </div>
+      <img class="start-hero-wizard" src="${escapeHtml(ASSETS.wizard)}" alt="" aria-hidden="true" loading="eager">
     </section>
   `;
 }
@@ -157,6 +199,7 @@ function renderStarterHome() {
         <h2>${escapeHtml(home.hero.subtitle)}</h2>
         <p>${escapeHtml(home.hero.intro)}</p>
       </div>
+      <img class="hero-wizard" src="${escapeHtml(ASSETS.wizard)}" alt="" aria-hidden="true" loading="eager">
       <div class="hero-actions" aria-label="First actions">
         ${primaryLinks.map(renderQuickLinkCard).join("")}
       </div>
@@ -164,12 +207,14 @@ function renderStarterHome() {
 
     <section class="starter-grid">
       <article class="panel intro-card">
+        ${assetIcon("home", "panel-art")}
         <p class="eyebrow">What this is</p>
         <h2>Your D&D clubhouse</h2>
         <p>${escapeHtml(home.whatThisIs)}</p>
       </article>
 
       <article class="panel parchment-card">
+        ${assetIcon("book", "panel-art")}
         <p class="eyebrow">Before your first session</p>
         <h2>What you need</h2>
         <ol class="check-list">
@@ -179,6 +224,7 @@ function renderStarterHome() {
       </article>
 
       <article class="panel parchment-card">
+        ${assetIcon("book", "panel-art")}
         <p class="eyebrow">Start here, brave fool</p>
         <h2>New player quick start</h2>
         <ol class="check-list">
@@ -188,12 +234,14 @@ function renderStarterHome() {
       </article>
 
       <article class="panel no-campaign-card">
+        ${assetIcon("map", "panel-art")}
         <p class="eyebrow">Not started yet</p>
         <h2>${escapeHtml(home.noCampaign.title)}</h2>
         <p>${escapeHtml(home.noCampaign.text)}</p>
         <div class="future-mini-grid">
           ${DATA.futureLinks.slice(0, 4).map((item) => `
             <a href="#${escapeHtml(item.route)}" class="future-mini-link">
+              ${assetIcon(item.icon, "mini-icon")}
               <strong>${escapeHtml(item.label)}</strong>
               <span>${escapeHtml(item.description)}</span>
             </a>
@@ -207,6 +255,7 @@ function renderStarterHome() {
         <div class="help-tile-grid">
           ${home.quickHelp.map((item) => `
             <a class="help-tile" href="#${escapeHtml(item.route)}">
+              ${assetIcon(item.icon, "mini-icon")}
               <strong>${escapeHtml(item.title)}</strong>
               <span>${escapeHtml(item.text)}</span>
             </a>
@@ -220,6 +269,7 @@ function renderStarterHome() {
         <div class="tool-preview-grid">
           ${home.toolsPreview.map((tool) => `
             <article>
+              ${assetIcon(tool.icon, "mini-icon")}
               <h3>${escapeHtml(tool.title)}</h3>
               <p>${escapeHtml(tool.text)}</p>
               ${tool.route ? routeButton("Learn More", tool.route, "button button-small button-secondary") : linkButton("Open", campaignLink(tool.linkKey), "button button-small button-secondary")}
@@ -229,6 +279,7 @@ function renderStarterHome() {
       </article>
 
       <article class="panel coming-later-card">
+        ${assetIcon("map", "panel-art")}
         <p class="eyebrow">Coming later</p>
         <h2>Campaign tools unlock when we begin adventuring</h2>
         <ul class="coming-list">
@@ -237,6 +288,7 @@ function renderStarterHome() {
       </article>
 
       <article class="panel source-card">
+        ${assetIcon("tools", "panel-art")}
         <p class="eyebrow">For Micheal / DM</p>
         <h2>Edit the hub</h2>
         <p>Static admin links live here without making the visitor navigation feel like a control panel.</p>
@@ -373,9 +425,10 @@ function renderQuickLinkCard(item) {
   if (!item.route && !isRealLink(campaignLink(item.linkKey))) {
     return `
       <article class="quick-link-card quick-link-disabled${variant}${attention}" aria-disabled="true">
+        ${assetIcon(item.icon)}
         <div>
           <strong>${escapeHtml(item.label)}</strong>
-          <span>${escapeHtml(item.description)}</span>
+          <span class="quick-link-description">${escapeHtml(item.description)}</span>
         </div>
         <span class="quick-card-action">Link not added yet</span>
       </article>
@@ -384,9 +437,10 @@ function renderQuickLinkCard(item) {
 
   return `
     <a class="quick-link-card${variant}${attention}" href="${href}"${isExternal ? ' target="_blank" rel="noopener noreferrer"' : ""}>
+      ${assetIcon(item.icon)}
       <div>
         <strong>${escapeHtml(item.label)}</strong>
-        <span>${escapeHtml(item.description)}</span>
+        <span class="quick-link-description">${escapeHtml(item.description)}</span>
       </div>
       <span class="quick-card-action">Open</span>
     </a>
@@ -466,6 +520,93 @@ function renderReferenceCard(item) {
       <p>${escapeHtml(item.description)}</p>
       ${linkButton("Open Reference", item.url, "button button-small button-secondary")}
     </article>
+  `;
+}
+
+function renderTableStrip() {
+  return `
+    <section class="table-strip" aria-label="How we play here">
+      <div>
+        <p class="eyebrow">How We Play Here</p>
+        <strong>${escapeHtml(DATA.ourTable.compact)}</strong>
+      </div>
+      ${routeButton("Read Table Rules", "rules", "button button-small button-secondary")}
+    </section>
+  `;
+}
+
+function renderOurTableSection(section) {
+  return `
+    <article class="definition-card table-rule-card">
+      <h3>${escapeHtml(section.title)}</h3>
+      ${(section.text || []).map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
+      ${(section.bullets || []).length ? `<ul class="clean-list">${listItems(section.bullets)}</ul>` : ""}
+    </article>
+  `;
+}
+
+function renderOurTableSummary() {
+  return `
+    <article id="our-table" class="panel wide-panel our-table-panel">
+      ${assetIcon("home", "panel-art")}
+      <p class="eyebrow">Table-specific source of truth</p>
+      <h2>${escapeHtml(DATA.ourTable.title)}</h2>
+      <p>${escapeHtml(DATA.ourTable.intro)}</p>
+      <div class="table-tag-list" aria-label="Table at a glance">
+        ${DATA.ourTable.atGlance.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function renderDndBeyondPreflight() {
+  const preflight = DATA.ourTable.dndBeyondPreflight;
+
+  return `
+    <article id="dnd-beyond-preflight" class="panel table-preflight-card wide-panel" tabindex="-1">
+      ${assetIcon("beyond", "panel-art")}
+      <p class="eyebrow">Before D&D Beyond</p>
+      <h2>${escapeHtml(preflight.title)}</h2>
+      <p>${escapeHtml(preflight.intro)}</p>
+      <ol class="step-list big-steps">
+        ${preflight.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+      </ol>
+      <div class="button-row">
+        ${linkButton("Open D&D Beyond Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
+        ${routeButton("Read Table Rules", "rules", "button button-small button-secondary")}
+      </div>
+    </article>
+  `;
+}
+
+function renderHouseRuleLog(entries) {
+  return `
+    <div class="table-scroll">
+      <table class="guide-table house-rule-log">
+        <thead>
+          <tr>
+            <th scope="col">Rule name</th>
+            <th scope="col">What it changes</th>
+            <th scope="col">Why</th>
+            <th scope="col">Date added</th>
+            <th scope="col">Status</th>
+            <th scope="col">Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${entries.map((entry) => `
+            <tr>
+              <th scope="row">${escapeHtml(entry.name)}</th>
+              <td>${escapeHtml(entry.changes)}</td>
+              <td>${escapeHtml(entry.why)}</td>
+              <td>${escapeHtml(entry.dateAdded)}</td>
+              <td><span class="status-pill">${escapeHtml(entry.status)}</span></td>
+              <td>${escapeHtml(entry.example)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
   `;
 }
 
@@ -576,21 +717,25 @@ function renderStart() {
   const creation = start.characterCreation;
 
   return `
-    ${pageHeader("Start Here", "A step-by-step beginner guide for people coming in completely blind to D&D or tabletop RPGs.")}
+    ${renderStartHero()}
+    ${renderTableStrip()}
     <section class="start-guide">
       <article class="panel wide-panel">
+        ${assetIcon("book", "panel-art")}
         <p class="eyebrow">Start here, brave fool</p>
         <h2>What this game is</h2>
         ${start.intro.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
       </article>
 
       <article class="panel parchment-card wide-panel">
+        ${assetIcon("home", "panel-art")}
         <p class="eyebrow">The big idea</p>
         <h2>${escapeHtml(start.bigIdea.title)}</h2>
         <p>${escapeHtml(start.bigIdea.text)}</p>
       </article>
 
       <article class="panel wide-panel">
+        ${assetIcon("tools", "panel-art")}
         <h2>The basic play loop</h2>
         <ol class="step-list big-steps">
           ${start.coreLoop.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
@@ -598,13 +743,14 @@ function renderStart() {
       </article>
 
       <article class="panel parchment-card wide-panel">
+        ${assetIcon("wizard", "panel-art")}
         <p class="eyebrow">Character creation</p>
         <h2>How a character is created</h2>
         <p>${escapeHtml(creation.note)}</p>
         <div class="button-row">
-          ${linkButton("Create a Character", "https://www.dndbeyond.com/My-Characters", "button button-small")}
+          ${routeButton("Read How We Play Here", "rules", "button button-small")}
+          <button class="button button-small button-secondary" type="button" data-scroll-target="dnd-beyond-preflight">D&D Beyond Preflight</button>
           <button class="button button-small button-secondary" type="button" data-scroll-target="premade-characters">Use This Premade</button>
-          ${linkButton("Join Discord", campaignLink("discordInvite"), "button button-small button-secondary")}
         </div>
       </article>
 
@@ -699,12 +845,14 @@ function renderStart() {
         </div>
       </article>
 
+      ${renderDndBeyondPreflight()}
+
       <article class="panel parchment-card">
         <h2>Build it in D&D Beyond</h2>
         <ol class="step-list">
           ${creation.dndBeyondSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ol>
-        ${linkButton("Open D&D Beyond Character Builder", "https://www.dndbeyond.com/My-Characters", "button button-small")}
+        ${linkButton("Open D&D Beyond Character Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
       </article>
 
       <article class="panel">
@@ -834,6 +982,21 @@ function renderRules() {
   return `
     ${pageHeader("Rules", "Who makes which rules, what the table expects, and how tools should be used.")}
     <section class="content-grid">
+      ${renderOurTableSummary()}
+      <article class="panel wide-panel">
+        <h2>Table Rules in Detail</h2>
+        <div class="definition-grid">
+          ${DATA.ourTable.sections.map(renderOurTableSection).join("")}
+        </div>
+      </article>
+      <article class="panel parchment-card wide-panel">
+        ${assetIcon("beyond", "panel-art")}
+        <p class="eyebrow">Character creation rules</p>
+        <h2>What to Do Next</h2>
+        <ol class="step-list">
+          ${DATA.ourTable.nextSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ol>
+      </article>
       <article class="panel">
         <h2>Official Rules</h2>
         <ul class="clean-list">${listItems(DATA.rules.official)}</ul>
@@ -849,6 +1012,11 @@ function renderRules() {
           ${DATA.rules.houseRules.map((rule) => renderDefinition({ name: rule.title, text: rule.text })).join("")}
         </div>
       </article>
+      <article class="panel wide-panel">
+        <h2>House Rule Log</h2>
+        <p>The House Rule Log is the final reference for local rule changes. Proposed items are not active until the DM says so.</p>
+        ${renderHouseRuleLog(DATA.ourTable.houseRuleLog)}
+      </article>
       <article class="panel">
         <h2>Table Rules</h2>
         <ul class="clean-list">${listItems(DATA.rules.tableRules)}</ul>
@@ -856,6 +1024,13 @@ function renderRules() {
       <article class="panel">
         <h2>Tool Rules</h2>
         <ul class="clean-list">${listItems(DATA.rules.toolRules)}</ul>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Learn More</h2>
+        <p>Outside guides can help explain tools and concepts, but they do not override this table's rules.</p>
+        <div class="reference-grid">
+          ${DATA.ourTable.learnMore.map(renderReferenceCard).join("")}
+        </div>
       </article>
     </section>
   `;

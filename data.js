@@ -22,7 +22,8 @@ const SITE_DATA = {
       discordSchedule: "https://discord.com/app",
       discordRecaps: "https://discord.com/app",
       dndBeyondCampaign: "https://www.dndbeyond.com/",
-      dndBeyondRules: "https://www.dndbeyond.com/sources/dnd/free-rules",
+      dndBeyondBuilder: "https://www.dndbeyond.com/My-Characters",
+      dndBeyondRules: "https://www.dndbeyond.com/sources/dnd/basic-rules-2014/step-by-step-characters",
       owlbearRoom: "https://www.owlbear.rodeo/",
       roll20Game: "https://roll20.net/",
       githubRepo: "https://github.com/elderMicheal/dungeons-hub",
@@ -39,40 +40,47 @@ const SITE_DATA = {
       label: "Start Here",
       description: "Begin the guide.",
       route: "start",
-      variant: "primary"
+      variant: "primary",
+      icon: "book"
     },
     {
       label: "Join Discord",
       description: "Open Discord. Invite later.",
       linkKey: "discordInvite",
-      variant: "secondary"
+      variant: "secondary",
+      icon: "discord"
     },
     {
       label: "D&D Beyond",
       description: "Make your D&D account.",
-      linkKey: "dndBeyondCampaign"
+      linkKey: "dndBeyondCampaign",
+      icon: "beyond"
     },
     {
       label: "Tools Guide",
       description: "Learn the tools.",
-      route: "tools"
+      route: "tools",
+      icon: "tools"
     },
     {
       label: "Help / Glossary",
       description: "Terms and quick answers.",
-      route: "help"
+      route: "help",
+      icon: "book"
     },
     {
       label: "Rules",
       description: "Read the table expectations.",
       route: "rules",
-      variant: "quiet"
+      variant: "quiet",
+      icon: "book"
     },
     {
       label: "Roles",
       description: "Learn what the DM and players do.",
       route: "roles",
-      variant: "quiet"
+      variant: "quiet",
+      icon: "wizard"
     }
   ],
 
@@ -104,49 +112,58 @@ const SITE_DATA = {
       {
         title: "I've never played D&D",
         text: "Short, friendly guide to getting comfortable at the table.",
-        route: "start"
+        route: "start",
+        icon: "book"
       },
       {
         title: "What is a DM?",
         text: "The role of the Dungeon Master, explained plainly.",
-        route: "roles"
+        route: "roles",
+        icon: "wizard"
       },
       {
         title: "What do I do on my turn?",
         text: "Combat, skills, choices, and asking the DM what to roll.",
-        route: "help"
+        route: "help",
+        icon: "tools"
       },
       {
         title: "What is a character sheet?",
         text: "Abilities, hit points, attacks, spells, and equipment.",
-        route: "help"
+        route: "help",
+        icon: "beyond"
       },
       {
         title: "What tools do we use?",
         text: "Discord, D&D Beyond, and future map tools.",
-        route: "tools"
+        route: "tools",
+        icon: "tools"
       },
       {
         title: "What do all these terms mean?",
         text: "Open the glossary for quick definitions.",
-        route: "help"
+        route: "help",
+        icon: "book"
       }
     ],
     toolsPreview: [
       {
-      title: "Discord",
-      text: "Voice chat, group chat, scheduling, questions, and announcements. A private invite can replace this public link later.",
-      linkKey: "discordInvite"
+        title: "Discord",
+        text: "Voice chat, group chat, scheduling, questions, and announcements. A private invite can replace this public link later.",
+        linkKey: "discordInvite",
+        icon: "discord"
       },
       {
-      title: "D&D Beyond",
-      text: "Character sheets, character builder, and basic rules lookup.",
-      linkKey: "dndBeyondCampaign"
+        title: "D&D Beyond",
+        text: "Character sheets, character builder, and basic rules lookup.",
+        linkKey: "dndBeyondCampaign",
+        icon: "beyond"
       },
       {
-      title: "Owlbear / Roll20",
-      text: "Map tools we may use later once a campaign starts.",
-      route: "tools"
+        title: "Owlbear / Roll20",
+        text: "Map tools we may use later once a campaign starts.",
+        route: "tools",
+        icon: "map"
       }
     ],
     comingLater: [
@@ -164,29 +181,244 @@ const SITE_DATA = {
     {
       label: "Campaign",
       description: "Coming later",
-      route: "campaign"
+      route: "campaign",
+      icon: "map"
     },
     {
       label: "Characters",
       description: "Coming later",
-      route: "characters"
+      route: "characters",
+      icon: "wizard"
     },
     {
       label: "Sessions",
       description: "Coming later",
-      route: "sessions"
+      route: "sessions",
+      icon: "book"
     },
     {
       label: "Maps",
       description: "Coming later",
-      route: "tools"
+      route: "tools",
+      icon: "map"
     },
     {
       label: "DM Admin",
       description: "Static edit links",
-      route: "admin"
+      route: "admin",
+      icon: "tools"
     }
   ],
+
+  ourTable: {
+    title: "How We Play Here",
+    compact: "2014 Rules • Level 1 • Main + Companion • Rule of Cool • Roleplay First • Stay With the Party",
+    intro: "This is the table-specific source of truth for Micheal's D&D group. Outside guides can help explain the game, but this page says how this table actually plays.",
+    atGlance: [
+      "2014 D&D 5e",
+      "Start at Level 1",
+      "Make a Main Character + a Companion Character",
+      "Roleplay First",
+      "Rule of Cool",
+      "Stay With the Party"
+    ],
+    sections: [
+      {
+        title: "The Rule of Cool",
+        text: [
+          "Creative ideas are encouraged. Describe what your character wants to do and why it would be interesting.",
+          "The DM may allow it, ask for a roll, add a cost, or introduce a consequence. Rule of Cool means a clever, dramatic, or funny idea gets a fair chance, not an automatic success."
+        ],
+        bullets: [
+          "Fit the scene.",
+          "Keep other players involved.",
+          "Do not erase all danger.",
+          "Do not make another character irrelevant.",
+          "Create a memorable result whether it succeeds or fails."
+        ]
+      },
+      {
+        title: "Roleplay First, Then Roll",
+        text: [
+          "This is a roleplaying game, not just a dice-rolling game. Start by saying what your character is trying to do in plain language.",
+          "The DM decides whether the action simply works, needs a dice roll, or has a consequence. Do not worry about knowing every rule before speaking up."
+        ],
+        bullets: [
+          "I want to talk the guard into letting us through.",
+          "I want to sneak around the back of the building.",
+          "I want to jump from the balcony onto the chandelier.",
+          "I want to find out whether this merchant is lying."
+        ]
+      },
+      {
+        title: "Character Rules for This Table",
+        text: [
+          "All main characters and companion characters begin at Level 1. This is the beginning of their actual adventuring career, even if they had a life before the campaign.",
+          "This table uses 2014 D&D 5e rules, not the 2024 revision. There are no automatic bans inside the approved 2014 material, but unusual or scene-warping options should be discussed with the DM before finalizing."
+        ],
+        bullets: [
+          "Use the 2014 Core Rules and approved 2014/Legacy material.",
+          "Exclude 2024 options in D&D Beyond source settings.",
+          "Set the character level to 1.",
+          "Ask before finalizing unusual subclasses, gear, or build ideas."
+        ]
+      },
+      {
+        title: "Recommended First Characters",
+        text: [
+          "For a first character, the DM recommends familiar fantasy ancestries because they are easy to picture, easy to roleplay, and well supported by the rules.",
+          "You are not required to choose one of these. Use halfling in the character builder and on this site."
+        ],
+        bullets: [
+          "Human",
+          "Elf",
+          "Dwarf",
+          "Halfling"
+        ]
+      },
+      {
+        title: "Build Two Characters",
+        text: [
+          "Each player should create a Main Character and a Companion Character. You control only one active player character at a time.",
+          "The companion may step in if the main character dies, leaves the story, gets separated, or the DM decides the companion better fits the current situation."
+        ],
+        bullets: [
+          "Both characters start at Level 1.",
+          "Both characters should cooperate with the party.",
+          "A companion is not an extra combat turn.",
+          "Both characters should have a reason to know or support the group."
+        ]
+      },
+      {
+        title: "Do Not Split the Party",
+        text: [
+          "The party should generally stay together. Splitting up makes the game slower, separates players from the action, and can leave a character facing danger without support.",
+          "A temporary split can happen when the story requires it, but it should be discussed rather than treated as the default plan."
+        ],
+        bullets: []
+      },
+      {
+        title: "Your Characters Must Belong Together",
+        text: [
+          "Your characters should know the other characters before the adventure begins. They can be friends, trusted allies, relatives, fellow travelers, oath-bound companions, or members of the same group.",
+          "A character can be grumpy, suspicious, chaotic, sarcastic, secretive, or morally complicated. They should not be designed to sabotage, abandon, steal from, or constantly work against the party."
+        ],
+        bullets: [
+          "Your character should have a reason to want the party to succeed."
+        ]
+      },
+      {
+        title: "Ability Scores: Decide Together",
+        text: [
+          "Do not treat ability scores as finalized until the group discusses them. The table may use a more story-focused method than standard point buy or random rolling.",
+          "Bring a character idea to the group discussion, including what the character is naturally good at, what they are bad at, and what kind of adventurer they are trying to become."
+        ],
+        bullets: []
+      },
+      {
+        title: "Gear Can Become Story",
+        text: [
+          "Starting gear is not only a list of numbers and weapons. If you have a good story for a notable item, bring it to the DM.",
+          "Interesting gear may come with consequences. A powerful item might create debts, enemies, favors, rumors, or future story hooks."
+        ],
+        bullets: [
+          "A family sword with a history.",
+          "A battered shield from an old military unit.",
+          "A holy symbol from a vanished temple.",
+          "A strange wand recovered from a mentor.",
+          "A +1 longsword with a believable origin."
+        ]
+      },
+      {
+        title: "Rules Corrections Are Welcome",
+        text: [
+          "The DM may make a mistake or forget a rule. If you notice something, say so respectfully and promptly.",
+          "The DM may make a quick ruling to keep play moving, then check the rule afterward. Recurring decisions should be added to the House Rule Log."
+        ],
+        bullets: [
+          "Quick rules check: I think that works this way. Want to look at it?"
+        ]
+      },
+      {
+        title: "Tone, Boundaries, and Off-Limits Content",
+        text: [
+          "The tone may shift between serious, funny, dramatic, ridiculous, tense, or chaotic depending on the moment and the group.",
+          "If there is a type of content you do not want in the game, say so during Session Zero, before a session, in Discord, privately with the DM, or during play if something becomes uncomfortable. You do not need to defend or debate a boundary."
+        ],
+        bullets: []
+      }
+    ],
+    dndBeyondPreflight: {
+      title: "Character-Creation Preflight",
+      intro: "Do this before opening D&D Beyond so you do not build the wrong kind of sheet.",
+      steps: [
+        "Read How We Play Here.",
+        "Plan a Main Character and a Companion Character.",
+        "Use 2014 D&D 5e rules and exclude 2024 options.",
+        "Set both characters to Level 1.",
+        "Choose a character concept before choosing rules options.",
+        "Choose race, class, background, traits, and gear from approved 2014 material.",
+        "Pause at ability scores until the group and DM decide the method.",
+        "Connect both characters to the party.",
+        "Bring unusual gear, unusual class options, or special story ideas to the DM.",
+        "Ask questions before finalizing."
+      ]
+    },
+    nextSteps: [
+      "Read the beginner character guide.",
+      "Choose a concept for your Main Character.",
+      "Choose a concept for your Companion Character.",
+      "Use the 2014 source settings in D&D Beyond.",
+      "Stop before finalizing ability scores if the group has not decided the method yet.",
+      "Give both characters a reason to know and support the party.",
+      "Bring unusual gear, unusual class options, or special story ideas to the DM.",
+      "Ask questions early."
+    ],
+    houseRuleLog: [
+      {
+        name: "House Rule Log",
+        changes: "This log is the final reference for table-specific rule changes.",
+        why: "House rules should not live only in Discord messages or memory.",
+        dateAdded: "2026-06-19",
+        status: "Active",
+        example: "When the DM makes a recurring ruling, it gets recorded here with the reason and an example."
+      },
+      {
+        name: "Six-Player Streamlining",
+        changes: "Specific streamlining rules will be added after the DM names them.",
+        why: "The DM has said some rulings were created, and more may emerge, to keep a six-person group moving.",
+        dateAdded: "TBD",
+        status: "Proposed",
+        example: "A future combat pacing rule, turn timing guideline, or simplified procedure can be logged here once approved."
+      }
+    ],
+    learnMore: [
+      {
+        type: "Official 2014 rules",
+        label: "D&D Beyond Basic Rules (2014): Step-By-Step Characters",
+        url: "https://www.dndbeyond.com/sources/dnd/basic-rules-2014/step-by-step-characters",
+        description: "Official 2014 character creation reference. This table uses 2014 D&D 5e and starts at Level 1."
+      },
+      {
+        type: "Builder interface",
+        label: "D&D Beyond: Content Categories",
+        url: "https://dndbeyond-support.wizards.com/hc/en-us/articles/7747201820948-Enabling-Content-Categories-for-your-Character-Sheet",
+        description: "Use this to understand source toggles. For this table, exclude 2024 options and use approved 2014 material."
+      },
+      {
+        type: "Session Zero",
+        label: "Sly Flourish: Running Session Zeros",
+        url: "https://slyflourish.com/running_session_zeros.html",
+        description: "Helpful community guidance for expectations, boundaries, character integration, and house rules."
+      },
+      {
+        type: "Tool guide",
+        label: "Roll20: How to Create a Character",
+        url: "https://help.roll20.net/hc/en-us/articles/360046574454-How-to-Create-a-Character",
+        description: "Interface help if the table later uses Roll20. It does not replace this table's D&D Beyond and 2014 rules instructions."
+      }
+    ]
+  },
 
   start: {
     intro: [
@@ -208,66 +440,62 @@ const SITE_DATA = {
       "The DM explains the result, then the story moves forward."
     ],
     characterCreation: {
-      note: "Character creation is part rules, part imagination, and part table agreement. The DM decides what rules version, books, species, classes, starting level, and house rules are allowed. Build the character with the DM's campaign in mind instead of locking in a random internet build.",
+      note: "Character creation is part rules, part imagination, and part table agreement. For this table, read How We Play Here first: 2014 D&D 5e, Level 1, Main Character plus Companion Character, roleplay first, and ability scores paused until the group decides the method.",
       fundamentalGuidelines: [
-        "Ask the DM what rules version the table is using before building. Some groups use 2024 rules, some use 2014 rules, and some mix them.",
-        "Ask what level to start at. New campaigns often start at level 1, but the DM may choose another level.",
-        "Use only sources the DM approves. Official books, free rules, homebrew, and third-party options are not automatically allowed.",
-        "Do not assume every race, species, class, subclass, feat, spell, or item is available.",
+        "This table uses 2014 D&D 5e. Exclude 2024 options in D&D Beyond and use approved 2014 material.",
+        "All main characters and companion characters start at Level 1.",
+        "Build a Main Character and a Companion Character, but expect to control only one active character at a time.",
+        "Nothing is categorically banned inside approved 2014 material, but unusual choices should be discussed before finalizing.",
         "Make a character who wants to cooperate with the party. A loner can be fun, but they still need a reason to play with the group.",
-        "Keep the backstory short at first. One paragraph and a few clear motivations are usually better than five pages.",
+        "Connect both characters to the other characters before the adventure begins.",
+        "Do not finalize ability scores until the group and DM decide the method.",
+        "Bring notable gear stories, unusual class options, and special ideas to the DM.",
         "Build someone competent enough to contribute. They do not need to be optimized, but they should be able to help the group.",
-        "Avoid secret character twists that force the DM or other players into a bad time.",
-        "When in doubt, choose simple options and learn them well."
+        "Keep the backstory short at first. One paragraph and a few clear motivations are usually better than five pages."
       ],
       dmQuestions: [
-        "What rules version are we using: 2024, 2014, or a mix?",
-        "What level do we start at?",
-        "Which books, websites, and options are allowed?",
-        "Are any classes, species, backgrounds, feats, or spells banned?",
-        "How are ability scores generated: standard array, point buy, or rolling?",
-        "Do we use starting equipment, starting gold, or DM-given gear?",
-        "What tone is the game: heroic, spooky, silly, gritty, mystery, survival, or something else?",
-        "Should the characters already know each other?",
-        "Does the party need anything specific, like healing, front line, scouting, or social skills?",
-        "Are there house rules I should know before choosing options?"
+        "Which 2014 books or D&D Beyond source categories are approved?",
+        "Should I use 2014 Core Rules only, or are 2014 Expanded/Legacy options allowed too?",
+        "How are ability scores generated for this table?",
+        "Do we use starting equipment, starting gold, DM-given gear, or story-pitched gear?",
+        "What unusual class, subclass, gear, or character idea should I ask about before finalizing?",
+        "How should my Main Character know the party?",
+        "How should my Companion Character know the party?",
+        "What tone or boundaries should I know before writing backstory?",
+        "Are there active house rules in the House Rule Log that affect my build?"
       ],
       creationSteps: [
         {
-          title: "1. Start with a simple concept",
-          text: "Pick a plain idea before touching the rules. Examples: careful archer, kind healer, curious wizard, loud sword fighter, sneaky investigator, cursed magic user, protective bodyguard."
+          title: "1. Read How We Play Here",
+          text: "This table uses 2014 D&D 5e, starts at Level 1, asks each player to build a Main Character and a Companion Character, and expects roleplay first."
         },
         {
-          title: "2. Choose a class",
-          text: "The class is the character's main adventuring job. It controls most of your abilities, combat style, magic, hit points, proficiencies, and future level-up choices."
+          title: "2. Build a Main Character and a Companion",
+          text: "Your Main Character is your primary adventurer. Your Companion Character is a backup or story fit the DM can bring in when needed. You control only one active character at a time."
         },
         {
-          title: "3. Choose a species, race, or ancestry",
-          text: "Older D&D material often says race. Newer material often says species. Some other games say ancestry. This choice describes what kind of fantasy people your character comes from and usually gives traits such as size, speed, senses, or special abilities."
+          title: "3. Use 2014 rules and exclude 2024 options",
+          text: "In D&D Beyond, use the source/content filters to avoid 2024 options and build from approved 2014 material. Ask before finalizing if the source settings are unclear."
         },
         {
-          title: "4. Choose a background",
-          text: "The background is who your character was before adventuring: soldier, criminal, sage, acolyte, artisan, entertainer, farmer, guard, and so on. Depending on the rules version, it may affect skills, tools, equipment, ability scores, or feats."
+          title: "4. Choose a character concept",
+          text: "Pick a plain idea before touching too many rules. Examples: careful archer, kind healer, curious wizard, loud sword fighter, sneaky investigator, cursed magic user, protective bodyguard."
         },
         {
-          title: "5. Set ability scores",
-          text: "Ability scores are the six core stats: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Your best scores should usually support your class's main actions."
+          title: "5. Choose race, class, background, traits, and gear",
+          text: "These are the main building blocks. Race describes ancestry, class is your adventuring profession, background is your life before adventure, traits/features are special rules, and gear is what you carry."
         },
         {
-          title: "6. Pick skills and proficiencies",
-          text: "Proficiency means your character is trained at something. Skills, tools, weapons, armor, and saving throws may all use proficiency."
+          title: "6. Pause at ability scores until the group decision",
+          text: "Ability scores are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Do not treat them as final until the DM and group decide the method."
         },
         {
-          title: "7. Choose equipment and spells",
-          text: "Equipment covers weapons, armor, tools, supplies, and starting gear. Spellcasting classes also choose spells, cantrips, or prepared spells depending on the class."
+          title: "7. Connect both characters to the party",
+          text: "Each character should know, trust, owe, support, or share a cause with the party. Do not design a character whose main behavior is sabotaging or abandoning the group."
         },
         {
-          title: "8. Add personality and ties",
-          text: "Give the character a name, a basic personality, one thing they want, one thing they fear, and one reason they would travel with the party."
-        },
-        {
-          title: "9. Review with the DM",
-          text: "Before game night, send the character sheet to the DM. The DM can catch illegal options, campaign mismatches, missing choices, or confusing rules."
+          title: "8. Finalize with the DM",
+          text: "Send the sheet to the DM before Session Zero or game night. The DM can catch source mismatches, missing choices, unclear ability scores, and story ideas that need approval."
         }
       ],
       characterParts: [
@@ -470,8 +698,11 @@ const SITE_DATA = {
         "Create or sign in to a D&D Beyond account.",
         "Open My Characters or the character builder.",
         "Use the DM's campaign link once Micheal adds one. Until then, build a test character privately.",
-        "Pick the rules/source options the DM approved.",
+        "Open source/content preferences and exclude 2024 options.",
+        "Use approved 2014 Core Rules, 2014 Expanded Rules, or Legacy material as the DM allows.",
+        "Set the character level to 1.",
         "Choose class, species, background, and ability scores.",
+        "Pause before finalizing ability scores if the group has not decided the method.",
         "Select skills, proficiencies, equipment, and spells if your class uses magic.",
         "Open the final character sheet and check AC, HP, attacks, saving throws, skills, equipment, and spell list.",
         "Send the character sheet link to the DM for approval before session zero or game night."
@@ -488,70 +719,34 @@ const SITE_DATA = {
       ],
       references: [
         {
-          type: "Official rules",
-          label: "D&D Beyond: Creating a Character",
-          url: "https://www.dndbeyond.com/sources/dnd/br-2024/creating-a-character",
-          description: "Official free/basic rules walkthrough for class, origin, ability scores, alignment, and sheet details."
+          type: "Official 2014 rules",
+          label: "D&D Beyond Basic Rules (2014): Step-By-Step Characters",
+          url: "https://www.dndbeyond.com/sources/dnd/basic-rules-2014/step-by-step-characters",
+          description: "Official 2014 character creation reference. This table uses 2014 D&D 5e and starts at Level 1."
+        },
+        {
+          type: "Builder interface",
+          label: "D&D Beyond: Content Categories",
+          url: "https://dndbeyond-support.wizards.com/hc/en-us/articles/7747201820948-Enabling-Content-Categories-for-your-Character-Sheet",
+          description: "Use this to understand source toggles. For this table, exclude 2024 options and use approved 2014 material."
         },
         {
           type: "Official tool",
           label: "D&D Beyond Character Builder",
           url: "https://www.dndbeyond.com/My-Characters",
-          description: "Build and manage a digital sheet, track HP, spells, attacks, inventory, and rolls."
-        },
-        {
-          type: "Rules reference",
-          label: "Roll20 D&D 5E Compendium",
-          url: "https://roll20.net/compendium/dnd5e/BookIndex",
-          description: "Searchable 5E rules reference with classes, rules, spells, items, monsters, and basic rules material."
+          description: "Build and manage a digital sheet after you complete the table preflight."
         },
         {
           type: "Tool guide",
-          label: "Roll20 D&D 5E Sheet Tutorial",
-          url: "https://help.roll20.net/hc/en-us/articles/360037773573-D-D-5E-by-Roll20",
-          description: "Useful if the table later uses Roll20 sheets or Roll20 as the virtual tabletop."
-        },
-        {
-          type: "Community guide",
-          label: "RPGBOT: DnD Characters",
-          url: "https://rpgbot.net/dnd5/characters/",
-          description: "Community character-building guides. Useful for deeper class, species, feat, and build advice."
-        },
-        {
-          type: "Community guide",
-          label: "RPGBOT: 2024 Class Guides",
-          url: "https://rpgbot.net/2024-dnd/classes/",
-          description: "Deep class and subclass handbooks for current 2024 D&D rules."
-        },
-        {
-          type: "Community wiki",
-          label: "r/DnD Getting Started",
-          url: "https://www.reddit.com/r/DnD/wiki/getting_started/",
-          description: "Community-maintained getting-started advice, edition notes, and beginner resource pointers."
-        },
-        {
-          type: "Community wiki",
-          label: "r/DnD Resource Index",
-          url: "https://www.reddit.com/r/DnD/wiki/index/",
-          description: "Community resource threads, FAQs, tools, and pointers for new players."
+          label: "Roll20: How to Create a Character",
+          url: "https://help.roll20.net/hc/en-us/articles/360046574454-How-to-Create-a-Character",
+          description: "Interface help if the table later uses Roll20. It does not replace this table's D&D Beyond and 2014 rules instructions."
         },
         {
           type: "Session Zero",
           label: "Sly Flourish: Running Session Zeros",
           url: "https://slyflourish.com/running_session_zeros.html",
           description: "Practical advice for aligning expectations, tying characters together, and setting boundaries before a campaign."
-        },
-        {
-          type: "First game advice",
-          label: "Sly Flourish: Starting Your First D&D Game",
-          url: "https://slyflourish.com/starting_strong_at_your_first_dnd_game.html",
-          description: "Community advice for getting a first game running without overloading new players or DMs."
-        },
-        {
-          type: "Official rules",
-          label: "D&D Beyond Free Rules",
-          url: "https://www.dndbeyond.com/sources/dnd/free-rules",
-          description: "Official free rules reference for players who want to read beyond this quick guide."
         }
       ],
       summaryNote: "Exact traits, ability bonuses, names, and source availability vary between 2014 rules, 2024 rules, table house rules, and purchased books. Treat these tables as orientation, then confirm with the DM.",
@@ -1100,57 +1295,39 @@ const SITE_DATA = {
 
   rules: {
     official: [
-      "Official rules come from Wizards of the Coast books and official rules sources.",
-      "Use D&D Beyond or the official free/basic rules source when you need a full rule explanation.",
+      "This table uses 2014 D&D 5e and starts at Level 1.",
+      "Official rules come from Wizards of the Coast books and official rules sources, but this table's source settings must stay on approved 2014 material.",
+      "Use D&D Beyond Basic Rules (2014) when you need the official character creation reference.",
       "The table does not need to stop for every rule lookup. If the answer is slow to find, the DM may make a temporary ruling and check later."
     ],
     dmRulings: [
       "The DM applies and interprets rules during play.",
       "A DM ruling is the table decision for the moment so the game can keep moving.",
-      "Rules questions are welcome, but argue less during the scene and revisit complicated calls after the session."
+      "Rules questions are welcome, but argue less during the scene and revisit complicated calls after the session.",
+      "Recurring rulings should be recorded in the House Rule Log."
     ],
     houseRules: [
       {
-        title: "Player-versus-player",
-        text: "PvP requires clear consent from the affected player and DM approval."
+        title: "House Rule Log",
+        text: "The House Rule Log below is the final reference for table-specific rule changes. If a recurring ruling is not logged, ask the DM before treating it as permanent."
       },
       {
-        title: "Potions",
-        text: "A character may drink a potion on their own turn as a bonus action. Giving a potion to someone else uses an action."
-      },
-      {
-        title: "Leveling",
-        text: "The party levels together when the DM says a major milestone has been reached."
-      },
-      {
-        title: "Critical hits",
-        text: "Use the normal critical hit rule unless the DM announces a temporary encounter rule."
-      },
-      {
-        title: "Flanking",
-        text: "Flanking is not automatic. The DM may grant advantage when positioning, teamwork, and the scene support it."
-      },
-      {
-        title: "Death saves",
-        text: "Death saving throws are rolled openly unless the table agrees to hidden death saves for tension."
-      },
-      {
-        title: "Encumbrance",
-        text: "Use common sense for carrying capacity. If the inventory gets unreasonable, the DM will ask the party to sort it out."
-      },
-      {
-        title: "Character creation limits",
-        text: "Use options approved by the DM. Ask before using unusual races, classes, subclasses, backgrounds, or third-party material."
+        title: "Six-Player Streamlining",
+        text: "The DM has said some rulings were created, and more may emerge, to keep a six-person group moving. Specific streamlining rules will be added once the DM names them."
       }
     ],
     tableRules: [
       "Be on time or tell the group as early as possible if you will be late.",
+      "Roleplay first, then roll. Say what your character tries to do; the DM will call for rolls when they matter.",
+      "Creative ideas are welcome, but Rule of Cool still needs scene fit, shared spotlight, danger, and consequences.",
+      "Stay with the party unless the group and DM agree a temporary split makes sense.",
+      "Make characters who have a reason to know, support, and cooperate with the party.",
       "Do not talk over people during important scenes.",
       "Do not move other players' tokens unless they ask you to.",
       "Do not edit other players' character sheets.",
       "Player-versus-player actions require consent from the affected player and DM approval.",
       "Do not spoil hidden map areas or read DM-only material.",
-      "Respect boundaries. If a scene is uncomfortable, say so and the table will adjust."
+      "Respect boundaries. If a scene is uncomfortable, say so and the table will adjust without requiring debate."
     ],
     toolRules: [
       "Mute when background noise is bad.",
