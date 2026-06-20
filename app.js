@@ -869,6 +869,41 @@ function renderTableStrip() {
   `;
 }
 
+function renderStartToc() {
+  const items = [
+    ["start-what-this-game-is", "What this game is"],
+    ["start-play-loop", "Basic play loop"],
+    ["start-character-creation", "Character creation"],
+    ["start-before-build", "Before you build"],
+    ["start-ask-dm", "Ask the DM"],
+    ["start-creation-steps", "Creation steps"],
+    ["start-races", "Races & species"],
+    ["start-class-summary", "Classes"],
+    ["start-ability-scores", "Ability scores"],
+    ["dnd-beyond-preflight", "D&D Beyond preflight"],
+    ["premade-characters", "Premade examples"],
+    ["start-session-zero", "Session Zero"],
+    ["start-helpful-links", "Helpful links"]
+  ];
+
+  return `
+    <aside class="start-toc is-collapsed" aria-label="Start Here table of contents">
+      <button class="start-toc-toggle" type="button" data-start-toc-toggle aria-expanded="false">
+        <span>Start Here</span>
+        <strong>Contents</strong>
+      </button>
+      <div class="start-toc-panel">
+        <p class="eyebrow">Jump to</p>
+        <div class="start-toc-links">
+          ${items.map(([id, label]) => `
+            <button type="button" data-scroll-target="${escapeHtml(id)}">${escapeHtml(label)}</button>
+          `).join("")}
+        </div>
+      </div>
+    </aside>
+  `;
+}
+
 function renderOurTableSection(section) {
   return `
     <article class="definition-card table-rule-card">
@@ -1053,22 +1088,23 @@ function renderStart() {
   return `
     ${renderStartHero()}
     ${renderTableStrip()}
+    ${renderStartToc()}
     <section class="start-guide">
-      <article class="panel wide-panel">
+      <article id="start-what-this-game-is" class="panel wide-panel">
         ${assetIcon("book", "panel-art")}
         <p class="eyebrow">Start here, brave fool</p>
         <h2>What this game is</h2>
         ${start.intro.map((item) => `<p>${escapeHtml(item)}</p>`).join("")}
       </article>
 
-      <article class="panel parchment-card wide-panel">
+      <article id="start-big-idea" class="panel parchment-card wide-panel">
         ${assetIcon("home", "panel-art")}
         <p class="eyebrow">The big idea</p>
         <h2>${escapeHtml(start.bigIdea.title)}</h2>
         <p>${escapeHtml(start.bigIdea.text)}</p>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-play-loop" class="panel wide-panel">
         ${assetIcon("tools", "panel-art")}
         <h2>The basic play loop</h2>
         <ol class="step-list big-steps">
@@ -1076,7 +1112,7 @@ function renderStart() {
         </ol>
       </article>
 
-      <article class="panel parchment-card wide-panel">
+      <article id="start-character-creation" class="panel parchment-card wide-panel">
         ${assetIcon("wizard", "panel-art")}
         <p class="eyebrow">Character creation</p>
         <h2>How a character is created</h2>
@@ -1088,14 +1124,14 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-before-build" class="panel wide-panel">
         <h2>Fundamental rules before you build</h2>
         <ul class="clean-list two-column-list">
           ${creation.fundamentalGuidelines.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ul>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-ask-dm" class="panel wide-panel">
         <h2>Ask the DM first</h2>
         <p>These questions prevent wasted work and help the whole party fit the same game.</p>
         <ul class="clean-list two-column-list">
@@ -1103,12 +1139,12 @@ function renderStart() {
         </ul>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-creation-steps" class="panel wide-panel">
         <h2>Character creation step by step</h2>
         ${renderCreationTimeline(creation.creationSteps)}
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-character-pieces" class="panel wide-panel">
         <h2>The pieces of a character</h2>
         <p>A finished character is a stack of choices. Some are rules choices, some are roleplaying choices, and all of them should be easy for the DM to approve.</p>
         <div class="definition-grid">
@@ -1116,19 +1152,19 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-races" class="panel wide-panel">
         <h2>Common races and species at a glance</h2>
         <p>${escapeHtml(creation.summaryNote)}</p>
         ${renderRaceTable(creation.raceSummaries)}
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-class-summary" class="panel wide-panel">
         <h2>Common classes at a glance</h2>
         <p>Class is the biggest mechanical choice. It controls your main tools, combat rhythm, and level-up path.</p>
         ${renderClassTable(creation.classSummaries)}
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-key-traits" class="panel wide-panel">
         <h2>Key traits and concepts</h2>
         <p>These terms show up constantly while building and playing a character.</p>
         <dl class="definition-grid">
@@ -1141,7 +1177,7 @@ function renderStart() {
         </dl>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-ability-scores" class="panel wide-panel">
         <h2>Ability scores in plain language</h2>
         <p>Ability scores are the six core stats. Most rolls connect back to one of these.</p>
         <div class="definition-grid">
@@ -1149,7 +1185,7 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-classes" class="panel wide-panel">
         <h2>Classes / professions</h2>
         <p>Your class is your main rule package and adventuring profession. It affects how you fight, solve problems, survive danger, and grow when you level up.</p>
         <div class="definition-grid">
@@ -1157,7 +1193,7 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-ancestry" class="panel wide-panel">
         <h2>Species, race, and ancestry</h2>
         <p>Different sources use different terms. Older D&D material often says race, newer D&D material often says species, and other RPGs may say ancestry. The DM decides which options fit the table.</p>
         <div class="definition-grid">
@@ -1165,14 +1201,14 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel">
+      <article id="start-backgrounds" class="panel">
         <h2>Backgrounds</h2>
         <div class="quick-card-list">
           ${creation.backgrounds.map(renderGuideCard).join("")}
         </div>
       </article>
 
-      <article class="panel">
+      <article id="start-traits" class="panel">
         <h2>Traits, features, flaws, and feats</h2>
         <div class="quick-card-list">
           ${creation.traits.map(renderGuideCard).join("")}
@@ -1181,7 +1217,7 @@ function renderStart() {
 
       ${renderDndBeyondPreflight()}
 
-      <article class="panel parchment-card">
+      <article id="start-dnd-beyond" class="panel parchment-card">
         <h2>Build it in D&D Beyond</h2>
         <ol class="step-list">
           ${creation.dndBeyondSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
@@ -1189,7 +1225,7 @@ function renderStart() {
         ${linkButton("Open D&D Beyond Character Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
       </article>
 
-      <article class="panel">
+      <article id="start-build-advice" class="panel">
         <h2>Beginner build advice</h2>
         <ul class="clean-list">
           ${creation.beginnerBuildAdvice.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
@@ -1202,7 +1238,7 @@ function renderStart() {
         ${renderExampleCharacterTable(creation.exampleCharacters)}
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-session-zero" class="panel wide-panel">
         <h2>Before We Begin: Session Zero</h2>
         <p>Session Zero is the setup conversation before a campaign starts. It keeps expectations, tone, tools, and character rules clear.</p>
         <div class="quick-card-list">
@@ -1215,7 +1251,7 @@ function renderStart() {
         </div>
       </article>
 
-      <article class="panel wide-panel">
+      <article id="start-helpful-links" class="panel wide-panel">
         <h2>Helpful links</h2>
         <p>Use these when you want more detail. Official rules settle rule questions. Community guides are helpful, but the DM still decides what applies at this table.</p>
         <div class="reference-grid">
@@ -1797,12 +1833,26 @@ function setupGlossarySearch() {
 }
 
 document.addEventListener("click", (event) => {
+  const tocToggle = event.target.closest("[data-start-toc-toggle]");
+  if (tocToggle) {
+    const toc = tocToggle.closest(".start-toc");
+    const isCollapsed = toc.classList.toggle("is-collapsed");
+    tocToggle.setAttribute("aria-expanded", String(!isCollapsed));
+    return;
+  }
+
   const scrollButton = event.target.closest("[data-scroll-target]");
   if (scrollButton) {
     const target = document.getElementById(scrollButton.dataset.scrollTarget);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       target.focus?.({ preventScroll: true });
+    }
+    const toc = scrollButton.closest(".start-toc");
+    const toggle = toc?.querySelector("[data-start-toc-toggle]");
+    if (toc && toggle) {
+      toc.classList.add("is-collapsed");
+      toggle.setAttribute("aria-expanded", "false");
     }
     return;
   }

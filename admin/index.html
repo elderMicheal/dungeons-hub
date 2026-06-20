@@ -4,9 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
+  <meta http-equiv="Cache-Control" content="no-store">
   <title>Dungeons Hub Admin</title>
+  <style>
+    body {
+      margin: 0;
+      background: #060504;
+      color: #f7ead4;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .admin-load-help {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 9999;
+      max-width: min(28rem, calc(100vw - 2rem));
+      border: 1px solid rgba(239, 184, 79, 0.45);
+      border-radius: 10px;
+      padding: 1rem;
+      background: rgba(18, 16, 13, 0.96);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+    }
+
+    .admin-load-help strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #efb84f;
+    }
+
+    .admin-load-help p {
+      margin: 0.35rem 0;
+    }
+
+    .admin-load-help code {
+      color: #fff0c2;
+    }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <noscript>
+    <div class="admin-load-help">
+      <strong>JavaScript is required</strong>
+      <p>The admin editor needs JavaScript to load Decap CMS.</p>
+    </div>
+  </noscript>
+  <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
+  <script>
+    window.setTimeout(function () {
+      var text = document.body.textContent || "";
+      var alreadyReady = /Login with GitHub|Dungeons Hub Admin|Table at a Glance|How We Play Here/i.test(text);
+      var stillLoading = /Loading configuration/i.test(text);
+
+      if (stillLoading && !alreadyReady) {
+        var help = document.createElement("div");
+        help.className = "admin-load-help";
+        help.innerHTML = [
+          "<strong>Admin is still loading</strong>",
+          "<p>Try a hard refresh first: <code>Ctrl+F5</code>.</p>",
+          "<p>If this stays stuck, open <code>/admin/config.yml</code>. If that file does not load, the CMS cannot read its configuration.</p>",
+          "<p>Publishing still requires Netlify GitHub OAuth and repository write access.</p>"
+        ].join("");
+        document.body.appendChild(help);
+      }
+    }, 8000);
+  </script>
 </body>
 </html>
