@@ -21,9 +21,9 @@
       "icon": "discord"
     },
     {
-      "label": "D&D Beyond",
-      "description": "Make your D&D account.",
-      "linkKey": "dndBeyondCampaign",
+      "label": "Character Sheets",
+      "description": "Tool choice comes later.",
+      "route": "tools",
       "icon": "beyond"
     },
     {
@@ -62,14 +62,14 @@
     "whatThisIs": "This is the home base for getting our D&D group organized. It explains how to join, how the tools work, what the basic terms mean, and what to do if you have never played before.",
     "whatYouNeed": [
       "A Discord account for voice and group chat.",
-      "A D&D Beyond account for character sheets.",
+      "A character sheet once the DM chooses the sheet tool.",
       "A willingness to ask questions.",
       "No previous D&D experience required."
     ],
-    "optionalNeed": "Owlbear Rodeo or Roll20 may be used later for maps once a campaign starts.",
+    "optionalNeed": "Owlbear Rodeo, Roll20, D&D Beyond Maps, or another VTT may be chosen later once a campaign starts.",
     "quickStart": [
       "Join Discord so you can hear the group and ask questions.",
-      "Create a D&D Beyond account for character sheets.",
+      "Wait for the DM to choose the character sheet and map tools.",
       "Read Start Here if you have never played.",
       "Use Help / Glossary when a word sounds made up."
     ],
@@ -104,7 +104,7 @@
       },
       {
         "title": "What tools do we use?",
-        "text": "Discord, D&D Beyond, and future map tools.",
+        "text": "Discord first, then sheet and map tools after the DM chooses.",
         "route": "tools",
         "icon": "tools"
       },
@@ -123,14 +123,14 @@
         "icon": "discord"
       },
       {
-        "title": "D&D Beyond",
-        "text": "Character sheets, character builder, and basic rules lookup.",
-        "linkKey": "dndBeyondCampaign",
+        "title": "Character sheet tools",
+        "text": "D&D Beyond is one option for sheets and rules, but the table has not locked in a sheet tool yet.",
+        "route": "tools",
         "icon": "beyond"
       },
       {
-        "title": "Owlbear / Roll20",
-        "text": "Map tools we may use later once a campaign starts.",
+        "title": "VTT / map tools",
+        "text": "Owlbear, Roll20, D&D Beyond Maps, or another VTT may be chosen after the DM decides what fits.",
         "route": "tools",
         "icon": "map"
       }
@@ -185,32 +185,32 @@
       "buttonLabel": "Open Discord"
     },
     {
-      "title": "Create a D&D Beyond account",
-      "text": "D&D Beyond is where most players keep their character sheet and look up rules.",
-      "linkKey": "dndBeyondCampaign",
-      "buttonLabel": "Open D&D Beyond"
+      "title": "Wait for the sheet tool",
+      "text": "The DM will choose whether the group uses D&D Beyond, printed sheets, Roll20 sheets, or another character sheet tool.",
+      "route": "tools",
+      "buttonLabel": "Review Tool Options"
     },
     {
-      "title": "Wait for the campaign link",
-      "text": "There is no active campaign yet. Once one exists, Micheal can replace this with the D&D Beyond campaign invite.",
-      "linkKey": "dndBeyondCampaign",
-      "buttonLabel": "Open D&D Beyond"
+      "title": "Wait for the campaign tool decisions",
+      "text": "There is no active campaign yet. Once one exists, Micheal can add the final sheet, map, and campaign links.",
+      "route": "tools",
+      "buttonLabel": "Open Tools Guide"
     },
     {
       "title": "Make or claim a character later",
       "text": "Once the table decides what to play, create or choose a character with DM approval.",
-      "linkKey": "dndBeyondCampaign",
-      "buttonLabel": "Open Character Builder"
+      "route": "start",
+      "buttonLabel": "Read Character Guide"
     },
     {
       "title": "Open your character sheet",
       "text": "Your sheet lists your hit points, armor class, attacks, spells, skills, and equipment.",
-      "linkKey": "dndBeyondCampaign",
-      "buttonLabel": "Open D&D Beyond"
+      "route": "tools",
+      "buttonLabel": "Review Sheet Tools"
     },
     {
       "title": "Map tools come later",
-      "text": "Owlbear Rodeo or Roll20 may be used once a campaign starts. For now, just know these are map tools.",
+      "text": "Owlbear Rodeo, Roll20, D&D Beyond Maps, or another VTT may be used once a campaign starts. For now, just know these are map tools.",
       "linkKey": "owlbearRoom",
       "buttonLabel": "Open Owlbear"
     },

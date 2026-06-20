@@ -155,8 +155,8 @@ function normalizeContent(content) {
       ].filter(Boolean),
       sections: tableSections,
       dndBeyondPreflight: {
-        title: "Character-Creation Preflight",
-        intro: "Do this before opening D&D Beyond so you do not build the wrong kind of sheet.",
+        title: "Character-Builder Preflight",
+        intro: "Do this before opening any character builder so you do not build the wrong kind of sheet.",
         steps: asArray(creation.characterCreationChecklist)
       },
       nextSteps: asArray(creation.characterCreationChecklist),
@@ -657,7 +657,7 @@ function renderCampaignDashboardHome() {
 
     <section class="quick-actions" aria-label="Game night links">
       ${linkButton("Join Voice", campaignLink("discordVoice"))}
-      ${linkButton("D&D Beyond Campaign", campaignLink("dndBeyondCampaign"))}
+      ${linkButton("Character Sheets", campaignLink("dndBeyondCampaign"))}
       ${linkButton("Join Discord", campaignLink("discordInvite"), "button button-secondary")}
       ${linkButton("GitHub Repo", campaignLink("githubRepo"), "button button-secondary")}
       ${routeButton("Need Help?", "help", "button button-secondary")}
@@ -810,7 +810,7 @@ function renderCharacterCard(character) {
         ${stat("HP", character.hp)}
         ${stat("Passive", character.passivePerception)}
       </div>
-      ${linkButton("Open D&D Beyond Sheet", character.sheetUrl, "button button-small")}
+      ${linkButton("Open Character Sheet", character.sheetUrl, "button button-small")}
     </article>
   `;
 }
@@ -880,7 +880,7 @@ function renderStartToc() {
     ["start-races", "Races & species"],
     ["start-class-summary", "Classes"],
     ["start-ability-scores", "Ability scores"],
-    ["dnd-beyond-preflight", "D&D Beyond preflight"],
+    ["dnd-beyond-preflight", "Builder preflight"],
     ["premade-characters", "Premade examples"],
     ["start-session-zero", "Session Zero"],
     ["start-helpful-links", "Helpful links"]
@@ -934,14 +934,14 @@ function renderDndBeyondPreflight() {
   return `
     <article id="dnd-beyond-preflight" class="panel table-preflight-card wide-panel" tabindex="-1">
       ${assetIcon("beyond", "panel-art")}
-      <p class="eyebrow">Before D&D Beyond</p>
+      <p class="eyebrow">Before the builder</p>
       <h2>${escapeHtml(preflight.title)}</h2>
       <p>${escapeHtml(preflight.intro)}</p>
       <ol class="step-list big-steps">
         ${preflight.steps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
       </ol>
       <div class="button-row">
-        ${linkButton("Open D&D Beyond Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
+        ${linkButton("Open Character Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
         ${routeButton("Read Table Rules", "rules", "button button-small button-secondary")}
       </div>
     </article>
@@ -1119,7 +1119,7 @@ function renderStart() {
         <p>${escapeHtml(creation.note)}</p>
         <div class="button-row">
           ${routeButton("Read How We Play Here", "rules", "button button-small")}
-          <button class="button button-small button-secondary" type="button" data-scroll-target="dnd-beyond-preflight">D&D Beyond Preflight</button>
+          <button class="button button-small button-secondary" type="button" data-scroll-target="dnd-beyond-preflight">Builder Preflight</button>
           <button class="button button-small button-secondary" type="button" data-scroll-target="premade-characters">Use This Premade</button>
         </div>
       </article>
@@ -1218,11 +1218,11 @@ function renderStart() {
       ${renderDndBeyondPreflight()}
 
       <article id="start-dnd-beyond" class="panel parchment-card">
-        <h2>Build it in D&D Beyond</h2>
+        <h2>Build it in the chosen sheet tool</h2>
         <ol class="step-list">
           ${creation.dndBeyondSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
         </ol>
-        ${linkButton("Open D&D Beyond Character Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
+        ${linkButton("Open Character Builder", campaignLink("dndBeyondBuilder"), "button button-small")}
       </article>
 
       <article id="start-build-advice" class="panel">
@@ -1234,7 +1234,7 @@ function renderStart() {
 
       <article id="premade-characters" class="panel wide-panel" tabindex="-1">
         <h2>Premade example characters</h2>
-        <p>Use these as examples, not locked-in lore. The DM can approve one, adjust numbers, or turn one into a D&D Beyond sheet.</p>
+        <p>Use these as examples, not locked-in lore. The DM can approve one, adjust numbers, or turn one into a finished character sheet.</p>
         ${renderExampleCharacterTable(creation.exampleCharacters)}
       </article>
 
@@ -1306,7 +1306,7 @@ function renderStart() {
 
 function renderTools() {
   return `
-    ${pageHeader("Tools", "How this group uses D&D Beyond, Discord, Owlbear Rodeo, and optional Roll20.")}
+    ${pageHeader("Tools", "How this group uses Discord, character sheets, and whichever VTT the DM chooses.")}
     <section class="card-grid">
       ${DATA.tools.map((tool) => `
         <article class="panel tool-card">
@@ -1410,7 +1410,7 @@ function renderCharacters() {
   if (!DATA.siteStatus.campaignActive) {
     return renderComingLaterPage(
       "Characters Coming Later",
-      "There is no active party yet. Once the campaign starts, this page will show player characters, D&D Beyond sheet links, roles, AC, HP, and short summaries.",
+      "There is no active party yet. Once the campaign starts, this page will show player characters, sheet links, roles, AC, HP, and short summaries.",
       ["Party roster", "Character sheet links", "Player names", "Class and role summaries"]
     );
   }

@@ -15,9 +15,9 @@
       "name": "D&D Beyond",
       "linkKey": "dndBeyondCampaign",
       "buttonLabel": "Open D&D Beyond",
-      "what": "A website for character sheets, character building, rules lookup, leveling, spells, features, and equipment.",
-      "playersUse": "Players use it to open their sheet, create or level a character, check attacks and spells, and look up basic rules.",
-      "dmUse": "The DM uses it to keep the campaign roster organized and help players check rules or character options."
+      "what": "An official D&D digital toolset for character sheets, character building, rules lookup, leveling, spells, features, and equipment. It also has Maps VTT, but this table has not chosen it as the default tabletop.",
+      "playersUse": "Players may use it for sheets or rules if the DM chooses it. Do not assume it is required until the table decides.",
+      "dmUse": "The DM may use it for roster management, rules reference, or character review, but the map/VTT choice is separate."
     },
     {
       "name": "Discord",
@@ -33,15 +33,15 @@
       "buttonLabel": "Open Owlbear Rodeo",
       "what": "A lightweight virtual tabletop, or VTT, for maps, tokens, movement, positioning, fog, and visual combat reference.",
       "playersUse": "Players use it to see the scene, move their token when allowed, and understand where characters and enemies are.",
-      "dmUse": "The DM uses it to prepare maps, control hidden areas, place enemies, and show important locations."
+      "dmUse": "The DM may choose it when the group wants a simple map layer without a heavier campaign platform."
     },
     {
       "name": "Roll20",
       "linkKey": "roll20Game",
       "buttonLabel": "Open Roll20",
-      "what": "An optional heavier virtual tabletop. Use it only if the campaign chooses Roll20 instead of Owlbear Rodeo.",
+      "what": "An optional heavier virtual tabletop with maps, tokens, sheets, dice, and campaign tools. Use it only if the campaign chooses Roll20.",
       "playersUse": "Players can ignore Roll20 unless the DM says this campaign is using it.",
-      "dmUse": "The DM may use it for maps, tokens, sheets, or built-in tabletop tools if Owlbear is not enough."
+      "dmUse": "The DM may choose it if the group wants a fuller VTT instead of a lightweight map tool."
     }
   ]
 }

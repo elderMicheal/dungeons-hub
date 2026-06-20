@@ -46,7 +46,7 @@
     },
     {
       "question": "What is D&D Beyond?",
-      "shortAnswer": "D&D Beyond is a website for digital character sheets, character creation, campaign management, and rules lookup.",
+      "shortAnswer": "D&D Beyond is one possible tool for digital character sheets, character creation, campaign management, and rules lookup. This table will use it only if the DM chooses it.",
       "longerAnswer": "",
       "relatedPage": "help",
       "status": "Active"
@@ -74,7 +74,7 @@
     },
     {
       "question": "What do I need before my first session?",
-      "shortAnswer": "Join Discord, create a D&D Beyond account, test your microphone, read the table rules, and ask questions. The campaign link and map will come later.",
+      "shortAnswer": "Join Discord, test your microphone, read the table rules, and ask questions. The DM will choose the character sheet and map tools before the campaign starts.",
       "longerAnswer": "",
       "relatedPage": "help",
       "status": "Active"
@@ -521,7 +521,7 @@
   "whereToFindAnswers": [
     {
       "need": "I need my character sheet",
-      "destination": "Go to D&D Beyond."
+      "destination": "Use the character sheet tool chosen by the DM. It may be D&D Beyond, Roll20, a PDF, paper, or another tool."
     },
     {
       "need": "I need the map",
@@ -545,7 +545,7 @@
     },
     {
       "need": "I need official rules",
-      "destination": "Use D&D Beyond or the official D&D free/basic rules source."
+      "destination": "Use the official D&D free/basic rules source or whichever rules reference the DM approves."
     },
     {
       "need": "I am confused during play",

@@ -47,7 +47,7 @@
   "guide": {
     "note": "Character creation is part rules, part imagination, and part table agreement. For this table, read How We Play Here first: 2014 D&D 5e, Level 1, Main Character plus Companion Character, roleplay first, and ability scores paused until the group decides the method.",
     "fundamentalGuidelines": [
-      "This table uses 2014 D&D 5e. Exclude 2024 options in D&D Beyond and use approved 2014 material.",
+      "This table uses 2014 D&D 5e. Use approved 2014 material. If using D&D Beyond, exclude 2024 options in source settings.",
       "All main characters and companion characters start at Level 1.",
       "Build a Main Character and a Companion Character, but expect to control only one active character at a time.",
       "Nothing is categorically banned inside approved 2014 material, but unusual choices should be discussed before finalizing.",
@@ -59,7 +59,7 @@
       "Keep the backstory short at first. One paragraph and a few clear motivations are usually better than five pages."
     ],
     "dmQuestions": [
-      "Which 2014 books or D&D Beyond source categories are approved?",
+      "Which 2014 books, source categories, or sheet tools are approved?",
       "Should I use 2014 Core Rules only, or are 2014 Expanded/Legacy options allowed too?",
       "How are ability scores generated for this table?",
       "Do we use starting equipment, starting gold, DM-given gear, or story-pitched gear?",
@@ -80,7 +80,7 @@
       },
       {
         "title": "3. Use 2014 rules and exclude 2024 options",
-        "text": "In D&D Beyond, use the source/content filters to avoid 2024 options and build from approved 2014 material. Ask before finalizing if the source settings are unclear."
+        "text": "Use approved 2014 material. If the table uses D&D Beyond, use the source/content filters to avoid 2024 options. Ask before finalizing if the source settings are unclear."
       },
       {
         "title": "4. Choose a character concept",
@@ -300,9 +300,9 @@
       }
     ],
     "dndBeyondSteps": [
-      "Create or sign in to a D&D Beyond account.",
-      "Open My Characters or the character builder.",
-      "Use the DM's campaign link once Micheal adds one. Until then, build a test character privately.",
+      "Use the character sheet or builder tool the DM chooses.",
+      "If the table uses D&D Beyond, create or sign in to an account and open My Characters.",
+      "Use the DM's campaign or sheet link once Micheal adds one. Until then, build test characters privately or on paper.",
       "Open source/content preferences and exclude 2024 options.",
       "Use approved 2014 Core Rules, 2014 Expanded Rules, or Legacy material as the DM allows.",
       "Set the character level to 1.",
@@ -310,7 +310,7 @@
       "Pause before finalizing ability scores if the group has not decided the method.",
       "Select skills, proficiencies, equipment, and spells if your class uses magic.",
       "Open the final character sheet and check AC, HP, attacks, saving throws, skills, equipment, and spell list.",
-      "Send the character sheet link to the DM for approval before session zero or game night."
+      "Send the character sheet or summary to the DM for approval before session zero or game night."
     ],
     "beginnerBuildAdvice": [
       "For the first character, simple is good. Fighter, rogue, cleric, and wizard are classic anchors, but any class can work if you are willing to ask questions.",
@@ -339,13 +339,13 @@
         "type": "Official tool",
         "label": "D&D Beyond Character Builder",
         "url": "https://www.dndbeyond.com/My-Characters",
-        "description": "Build and manage a digital sheet after you complete the table preflight."
+        "description": "Optional digital sheet builder if the table chooses D&D Beyond."
       },
       {
         "type": "Tool guide",
         "label": "Roll20: How to Create a Character",
         "url": "https://help.roll20.net/hc/en-us/articles/360046574454-How-to-Create-a-Character",
-        "description": "Interface help if the table later uses Roll20. It does not replace this table's D&D Beyond and 2014 rules instructions."
+        "description": "Interface help if the table later uses Roll20. It does not replace this table's 2014 rules instructions."
       },
       {
         "type": "Session Zero",
@@ -598,7 +598,7 @@
       },
       {
         "topic": "Tools and logistics",
-        "text": "Confirm Discord, D&D Beyond, map tool, schedule, session length, microphone setup, and recap location."
+        "text": "Confirm Discord, character sheet tool, map/VTT tool, schedule, session length, microphone setup, and recap location."
       },
       {
         "topic": "First test scene",
@@ -785,7 +785,7 @@
   ],
   "checklist": [
     "Join Discord.",
-    "Create a D&D Beyond account.",
+    "Wait for the DM to choose the character sheet tool.",
     "Read the Start Here guide.",
     "Look through the Help / Glossary page.",
     "Test your microphone.",
