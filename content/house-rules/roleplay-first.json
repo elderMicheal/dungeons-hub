@@ -1,0 +1,15 @@
+{
+  "title": "Roleplay First, Then Roll",
+  "category": "Roleplay",
+  "status": "Active",
+  "shortVersion": "Say what your character tries to do before asking for a roll.",
+  "fullExplanation": "Players describe the action in plain language. The DM decides whether it works, requires a roll, or has a consequence.",
+  "whyTheTableUsesIt": "It keeps the focus on the shared fiction instead of turning every moment into a button on a sheet.",
+  "exampleInPlay": "Say \"I want to talk the guard into letting us through\" instead of \"I roll Persuasion.\"",
+  "exceptions": "Fast repeated checks may be abbreviated once everyone understands the scene.",
+  "dateAdded": "2026-06-19",
+  "lastRevised": "2026-06-19",
+  "versionNumber": 1,
+  "replacesRule": "",
+  "optionalNotes": ""
+}

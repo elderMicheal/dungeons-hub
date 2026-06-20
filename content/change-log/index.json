@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "date": "2026-06-19",
+      "title": "Added editable table rules and content admin structure",
+      "category": "Admin",
+      "whatChanged": "Moved public-facing table guidance into structured content files and added Decap CMS admin scaffolding.",
+      "whyItChanged": "Micheal and the DM need to update public content without editing code.",
+      "relatedHouseRule": "",
+      "status": "Published"
+    }
+  ]
+}

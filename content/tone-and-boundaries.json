@@ -1,0 +1,15 @@
+{
+  "campaignTone": "The tone may move between serious, funny, dramatic, ridiculous, tense, or chaotic depending on the group and situation.",
+  "humorAndSeriousnessGuidance": "Use the table mood. Be funny without making it impossible for other players to care about the scene.",
+  "themesToAvoid": [],
+  "offLimitsContent": [],
+  "howToRaiseAConcern": [
+    "Before a session",
+    "In Discord",
+    "Privately with the DM",
+    "During play if something becomes uncomfortable"
+  ],
+  "playerVersusPlayerPolicy": "PvP requires clear consent from the affected player and DM approval.",
+  "interPartyConflictPolicy": "Character tension can be fun. Constant sabotage, stealing from allies, or abandoning the group is not the baseline for this table.",
+  "consentExpectations": "A player does not need to defend or debate a boundary."
+}

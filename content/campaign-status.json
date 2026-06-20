@@ -1,0 +1,29 @@
+{
+  "campaignActive": false,
+  "campaignName": "",
+  "campaignSummary": "No active campaign yet. We are setting up the table, tools, and beginner guide first.",
+  "currentStage": "Getting organized",
+  "nextSessionDate": "",
+  "nextSessionTime": "",
+  "currentPartyLevel": "",
+  "currentLocation": "",
+  "currentObjective": "",
+  "campaignDetails": {
+    "premise": "TBD - the DM will add the campaign premise.",
+    "currentLocation": "TBD - the DM will add the current location.",
+    "currentQuest": "TBD - the DM will add the current quest.",
+    "tone": "TBD - the DM will add the campaign tone.",
+    "knownNpcs": [
+      "TBD - add known NPCs here."
+    ],
+    "knownEnemies": [
+      "TBD - add known enemies here."
+    ],
+    "openQuestions": [
+      "TBD - add open questions here."
+    ],
+    "partyInventory": [
+      "TBD - add shared party inventory here."
+    ]
+  }
+}

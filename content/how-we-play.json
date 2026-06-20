@@ -1,0 +1,105 @@
+{
+  "title": "How We Play Here",
+  "intro": "This is the table-specific source of truth for Micheal's D&D group. Outside guides can help explain the game, but this page says how this table actually plays.",
+  "entries": [
+    {
+      "title": "The Rule of Cool",
+      "shortVersion": "Creative ideas are encouraged. Describe what your character wants to do and why it would be interesting.",
+      "detailedExplanation": "Creative ideas are encouraged. Describe what your character wants to do and why it would be interesting.\n\nThe DM may allow it, ask for a roll, add a cost, or introduce a consequence. Rule of Cool means a clever, dramatic, or funny idea gets a fair chance, not an automatic success.\n\nKey points: Fit the scene. Keep other players involved. Do not erase all danger. Do not make another character irrelevant. Create a memorable result whether it succeeds or fails.",
+      "example": "Fit the scene.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Roleplay First, Then Roll",
+      "shortVersion": "This is a roleplaying game, not just a dice-rolling game. Start by saying what your character is trying to do in plain language.",
+      "detailedExplanation": "This is a roleplaying game, not just a dice-rolling game. Start by saying what your character is trying to do in plain language.\n\nThe DM decides whether the action simply works, needs a dice roll, or has a consequence. Do not worry about knowing every rule before speaking up.\n\nKey points: I want to talk the guard into letting us through. I want to sneak around the back of the building. I want to jump from the balcony onto the chandelier. I want to find out whether this merchant is lying.",
+      "example": "I want to talk the guard into letting us through.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Character Rules for This Table",
+      "shortVersion": "All main characters and companion characters begin at Level 1. This is the beginning of their actual adventuring career, even if they had a life before the campaign.",
+      "detailedExplanation": "All main characters and companion characters begin at Level 1. This is the beginning of their actual adventuring career, even if they had a life before the campaign.\n\nThis table uses 2014 D&D 5e rules, not the 2024 revision. There are no automatic bans inside the approved 2014 material, but unusual or scene-warping options should be discussed with the DM before finalizing.\n\nKey points: Use the 2014 Core Rules and approved 2014/Legacy material. Exclude 2024 options in D&D Beyond source settings. Set the character level to 1. Ask before finalizing unusual subclasses, gear, or build ideas.",
+      "example": "Use the 2014 Core Rules and approved 2014/Legacy material.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Recommended First Characters",
+      "shortVersion": "For a first character, the DM recommends familiar fantasy ancestries because they are easy to picture, easy to roleplay, and well supported by the rules.",
+      "detailedExplanation": "For a first character, the DM recommends familiar fantasy ancestries because they are easy to picture, easy to roleplay, and well supported by the rules.\n\nYou are not required to choose one of these. Use halfling in the character builder and on this site.\n\nKey points: Human Elf Dwarf Halfling",
+      "example": "Human",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Build Two Characters",
+      "shortVersion": "Each player should create a Main Character and a Companion Character. You control only one active player character at a time.",
+      "detailedExplanation": "Each player should create a Main Character and a Companion Character. You control only one active player character at a time.\n\nThe companion may step in if the main character dies, leaves the story, gets separated, or the DM decides the companion better fits the current situation.\n\nKey points: Both characters start at Level 1. Both characters should cooperate with the party. A companion is not an extra combat turn. Both characters should have a reason to know or support the group.",
+      "example": "Both characters start at Level 1.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Do Not Split the Party",
+      "shortVersion": "The party should generally stay together. Splitting up makes the game slower, separates players from the action, and can leave a character facing danger without support.",
+      "detailedExplanation": "The party should generally stay together. Splitting up makes the game slower, separates players from the action, and can leave a character facing danger without support.\n\nA temporary split can happen when the story requires it, but it should be discussed rather than treated as the default plan.",
+      "example": "",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Your Characters Must Belong Together",
+      "shortVersion": "Your characters should know the other characters before the adventure begins. They can be friends, trusted allies, relatives, fellow travelers, oath-bound companions, or members of the same group.",
+      "detailedExplanation": "Your characters should know the other characters before the adventure begins. They can be friends, trusted allies, relatives, fellow travelers, oath-bound companions, or members of the same group.\n\nA character can be grumpy, suspicious, chaotic, sarcastic, secretive, or morally complicated. They should not be designed to sabotage, abandon, steal from, or constantly work against the party.\n\nKey points: Your character should have a reason to want the party to succeed.",
+      "example": "Your character should have a reason to want the party to succeed.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Ability Scores: Decide Together",
+      "shortVersion": "Do not treat ability scores as finalized until the group discusses them. The table may use a more story-focused method than standard point buy or random rolling.",
+      "detailedExplanation": "Do not treat ability scores as finalized until the group discusses them. The table may use a more story-focused method than standard point buy or random rolling.\n\nBring a character idea to the group discussion, including what the character is naturally good at, what they are bad at, and what kind of adventurer they are trying to become.",
+      "example": "",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Gear Can Become Story",
+      "shortVersion": "Starting gear is not only a list of numbers and weapons. If you have a good story for a notable item, bring it to the DM.",
+      "detailedExplanation": "Starting gear is not only a list of numbers and weapons. If you have a good story for a notable item, bring it to the DM.\n\nInteresting gear may come with consequences. A powerful item might create debts, enemies, favors, rumors, or future story hooks.\n\nKey points: A family sword with a history. A battered shield from an old military unit. A holy symbol from a vanished temple. A strange wand recovered from a mentor. A +1 longsword with a believable origin.",
+      "example": "A family sword with a history.",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Rules Corrections Are Welcome",
+      "shortVersion": "The DM may make a mistake or forget a rule. If you notice something, say so respectfully and promptly.",
+      "detailedExplanation": "The DM may make a mistake or forget a rule. If you notice something, say so respectfully and promptly.\n\nThe DM may make a quick ruling to keep play moving, then check the rule afterward. Recurring decisions should be added to the House Rule Log.\n\nKey points: Quick rules check: I think that works this way. Want to look at it?",
+      "example": "Quick rules check: I think that works this way. Want to look at it?",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    },
+    {
+      "title": "Tone, Boundaries, and Off-Limits Content",
+      "shortVersion": "The tone may shift between serious, funny, dramatic, ridiculous, tense, or chaotic depending on the moment and the group.",
+      "detailedExplanation": "The tone may shift between serious, funny, dramatic, ridiculous, tense, or chaotic depending on the moment and the group.\n\nIf there is a type of content you do not want in the game, say so during Session Zero, before a session, in Discord, privately with the DM, or during play if something becomes uncomfortable. You do not need to defend or debate a boundary.",
+      "example": "",
+      "status": "Active",
+      "lastRevisedDate": "2026-06-19",
+      "optionalNote": ""
+    }
+  ]
+}

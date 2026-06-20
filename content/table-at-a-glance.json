@@ -1,0 +1,15 @@
+{
+  "rulesVersion": "2014 D&D 5e",
+  "startingLevel": 1,
+  "campaignActive": false,
+  "mainCharacterRequired": true,
+  "companionCharacterRequired": true,
+  "recommendedBeginnerAncestries": [
+    "Human",
+    "Elf",
+    "Dwarf",
+    "Halfling"
+  ],
+  "characterSourceGuidance": "Exclude 2024 options in D&D Beyond. Use approved 2014 material.",
+  "shortSummary": "2014 Rules • Level 1 • Main + Companion • Rule of Cool • Roleplay First • Stay With the Party"
+}

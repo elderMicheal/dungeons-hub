@@ -1,0 +1,795 @@
+{
+  "rulesVersion": "2014 D&D 5e",
+  "exclude2024Material": true,
+  "startingLevel": 1,
+  "abilityScoreMethod": "Discuss with the DM before finalizing.",
+  "mainCharacterRequired": true,
+  "companionCharacterRequired": true,
+  "recommendedBeginnerAncestries": [
+    "Human",
+    "Elf",
+    "Dwarf",
+    "Halfling"
+  ],
+  "recommendedBeginnerClasses": [
+    "Fighter",
+    "Rogue",
+    "Wizard",
+    "Cleric",
+    "Ranger",
+    "Bard",
+    "Paladin",
+    "Barbarian"
+  ],
+  "allowedContentPolicy": "Nothing is categorically banned inside approved 2014 material. Strong or unusual concepts should be discussed with the DM.",
+  "specialOptionsRequiringDiscussion": [
+    "Strong social-control builds",
+    "Unusual subclasses or source material",
+    "Magic items or notable starting gear",
+    "Homebrew or third-party options",
+    "Anything that may change how an entire scene works"
+  ],
+  "partyConnectionRequirement": "Characters must know each other and have a reason to cooperate.",
+  "startingGearGuidance": "Use normal starting gear unless the DM approves a story-driven item.",
+  "magicItemStoryGuidance": "Gear may be allowed when it has a good story. Interesting gear can create debts, enemies, rumors, obligations, or future consequences.",
+  "characterCreationChecklist": [
+    "Read How We Play Here.",
+    "Plan a Main Character and a Companion Character.",
+    "Use 2014 D&D 5e rules and exclude 2024 options.",
+    "Set both characters to Level 1.",
+    "Choose a character concept before choosing rules options.",
+    "Choose race, class, background, traits, and gear from approved 2014 material.",
+    "Pause at ability scores until the group and DM decide the method.",
+    "Connect both characters to the party.",
+    "Bring unusual gear, unusual class options, or special story ideas to the DM.",
+    "Ask questions before finalizing."
+  ],
+  "guide": {
+    "note": "Character creation is part rules, part imagination, and part table agreement. For this table, read How We Play Here first: 2014 D&D 5e, Level 1, Main Character plus Companion Character, roleplay first, and ability scores paused until the group decides the method.",
+    "fundamentalGuidelines": [
+      "This table uses 2014 D&D 5e. Exclude 2024 options in D&D Beyond and use approved 2014 material.",
+      "All main characters and companion characters start at Level 1.",
+      "Build a Main Character and a Companion Character, but expect to control only one active character at a time.",
+      "Nothing is categorically banned inside approved 2014 material, but unusual choices should be discussed before finalizing.",
+      "Make a character who wants to cooperate with the party. A loner can be fun, but they still need a reason to play with the group.",
+      "Connect both characters to the other characters before the adventure begins.",
+      "Do not finalize ability scores until the group and DM decide the method.",
+      "Bring notable gear stories, unusual class options, and special ideas to the DM.",
+      "Build someone competent enough to contribute. They do not need to be optimized, but they should be able to help the group.",
+      "Keep the backstory short at first. One paragraph and a few clear motivations are usually better than five pages."
+    ],
+    "dmQuestions": [
+      "Which 2014 books or D&D Beyond source categories are approved?",
+      "Should I use 2014 Core Rules only, or are 2014 Expanded/Legacy options allowed too?",
+      "How are ability scores generated for this table?",
+      "Do we use starting equipment, starting gold, DM-given gear, or story-pitched gear?",
+      "What unusual class, subclass, gear, or character idea should I ask about before finalizing?",
+      "How should my Main Character know the party?",
+      "How should my Companion Character know the party?",
+      "What tone or boundaries should I know before writing backstory?",
+      "Are there active house rules in the House Rule Log that affect my build?"
+    ],
+    "creationSteps": [
+      {
+        "title": "1. Read How We Play Here",
+        "text": "This table uses 2014 D&D 5e, starts at Level 1, asks each player to build a Main Character and a Companion Character, and expects roleplay first."
+      },
+      {
+        "title": "2. Build a Main Character and a Companion",
+        "text": "Your Main Character is your primary adventurer. Your Companion Character is a backup or story fit the DM can bring in when needed. You control only one active character at a time."
+      },
+      {
+        "title": "3. Use 2014 rules and exclude 2024 options",
+        "text": "In D&D Beyond, use the source/content filters to avoid 2024 options and build from approved 2014 material. Ask before finalizing if the source settings are unclear."
+      },
+      {
+        "title": "4. Choose a character concept",
+        "text": "Pick a plain idea before touching too many rules. Examples: careful archer, kind healer, curious wizard, loud sword fighter, sneaky investigator, cursed magic user, protective bodyguard."
+      },
+      {
+        "title": "5. Choose race, class, background, traits, and gear",
+        "text": "These are the main building blocks. Race describes ancestry, class is your adventuring profession, background is your life before adventure, traits/features are special rules, and gear is what you carry."
+      },
+      {
+        "title": "6. Pause at ability scores until the group decision",
+        "text": "Ability scores are Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Do not treat them as final until the DM and group decide the method."
+      },
+      {
+        "title": "7. Connect both characters to the party",
+        "text": "Each character should know, trust, owe, support, or share a cause with the party. Do not design a character whose main behavior is sabotaging or abandoning the group."
+      },
+      {
+        "title": "8. Finalize with the DM",
+        "text": "Send the sheet to the DM before Session Zero or game night. The DM can catch source mismatches, missing choices, unclear ability scores, and story ideas that need approval."
+      }
+    ],
+    "characterParts": [
+      {
+        "name": "Concept",
+        "text": "The short idea that makes the character easy to understand. Concept comes before optimization."
+      },
+      {
+        "name": "Class / Profession",
+        "text": "The main adventuring role and rule package: fighter, rogue, cleric, wizard, bard, ranger, and so on."
+      },
+      {
+        "name": "Species / Race / Ancestry",
+        "text": "The kind of people your character belongs to. The exact word depends on rules version and game system."
+      },
+      {
+        "name": "Background",
+        "text": "What shaped your character before adventuring. This connects story to skills, tools, gear, and sometimes ability scores or feats."
+      },
+      {
+        "name": "Ability Scores",
+        "text": "The six core numbers that describe physical, mental, and social strengths."
+      },
+      {
+        "name": "Proficiencies",
+        "text": "Training bonuses for skills, saves, weapons, armor, tools, and other capabilities."
+      },
+      {
+        "name": "Features",
+        "text": "Special rules from class, species, background, feats, spells, or other choices."
+      },
+      {
+        "name": "Equipment",
+        "text": "Weapons, armor, adventuring gear, tools, supplies, money, and special items."
+      },
+      {
+        "name": "Personality",
+        "text": "How the character behaves: habits, goals, fears, beliefs, bonds, flaws, and what makes them fun to play."
+      }
+    ],
+    "abilityScores": [
+      {
+        "name": "Strength",
+        "text": "Physical power. Useful for heavy weapons, athletics, lifting, pushing, grappling, and wearing some armor."
+      },
+      {
+        "name": "Dexterity",
+        "text": "Agility and reflexes. Useful for stealth, initiative, ranged attacks, finesse weapons, armor class, and avoiding danger."
+      },
+      {
+        "name": "Constitution",
+        "text": "Toughness and stamina. Useful for hit points, resisting poison, holding concentration, and surviving punishment."
+      },
+      {
+        "name": "Intelligence",
+        "text": "Reasoning and study. Useful for knowledge skills, investigation, and wizard magic."
+      },
+      {
+        "name": "Wisdom",
+        "text": "Awareness and judgment. Useful for perception, insight, survival, and classes like cleric, druid, monk, and ranger."
+      },
+      {
+        "name": "Charisma",
+        "text": "Presence and force of personality. Useful for persuasion, deception, intimidation, performance, and classes like bard, sorcerer, paladin, and warlock."
+      }
+    ],
+    "classes": [
+      {
+        "name": "Barbarian",
+        "text": "Durable front-line warrior built around rage, toughness, and big physical hits."
+      },
+      {
+        "name": "Bard",
+        "text": "Flexible magic-and-skill character who supports allies, handles social scenes, and solves problems creatively."
+      },
+      {
+        "name": "Cleric",
+        "text": "Divine spellcaster who can heal, protect, fight, and bring strong utility depending on domain or subclass."
+      },
+      {
+        "name": "Druid",
+        "text": "Nature-based spellcaster with strong control, support, survival tools, and often shapeshifting."
+      },
+      {
+        "name": "Fighter",
+        "text": "Weapon expert and one of the easiest first classes. Good for learning attacks, armor, and tactical positioning."
+      },
+      {
+        "name": "Monk",
+        "text": "Fast martial artist using movement, discipline, unarmed strikes, and precise defensive tools."
+      },
+      {
+        "name": "Paladin",
+        "text": "Armored warrior with divine magic, protection, burst damage, and a strong oath or code."
+      },
+      {
+        "name": "Ranger",
+        "text": "Explorer and skirmisher with weapons, tracking, survival tools, and some nature magic."
+      },
+      {
+        "name": "Rogue",
+        "text": "Skill expert who uses stealth, precision, mobility, and clever positioning."
+      },
+      {
+        "name": "Sorcerer",
+        "text": "Innate spellcaster whose magic comes from bloodline, fate, strange power, or supernatural origin."
+      },
+      {
+        "name": "Warlock",
+        "text": "Pact-based magic user with fewer spell slots, strong repeatable tricks, and unusual powers."
+      },
+      {
+        "name": "Wizard",
+        "text": "Studied spellcaster with a spellbook, broad utility, and many options to learn over time."
+      }
+    ],
+    "species": [
+      {
+        "name": "Human",
+        "text": "Flexible and familiar. Often a good beginner pick because the concept is easy to picture."
+      },
+      {
+        "name": "Elf",
+        "text": "Graceful, long-lived, and often tied to keen senses, magic, agility, or old traditions."
+      },
+      {
+        "name": "Dwarf",
+        "text": "Sturdy and resilient. Often tied to endurance, craft, stone, armor, and strong communities."
+      },
+      {
+        "name": "Halfling",
+        "text": "Small, brave, lucky, and often good for nimble or quietly heroic characters."
+      },
+      {
+        "name": "Dragonborn",
+        "text": "Draconic people often associated with breath weapons, elemental themes, and bold presence."
+      },
+      {
+        "name": "Gnome",
+        "text": "Small, clever, curious, and often tied to invention, illusion, or strange knowledge."
+      },
+      {
+        "name": "Tiefling",
+        "text": "People with infernal or other supernatural heritage. Good for outsider, dramatic, or magic-flavored concepts."
+      },
+      {
+        "name": "Orc / Half-Orc",
+        "text": "Often strong, intense, and physically capable. Availability and exact rules depend on the source and DM."
+      },
+      {
+        "name": "Other options",
+        "text": "Many books add more choices. Do not assume they are available until the DM approves them."
+      }
+    ],
+    "backgrounds": [
+      {
+        "name": "What it means",
+        "text": "Background answers: what did this person do before adventure? It gives the character a normal-life anchor."
+      },
+      {
+        "name": "Mechanical impact",
+        "text": "Depending on rules version, it can grant skills, tools, languages, equipment, ability score increases, or an origin feat."
+      },
+      {
+        "name": "Story impact",
+        "text": "It tells the DM what kinds of people, places, habits, or obligations might matter to your character."
+      },
+      {
+        "name": "Beginner advice",
+        "text": "Pick a background that explains your skills and gives the DM an easy hook. Soldier, sage, criminal, acolyte, entertainer, artisan, guard, and farmer are all easy to understand."
+      }
+    ],
+    "traits": [
+      {
+        "name": "Mechanical traits",
+        "text": "Rules text that changes what your character can do: darkvision, extra movement, spellcasting, weapon training, a class feature, or a feat."
+      },
+      {
+        "name": "Personality traits",
+        "text": "Small behaviors that make the character feel alive: polite, suspicious, reckless, curious, formal, protective, awkward, charming."
+      },
+      {
+        "name": "Ideals",
+        "text": "Values the character believes in: freedom, honor, knowledge, family, faith, survival, justice, glory, peace."
+      },
+      {
+        "name": "Bonds",
+        "text": "People, places, promises, objects, or duties the character cares about."
+      },
+      {
+        "name": "Flaws",
+        "text": "Problems that create drama without ruining the table: pride, guilt, impatience, fear, greed, naivety, stubbornness."
+      },
+      {
+        "name": "Feats",
+        "text": "Special perks that grant new abilities. In newer rules, backgrounds may grant an origin feat. The DM decides what feat options are allowed."
+      }
+    ],
+    "dndBeyondSteps": [
+      "Create or sign in to a D&D Beyond account.",
+      "Open My Characters or the character builder.",
+      "Use the DM's campaign link once Micheal adds one. Until then, build a test character privately.",
+      "Open source/content preferences and exclude 2024 options.",
+      "Use approved 2014 Core Rules, 2014 Expanded Rules, or Legacy material as the DM allows.",
+      "Set the character level to 1.",
+      "Choose class, species, background, and ability scores.",
+      "Pause before finalizing ability scores if the group has not decided the method.",
+      "Select skills, proficiencies, equipment, and spells if your class uses magic.",
+      "Open the final character sheet and check AC, HP, attacks, saving throws, skills, equipment, and spell list.",
+      "Send the character sheet link to the DM for approval before session zero or game night."
+    ],
+    "beginnerBuildAdvice": [
+      "For the first character, simple is good. Fighter, rogue, cleric, and wizard are classic anchors, but any class can work if you are willing to ask questions.",
+      "Do not chase a powerful internet build before you understand the table. A character that fits the group is better than a spreadsheet monster.",
+      "Put your highest score in the ability your class actually uses most.",
+      "Pick two or three things your character is good at. You do not need to be good at everything.",
+      "If you want magic but feel nervous, choose a smaller spell list or ask someone to help you pick reliable spells.",
+      "If you want the easiest combat turn, choose a weapon-focused character and learn movement, attack rolls, damage, and reactions first.",
+      "If you want social scenes, choose skills and personality that make you comfortable talking in character or describing what you say.",
+      "A good beginner backstory answers: Where did I come from? What do I want? Why am I with the party?"
+    ],
+    "references": [
+      {
+        "type": "Official 2014 rules",
+        "label": "D&D Beyond Basic Rules (2014): Step-By-Step Characters",
+        "url": "https://www.dndbeyond.com/sources/dnd/basic-rules-2014/step-by-step-characters",
+        "description": "Official 2014 character creation reference. This table uses 2014 D&D 5e and starts at Level 1."
+      },
+      {
+        "type": "Builder interface",
+        "label": "D&D Beyond: Content Categories",
+        "url": "https://dndbeyond-support.wizards.com/hc/en-us/articles/7747201820948-Enabling-Content-Categories-for-your-Character-Sheet",
+        "description": "Use this to understand source toggles. For this table, exclude 2024 options and use approved 2014 material."
+      },
+      {
+        "type": "Official tool",
+        "label": "D&D Beyond Character Builder",
+        "url": "https://www.dndbeyond.com/My-Characters",
+        "description": "Build and manage a digital sheet after you complete the table preflight."
+      },
+      {
+        "type": "Tool guide",
+        "label": "Roll20: How to Create a Character",
+        "url": "https://help.roll20.net/hc/en-us/articles/360046574454-How-to-Create-a-Character",
+        "description": "Interface help if the table later uses Roll20. It does not replace this table's D&D Beyond and 2014 rules instructions."
+      },
+      {
+        "type": "Session Zero",
+        "label": "Sly Flourish: Running Session Zeros",
+        "url": "https://slyflourish.com/running_session_zeros.html",
+        "description": "Practical advice for aligning expectations, tying characters together, and setting boundaries before a campaign."
+      }
+    ],
+    "summaryNote": "Exact traits, ability bonuses, names, and source availability vary between 2014 rules, 2024 rules, table house rules, and purchased books. Treat these tables as orientation, then confirm with the DM.",
+    "raceSummaries": [
+      {
+        "name": "Human",
+        "summary": "Versatile, familiar, and easy to picture.",
+        "beginnerUse": "Good for nearly any class or first character concept."
+      },
+      {
+        "name": "Dwarf",
+        "summary": "Sturdy, tough, and often tied to craft, stone, armor, and endurance.",
+        "beginnerUse": "Great for fighters, clerics, paladins, and other durable builds."
+      },
+      {
+        "name": "Elf",
+        "summary": "Graceful, long-lived, perceptive, and often tied to magic, archery, or old traditions.",
+        "beginnerUse": "Good for rogues, rangers, wizards, druids, and nimble characters."
+      },
+      {
+        "name": "Halfling",
+        "summary": "Small, brave, nimble, and often lucky or quietly heroic.",
+        "beginnerUse": "Good for rogues, bards, rangers, and sneaky or cheerful characters."
+      },
+      {
+        "name": "Dragonborn",
+        "summary": "Draconic people with a bold presence and elemental flavor.",
+        "beginnerUse": "Good for paladins, fighters, barbarians, sorcerers, and dramatic concepts."
+      },
+      {
+        "name": "Gnome",
+        "summary": "Small, clever, curious, and often tied to invention, illusion, or strange knowledge.",
+        "beginnerUse": "Good for wizards, artificer-style concepts if allowed, and curious problem-solvers."
+      },
+      {
+        "name": "Tiefling",
+        "summary": "Charismatic outsiders with supernatural or infernal flavor.",
+        "beginnerUse": "Good for bards, warlocks, sorcerers, and characters with a dramatic edge."
+      },
+      {
+        "name": "Orc / Half-Orc",
+        "summary": "Strong, intense, and physically capable, depending on the rules source.",
+        "beginnerUse": "Good for barbarians, fighters, paladins, and hard-hitting warriors."
+      }
+    ],
+    "classSummaries": [
+      {
+        "name": "Barbarian",
+        "role": "Front-line brawler",
+        "beginnerNote": "High hit points, rage, and big melee hits. Straightforward in combat."
+      },
+      {
+        "name": "Bard",
+        "role": "Support and social expert",
+        "beginnerNote": "Magic, skills, inspiration, and social flexibility. Lots of choices."
+      },
+      {
+        "name": "Cleric",
+        "role": "Divine support caster",
+        "beginnerNote": "Healing, protection, armor, and strong spells. Good if you like helping the party."
+      },
+      {
+        "name": "Druid",
+        "role": "Nature caster",
+        "beginnerNote": "Nature magic, control, support, and shapeshifting. Powerful but more complex."
+      },
+      {
+        "name": "Fighter",
+        "role": "Weapon and armor expert",
+        "beginnerNote": "One of the easiest first classes. Learn attacks, armor, positioning, and tactics."
+      },
+      {
+        "name": "Monk",
+        "role": "Fast martial artist",
+        "beginnerNote": "Mobile, precise, and resource-based. Best if you like movement and quick decisions."
+      },
+      {
+        "name": "Paladin",
+        "role": "Holy warrior",
+        "beginnerNote": "Armor, melee damage, support magic, and big smites. Strong but has several systems."
+      },
+      {
+        "name": "Ranger",
+        "role": "Scout and skirmisher",
+        "beginnerNote": "Weapons, exploration, survival, and some nature magic."
+      },
+      {
+        "name": "Rogue",
+        "role": "Stealth and skill expert",
+        "beginnerNote": "Great skills, mobility, and Sneak Attack. Strong choice for careful players."
+      },
+      {
+        "name": "Sorcerer",
+        "role": "Innate spellcaster",
+        "beginnerNote": "Charisma magic with fewer spells known. Easier than wizard in some ways, but spell choices matter."
+      },
+      {
+        "name": "Warlock",
+        "role": "Pact spellcaster",
+        "beginnerNote": "Strange powers, reliable magical attacks, and fewer spell slots that refresh quickly."
+      },
+      {
+        "name": "Wizard",
+        "role": "Studied spellcaster",
+        "beginnerNote": "Huge spell options and utility. Rewarding, but reading your spells matters."
+      }
+    ],
+    "keyConcepts": [
+      {
+        "term": "Ability Scores",
+        "definition": "The six core stats: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."
+      },
+      {
+        "term": "Ability Check",
+        "definition": "A d20 roll to see if an action works when the result is uncertain."
+      },
+      {
+        "term": "Skill",
+        "definition": "A trained area connected to an ability score, such as Stealth, Perception, Persuasion, or History."
+      },
+      {
+        "term": "Saving Throw",
+        "definition": "A roll to resist danger, such as poison, a spell, a trap, or a sudden blast."
+      },
+      {
+        "term": "Armor Class (AC)",
+        "definition": "The number an attacker usually needs to meet or beat to hit you."
+      },
+      {
+        "term": "Hit Points (HP)",
+        "definition": "How much harm your character can take before dropping to 0 hit points."
+      },
+      {
+        "term": "Proficiency Bonus",
+        "definition": "A bonus added when your character is trained with a skill, save, weapon, tool, or other feature."
+      },
+      {
+        "term": "Advantage",
+        "definition": "Roll two d20s and use the higher result."
+      },
+      {
+        "term": "Disadvantage",
+        "definition": "Roll two d20s and use the lower result."
+      },
+      {
+        "term": "Darkvision",
+        "definition": "A trait that helps some characters see in darkness, within limits set by the rules."
+      }
+    ],
+    "exampleCharacters": [
+      {
+        "name": "Bruenor Stonehelm",
+        "race": "Dwarf",
+        "className": "Fighter",
+        "level": 1,
+        "stats": {
+          "STR": 17,
+          "DEX": 10,
+          "CON": 16,
+          "INT": 8,
+          "WIS": 13,
+          "CHA": 12
+        },
+        "hp": 13,
+        "ac": 18,
+        "role": "Frontline warrior",
+        "description": "Tough shield-and-axe fighter who stands in front and protects the party."
+      },
+      {
+        "name": "Elara Dawnlight",
+        "race": "Human",
+        "className": "Cleric",
+        "level": 1,
+        "stats": {
+          "STR": 11,
+          "DEX": 11,
+          "CON": 15,
+          "INT": 9,
+          "WIS": 16,
+          "CHA": 14
+        },
+        "hp": 10,
+        "ac": 18,
+        "role": "Healer and support",
+        "description": "Armored divine caster who can heal allies, protect the group, and still fight."
+      },
+      {
+        "name": "Tamsin Underbough",
+        "race": "Halfling",
+        "className": "Rogue",
+        "level": 1,
+        "stats": {
+          "STR": 8,
+          "DEX": 17,
+          "CON": 13,
+          "INT": 10,
+          "WIS": 13,
+          "CHA": 14
+        },
+        "hp": 9,
+        "ac": 15,
+        "role": "Scout and skirmisher",
+        "description": "Sneaky, quick, and useful for traps, locks, scouting, and precision damage."
+      },
+      {
+        "name": "Rhogar Flameheart",
+        "race": "Dragonborn",
+        "className": "Barbarian",
+        "level": 1,
+        "stats": {
+          "STR": 16,
+          "DEX": 13,
+          "CON": 14,
+          "INT": 8,
+          "WIS": 12,
+          "CHA": 10
+        },
+        "hp": 14,
+        "ac": 14,
+        "role": "Melee damage",
+        "description": "Hard-hitting front-line bruiser who uses rage and draconic flavor."
+      }
+    ],
+    "sessionZeroChecklist": [
+      {
+        "topic": "Campaign premise",
+        "text": "What kind of story are we playing, and what should characters care about?"
+      },
+      {
+        "topic": "Tone and boundaries",
+        "text": "Agree on serious, silly, scary, heroic, or gritty tone, plus any topics to avoid."
+      },
+      {
+        "topic": "Allowed content",
+        "text": "Confirm rules version, source books, homebrew, species, classes, feats, spells, and starting level."
+      },
+      {
+        "topic": "House rules",
+        "text": "Clarify any local changes before players make choices that depend on them."
+      },
+      {
+        "topic": "Party integration",
+        "text": "Decide whether characters know each other, why they cooperate, and what ties them together."
+      },
+      {
+        "topic": "Tools and logistics",
+        "text": "Confirm Discord, D&D Beyond, map tool, schedule, session length, microphone setup, and recap location."
+      },
+      {
+        "topic": "First test scene",
+        "text": "Optionally run a small scene or encounter so everyone can test sheets, rolls, and table flow."
+      }
+    ]
+  },
+  "startIntro": [
+    "Dungeons & Dragons is a tabletop roleplaying game. That means a group of people talks through an adventure together, each player controls a fictional character, and rules plus dice help decide what happens when the outcome is uncertain.",
+    "If you have never played any roleplaying game before, think of it as cooperative make-believe with structure. You are not trying to beat the other players. You are working with them to solve problems, survive trouble, and create memorable scenes.",
+    "You do not need to memorize the rules before showing up. The most important skill is simple: say what your character is trying to do. The DM will help translate that into the rules when rules are needed."
+  ],
+  "bigIdea": {
+    "title": "The whole game in one sentence",
+    "text": "The DM describes a situation, the players say what their characters do, dice are rolled when the result is uncertain, and the group reacts to what happens next."
+  },
+  "coreLoop": [
+    "Listen to what the DM says is happening.",
+    "Picture where your character is and what they care about.",
+    "Say what your character tries to do in plain language.",
+    "If the result is obvious, the DM may just say what happens.",
+    "If the result is uncertain or risky, the DM asks for a roll.",
+    "Roll the die, usually a d20, and add the number your sheet tells you.",
+    "The DM explains the result, then the story moves forward."
+  ],
+  "lessons": [
+    {
+      "title": "1. What is a roleplaying game?",
+      "summary": "A roleplaying game is a conversation where everyone controls part of a shared imaginary situation.",
+      "points": [
+        "The DM controls the world: places, weather, danger, enemies, helpful people, and consequences.",
+        "Each player controls one main character: what they say, what they try, and how they react.",
+        "The rules give the table a fair way to handle risk, limits, combat, magic, and character abilities.",
+        "The dice add uncertainty. They do not replace common sense or player choices."
+      ],
+      "example": "DM: The old door is swollen shut. Player: I put my shoulder into it and try to force it open. DM: Roll a Strength check."
+    },
+    {
+      "title": "2. What do I actually do as a player?",
+      "summary": "You make choices for your character. You do not need to speak in a fancy voice or know the perfect rule.",
+      "points": [
+        "Ask questions about what your character can see, hear, or remember.",
+        "Tell the DM what your character tries to do.",
+        "Work with the party instead of treating the table like a solo game.",
+        "Use your character sheet when the DM asks for a roll, attack, spell, skill, or saving throw.",
+        "If you are stuck, say what you want, not what rule you think applies."
+      ],
+      "example": "Instead of saying, 'Can I use Investigation?', you can say, 'I check the desk for hidden notes.' The DM will tell you whether to roll Investigation."
+    },
+    {
+      "title": "3. What does the DM do?",
+      "summary": "The Dungeon Master runs the situation so the players have something to respond to.",
+      "points": [
+        "The DM describes scenes, obstacles, creatures, and other people in the world.",
+        "The DM asks for rolls when an action has risk or uncertainty.",
+        "The DM plays enemies and non-player characters, often called NPCs.",
+        "The DM makes rulings when the rules are unclear or when speed matters.",
+        "The DM is not the enemy. The DM creates challenge, but the goal is a good game."
+      ],
+      "example": "The DM might say, 'The bridge is cracked and swaying. You can cross slowly, look for another way, or try something else.'"
+    },
+    {
+      "title": "4. What is my character?",
+      "summary": "Your character is your piece of the story: a person in the fantasy world with abilities, limits, gear, and opinions.",
+      "points": [
+        "A character has a name, class, level, ancestry or species, equipment, and special features.",
+        "The class is the character's main adventuring style, such as fighter, rogue, cleric, wizard, bard, or ranger.",
+        "The sheet tracks numbers so you do not have to remember everything.",
+        "You can describe personality in simple terms: brave, nervous, curious, loud, careful, kind, greedy, protective.",
+        "You are allowed to make imperfect choices. Good stories often come from messy decisions."
+      ],
+      "example": "A fighter might stand in front and protect others. A rogue might scout ahead. A cleric might heal and support. These are habits, not strict jobs."
+    },
+    {
+      "title": "5. How do dice work?",
+      "summary": "Dice decide uncertain outcomes. The most common die is the d20, a twenty-sided die.",
+      "points": [
+        "When the DM asks for a d20 roll, roll the d20 and add the bonus from your sheet.",
+        "Higher is usually better.",
+        "The DM compares your total to a target number called a DC, or to an enemy's Armor Class for attacks.",
+        "Advantage means roll two d20s and use the higher result.",
+        "Disadvantage means roll two d20s and use the lower result.",
+        "Other dice, like d4, d6, d8, d10, and d12, are often used for damage or healing."
+      ],
+      "example": "If you roll 14 and your sheet says +3, your total is 17."
+    },
+    {
+      "title": "6. When do I roll?",
+      "summary": "Do not roll first and ask later. Describe the action, then wait for the DM to ask for a roll if one is needed.",
+      "points": [
+        "If something is easy and there is no pressure, the DM may say it works without a roll.",
+        "If something is impossible, a high roll may not make it happen.",
+        "If something is risky, contested, hidden, rushed, or dramatic, the DM may ask for a roll.",
+        "The DM chooses the type of roll because the situation determines the rule.",
+        "A failed roll is not always a dead end. It may mean delay, cost, danger, noise, or a partial result."
+      ],
+      "example": "Opening an unlocked door usually needs no roll. Picking a locked door while guards are nearby probably does."
+    },
+    {
+      "title": "7. What is a character sheet?",
+      "summary": "The character sheet is the control panel for your character.",
+      "points": [
+        "Armor Class, or AC, shows how hard you are to hit.",
+        "Hit points, or HP, show how much damage you can take before going down.",
+        "Skills are things your character may be trained to do, like Stealth, Persuasion, or Perception.",
+        "Attacks show what weapons or powers you can use in combat.",
+        "Spells are magical options, if your character has them.",
+        "Features are special abilities from your class, ancestry or species, background, or other choices."
+      ],
+      "example": "If the DM asks for Perception, look for Perception on your sheet and roll a d20 plus that number."
+    },
+    {
+      "title": "8. How does a normal scene work?",
+      "summary": "Most of the game is not combat. It is exploring, asking questions, making plans, and trying things.",
+      "points": [
+        "Ask what your character notices if you are unsure what matters.",
+        "Talk to NPCs like they are people, not vending machines for quests.",
+        "Tell the group your plan before doing something risky.",
+        "Share the spotlight. If someone has not talked in a while, leave room for them.",
+        "You can always ask, 'What are my options here?'"
+      ],
+      "example": "A village scene might involve asking locals questions, checking a ruined house, buying supplies, and deciding where to travel next."
+    },
+    {
+      "title": "9. How does combat work?",
+      "summary": "Combat is turn-based so everyone gets a fair chance to act.",
+      "points": [
+        "The DM says combat starts.",
+        "Everyone rolls initiative to set turn order.",
+        "On your turn, you can usually move and take one main action.",
+        "Some characters also have a bonus action.",
+        "Some situations let you use a reaction outside your turn.",
+        "Common actions include Attack, Cast a Spell, Dash, Disengage, Dodge, Help, Hide, Ready, Search, and Use an Object.",
+        "When your turn comes up, say what you want to accomplish. The table can help with the exact buttons or numbers."
+      ],
+      "example": "Player: I move behind the fallen cart and shoot the nearest skeleton with my bow. DM: Great, roll an attack."
+    },
+    {
+      "title": "10. How do I avoid feeling lost?",
+      "summary": "Feeling lost at first is normal. You are learning a game, a character sheet, and a group style all at once.",
+      "points": [
+        "Ask short questions as soon as you are confused.",
+        "Say your goal in plain language: 'I want to protect them,' 'I want to escape,' or 'I want to find the clue.'",
+        "Use Help / Glossary when a word sounds unfamiliar.",
+        "Let the DM know if too much is happening too fast.",
+        "Take simple notes: names, places, promises, clues, and things the party still needs to do."
+      ],
+      "example": "Good beginner question: 'What can I do on my turn that would help right now?'"
+    }
+  ],
+  "commonPhrases": [
+    {
+      "situation": "You do not know what to do",
+      "phrase": "What do I see, and what seems urgent?"
+    },
+    {
+      "situation": "You want to try something",
+      "phrase": "I want to try to..."
+    },
+    {
+      "situation": "You do not know which skill applies",
+      "phrase": "Which roll should I make for that?"
+    },
+    {
+      "situation": "Combat reaches your turn",
+      "phrase": "I want to move here and attack/cast/help/hide."
+    },
+    {
+      "situation": "A rule is confusing",
+      "phrase": "Can someone walk me through that once?"
+    },
+    {
+      "situation": "You need a quick option",
+      "phrase": "What is the simple useful thing I can do?"
+    }
+  ],
+  "tableMindset": [
+    "D&D is cooperative. Help the party and let other people have moments.",
+    "You can make jokes, but do not drown out the scene.",
+    "Do not move another player's token or edit another player's character sheet.",
+    "Player-versus-player conflict needs consent and DM approval.",
+    "Respect boundaries. If something at the table is uncomfortable, say so or message the DM.",
+    "The goal is not perfect play. The goal is a fun shared night."
+  ],
+  "checklist": [
+    "Join Discord.",
+    "Create a D&D Beyond account.",
+    "Read the Start Here guide.",
+    "Look through the Help / Glossary page.",
+    "Test your microphone.",
+    "Read the table rules.",
+    "Wait for Micheal to add the campaign link when the campaign starts."
+  ]
+}

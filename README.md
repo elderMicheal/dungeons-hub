@@ -1,115 +1,111 @@
 # Dungeons Hub
 
-Static campaign hub for dungeons.michealburford.com.
+Static D&D starter hub for dungeons.michealburford.com.
 
-This is a lightweight HTML, CSS, and vanilla JavaScript site. It has no backend, build step, database, login system, or API integrations.
+The public site is HTML, CSS, and vanilla JavaScript. It has no database, custom backend, custom accounts, or build step.
 
 Repository: https://github.com/elderMicheal/dungeons-hub
 
-## Edit Campaign Data
+## Admin Editing
 
-Update `data.js`.
+Open:
 
-Most campaign-facing content lives in the `SITE_DATA` object:
+```text
+https://dungeons.michealburford.com/admin/
+```
 
-- `SITE_DATA.campaign`
-- `SITE_DATA.party`
-- `SITE_DATA.sessions`
-- `SITE_DATA.rules`
-- `SITE_DATA.campaignDetails`
-- `SITE_DATA.help`
+Expected workflow:
+
+1. Micheal or the DM opens `/admin/`.
+2. They sign in with GitHub.
+3. They edit a form section.
+4. They click Publish.
+5. Decap CMS commits JSON changes to `main`.
+6. Netlify redeploys the static site.
+7. The public site updates after deployment.
+
+## Editable Content
+
+Public content lives in `content/`:
+
+- `content/table-at-a-glance.json`
+- `content/how-we-play.json`
+- `content/character-creation.json`
+- `content/tone-and-boundaries.json`
+- `content/tools-and-links.json`
+- `content/campaign-status.json`
+- `content/help-and-glossary.json`
+- `content/house-rules/index.json`
+- `content/sessions/index.json`
+- `content/change-log/index.json`
+
+The public site loads these files with `fetch()`. If content fails to load, the site keeps navigation visible and shows a friendly unavailable message.
 
 ## Update Links
 
-Edit `SITE_DATA.campaign.links`.
+Use the Decap CMS section:
 
-Unknown links should stay as `"#"`. The UI will show `Link not added yet` instead of sending users to a dead link.
+```text
+Tools & Links
+```
 
-Important link keys include:
+Leave unknown links blank. The public UI shows `Link not added yet` instead of rendering dead `#` links.
 
-- `discordInvite`
-- `discordVoice`
-- `discordSchedule`
-- `discordRecaps`
-- `dndBeyondCampaign`
-- `dndBeyondRules`
-- `owlbearRoom`
-- `roll20Game`
-- `githubRepo`
-- `githubPages`
-- `githubEditData`
-- `githubEditReadme`
-- `githubEditCname`
+## House Rules
 
-## Add Character
+Use the Decap CMS section:
 
-Add a new object to `SITE_DATA.party`.
+```text
+House Rules
+```
 
-Each character supports:
+Mark old rules `Retired` instead of deleting them. The public Rules page shows active/revised rules by default and preserves the log data.
 
-- `player`
-- `character`
-- `className`
-- `level`
-- `ancestry`
-- `role`
-- `ac`
-- `hp`
-- `passivePerception`
-- `sheetUrl`
-- `description`
+## Netlify Setup
 
-## Add Session Recap
+Use Netlify static deployment:
 
-Add a new object to `SITE_DATA.sessions`.
+```text
+Private GitHub repository
+Netlify site connected to main branch
+Publish directory: .
+Build command: empty
+Custom domain: dungeons.michealburford.com
+```
 
-Each recap supports:
-
-- `number`
-- `date`
-- `title`
-- `attended`
-- `summary`
-- `loot`
-- `npcs`
-- `questions`
-- `nextObjective`
-
-## Deploy
-
-Push changes to the `main` branch. GitHub Pages will publish the site after Pages is enabled for the repository.
-
-Recommended GitHub Pages setup:
-
-1. Create or open the GitHub repository, for example `dungeons-hub`.
-2. Push this static site to the `main` branch.
-3. In GitHub, open Settings > Pages.
-4. Set the source to deploy from the `main` branch and root folder.
-5. Save the Pages settings and wait for the deployment to finish.
+Set up Netlify GitHub OAuth for Decap CMS. Only Micheal Burford and the Dungeon Master should have GitHub write access to the private repository.
 
 ## Custom Domain
 
-The `CNAME` file contains dungeons.michealburford.com.
+The `CNAME` file contains:
 
-DNS must point the `dungeons` subdomain to the static host.
+```text
+dungeons.michealburford.com
+```
 
-For GitHub Pages, configure the `dungeons` DNS record according to GitHub Pages custom domain guidance, then confirm the custom domain in Settings > Pages.
+DNS for the `dungeons` subdomain must point to Netlify. Configure the custom domain in Netlify, then update DNS using the records Netlify provides.
 
 ## Local Preview
 
-Because this is a static site, you can open `index.html` directly in a browser. For the closest GitHub Pages behavior, serve the folder with any simple static server.
-
-Example:
+Run a static server from the repo root:
 
 ```powershell
-python -m http.server 8000
+python -m http.server 8017
 ```
 
-Then open:
+Open:
 
 ```text
-http://localhost:8000/#home
+http://localhost:8017/#home
 ```
+
+The admin page can be previewed at:
+
+```text
+http://localhost:8017/admin/
+```
+
+GitHub sign-in and publishing require the Netlify-hosted site and OAuth setup.
 
 ## Routes
 
@@ -125,12 +121,19 @@ http://localhost:8000/#home
 - `#admin`
 - `#join`
 
-## DM Admin Page
+## Public Content Security
 
-The `#admin` route is a static editing guide for the DM. It links to the GitHub repository and the most important files.
+Anything in this static site can be viewed by visitors.
 
-Because this is a static site with no login or backend, the admin page does not securely edit files in the browser. Normal updates should happen through GitHub commits.
+Do not commit:
 
-## Notes
+- secret DM notes,
+- hidden monster notes,
+- spoilers,
+- private player information,
+- API keys,
+- tokens,
+- passwords,
+- GitHub credentials.
 
-Anything committed to this static site can be viewed by anyone. Do not commit private Discord invites, personal contact information, or secrets unless that is acceptable for the group.
+Version 1 has no DM-only secret fields.

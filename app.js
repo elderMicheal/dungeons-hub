@@ -1,4 +1,19 @@
-const DATA = SITE_DATA;
+let DATA = null;
+let CONTENT_LOAD_FAILED = false;
+
+const CONTENT_FILES = {
+  siteSettings: "content/site-settings.json",
+  tableAtAGlance: "content/table-at-a-glance.json",
+  howWePlay: "content/how-we-play.json",
+  characterCreation: "content/character-creation.json",
+  toneAndBoundaries: "content/tone-and-boundaries.json",
+  toolsAndLinks: "content/tools-and-links.json",
+  campaignStatus: "content/campaign-status.json",
+  houseRules: "content/house-rules/index.json",
+  sessions: "content/sessions/index.json",
+  helpAndGlossary: "content/help-and-glossary.json",
+  changeLog: "content/change-log/index.json"
+};
 
 const ROUTES = {
   home: renderHome,
@@ -32,6 +47,304 @@ const ASSETS = {
   wizard: "assets/dungeons-asset-wizard.png"
 };
 
+async function fetchJson(path) {
+  const response = await fetch(path, { cache: "no-cache" });
+  if (!response.ok) {
+    throw new Error(`Could not load ${path}`);
+  }
+
+  return response.json();
+}
+
+async function loadContent() {
+  const entries = await Promise.all(
+    Object.entries(CONTENT_FILES).map(async ([key, path]) => [key, await fetchJson(path)])
+  );
+
+  return normalizeContent(Object.fromEntries(entries));
+}
+
+function asArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function splitLines(value) {
+  return String(value || "")
+    .split(/\n+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function activeItems(items, allowedStatuses = ["Active", "Published"]) {
+  return asArray(items).filter((item) => allowedStatuses.includes(item.status || "Active"));
+}
+
+function normalizeContent(content) {
+  const settings = content.siteSettings || {};
+  const table = content.tableAtAGlance || {};
+  const how = content.howWePlay || {};
+  const creation = content.characterCreation || {};
+  const tone = content.toneAndBoundaries || {};
+  const tools = content.toolsAndLinks || {};
+  const campaignStatus = content.campaignStatus || {};
+  const houseRules = asArray(content.houseRules?.rules);
+  const publishedSessions = activeItems(content.sessions?.sessions, ["Published"]);
+  const help = content.helpAndGlossary || {};
+
+  const links = {
+    discordInvite: tools.discordInviteLink || "",
+    discordVoice: tools.discordVoiceLink || "",
+    discordSchedule: tools.discordScheduleLink || tools.discordInviteLink || "",
+    discordRecaps: tools.discordRecapsLink || tools.discordInviteLink || "",
+    dndBeyondCampaign: tools.dndBeyondCampaignLink || "",
+    dndBeyondBuilder: tools.dndBeyondCharacterBuilderLink || "",
+    dndBeyondRules: tools.officialRulesReferenceLink || "",
+    owlbearRoom: tools.owlbearRodeoLink || "",
+    roll20Game: tools.roll20Link || "",
+    githubRepo: settings.repoUrl || "",
+    githubPages: settings.liveSiteUrl || "",
+    michealHome: settings.michealHomeUrl || "",
+    githubEditData: settings.githubEditDataUrl || "",
+    githubEditReadme: settings.githubEditReadmeUrl || "",
+    githubEditCname: settings.githubEditCnameUrl || ""
+  };
+
+  const howEntries = activeItems(how.entries);
+  const tableSections = howEntries.map((entry) => ({
+    title: entry.title,
+    text: [entry.shortVersion, entry.detailedExplanation].filter(Boolean),
+    bullets: entry.example ? [entry.example] : []
+  }));
+
+  const activeHouseRules = activeItems(houseRules, ["Active", "Revised"]);
+  const learnMore = asArray(creation.guide?.references);
+
+  return {
+    contentLoadFailed: false,
+    siteStatus: {
+      campaignActive: Boolean(campaignStatus.campaignActive || table.campaignActive),
+      campaignName: campaignStatus.campaignName || "",
+      message: campaignStatus.campaignSummary || "No active campaign yet. We are setting up the table, tools, and beginner guide first."
+    },
+    campaign: {
+      name: campaignStatus.campaignName || "Campaign Name",
+      tagline: campaignStatus.campaignSummary || "A lightweight D&D starter hub for game night links, table rules, future recaps, characters, and beginner help.",
+      partyLevel: campaignStatus.currentPartyLevel || "",
+      currentQuest: campaignStatus.currentObjective || "",
+      nextSession: {
+        date: campaignStatus.nextSessionDate || "",
+        time: campaignStatus.nextSessionTime || "",
+        location: campaignStatus.nextSessionLocation || "Discord",
+        status: campaignStatus.currentStage || "Getting organized"
+      },
+      links
+    },
+    quickLinks: asArray(settings.quickLinks),
+    starterHome: settings.starterHome || fallbackStarterHome(),
+    futureLinks: asArray(settings.futureLinks),
+    ourTable: {
+      title: how.title || "How We Play Here",
+      compact: table.shortSummary || "2014 Rules • Level 1 • Main + Companion • Rule of Cool • Roleplay First • Stay With the Party",
+      intro: how.intro || "This is the table-specific source of truth.",
+      atGlance: [
+        table.rulesVersion,
+        table.startingLevel ? `Start at Level ${table.startingLevel}` : "",
+        table.mainCharacterRequired ? "Main Character required" : "",
+        table.companionCharacterRequired ? "Companion Character required" : "",
+        table.characterSourceGuidance
+      ].filter(Boolean),
+      sections: tableSections,
+      dndBeyondPreflight: {
+        title: "Character-Creation Preflight",
+        intro: "Do this before opening D&D Beyond so you do not build the wrong kind of sheet.",
+        steps: asArray(creation.characterCreationChecklist)
+      },
+      nextSteps: asArray(creation.characterCreationChecklist),
+      houseRuleLog: houseRules.map((rule) => ({
+        name: rule.title,
+        changes: rule.shortVersion,
+        why: rule.whyTheTableUsesIt,
+        dateAdded: rule.dateAdded,
+        status: rule.status,
+        example: rule.exampleInPlay
+      })),
+      learnMore
+    },
+    start: {
+      intro: asArray(creation.startIntro),
+      bigIdea: creation.bigIdea || { title: "The whole game in one sentence", text: "Describe what your character tries to do; the DM tells you what happens or what to roll." },
+      coreLoop: asArray(creation.coreLoop),
+      characterCreation: creation.guide || fallbackCharacterCreation(),
+      lessons: asArray(creation.lessons),
+      commonPhrases: asArray(creation.commonPhrases),
+      tableMindset: asArray(creation.tableMindset),
+      checklist: asArray(creation.checklist)
+    },
+    tools: asArray(tools.tools),
+    roles: settings.roles || { people: [], characters: [], note: "" },
+    rules: {
+      official: [
+        `${table.rulesVersion || "2014 D&D 5e"} is the rules version for this table.`,
+        tools.officialRulesReferenceLink ? "Use the official rules reference link for detailed rules." : "The official rules reference link has not been added yet.",
+        "The DM may make a quick ruling to keep the game moving, then check the rule afterward."
+      ],
+      dmRulings: [
+        "The DM applies and interprets rules during play.",
+        "Rules corrections are welcome when raised respectfully and promptly.",
+        "Recurring rulings should be recorded in the House Rule Log."
+      ],
+      houseRules: activeHouseRules.map((rule) => ({
+        title: rule.title,
+        text: `${rule.shortVersion} ${rule.fullExplanation || ""}`.trim()
+      })),
+      tableRules: [
+        ...howEntries.map((entry) => entry.shortVersion).filter(Boolean),
+        tone.consentExpectations,
+        tone.playerVersusPlayerPolicy,
+        tone.interPartyConflictPolicy
+      ].filter(Boolean),
+      toolRules: [
+        "Use the correct Discord channel for scheduling, recaps, and side questions.",
+        "Keep character links updated when your sheet changes.",
+        "If a tool breaks, tell the DM and use the fallback link or a simple verbal description."
+      ]
+    },
+    campaignDetails: campaignStatus.campaignDetails || {
+      premise: campaignStatus.campaignSummary || "",
+      currentLocation: campaignStatus.currentLocation || "",
+      currentQuest: campaignStatus.currentObjective || "",
+      tone: tone.campaignTone || "",
+      knownNpcs: [],
+      knownEnemies: [],
+      openQuestions: [],
+      partyInventory: []
+    },
+    sessions: publishedSessions.map((session) => ({
+      number: session.sessionNumber,
+      date: session.date,
+      title: session.title,
+      attended: asArray(session.attendance),
+      summary: asArray(session.summary),
+      loot: asArray(session.lootGained),
+      npcs: asArray(session.npcsMet),
+      questions: asArray(session.unresolvedQuestions),
+      nextObjective: session.nextObjective || ""
+    })),
+    party: asArray(settings.party),
+    joinSteps: asArray(settings.joinSteps),
+    admin: settings.admin || fallbackAdmin(),
+    help: {
+      tutorialNote: help.tutorialNote || "You do not need to know every rule before playing. Start by describing what your character is trying to do. The DM will tell you what to roll when a roll is needed.",
+      tutorialSteps: asArray(help.quickStartTutorial),
+      faq: activeItems(help.faq).map((item) => ({
+        question: item.question,
+        answer: item.shortAnswer || item.answer,
+        longerAnswer: item.longerAnswer || ""
+      })),
+      glossary: activeItems(help.glossary).map((item) => ({
+        term: item.term,
+        definition: item.plainLanguageDefinition || item.definition,
+        example: item.example || ""
+      })),
+      combatFlow: asArray(help.combatBasics?.flow),
+      combatActions: asArray(help.combatBasics?.actions),
+      characterSheetGuide: asArray(help.characterSheetGuide),
+      whereToGo: asArray(help.whereToFindAnswers)
+    },
+    helpLinks: asArray(help.externalLearningResources)
+  };
+}
+
+function fallbackStarterHome() {
+  return {
+    hero: {
+      title: "Dungeons Hub",
+      subtitle: "A beginner-friendly D&D launchpad.",
+      intro: "This section is temporarily unavailable. Refresh the page or check with the DM."
+    },
+    whatThisIs: "This section is temporarily unavailable. Refresh the page or check with the DM.",
+    whatYouNeed: [],
+    optionalNeed: "",
+    quickStart: [],
+    noCampaign: {
+      title: "Content temporarily unavailable",
+      text: "Refresh the page or check with the DM."
+    },
+    quickHelp: [],
+    toolsPreview: [],
+    comingLater: []
+  };
+}
+
+function fallbackCharacterCreation() {
+  return {
+    note: "This section is temporarily unavailable. Refresh the page or check with the DM.",
+    fundamentalGuidelines: [],
+    dmQuestions: [],
+    creationSteps: [],
+    characterParts: [],
+    raceSummaries: [],
+    classSummaries: [],
+    keyConcepts: [],
+    abilityScores: [],
+    classes: [],
+    species: [],
+    backgrounds: [],
+    traits: [],
+    dndBeyondSteps: [],
+    beginnerBuildAdvice: [],
+    exampleCharacters: [],
+    sessionZeroChecklist: [],
+    references: [],
+    summaryNote: ""
+  };
+}
+
+function fallbackAdmin() {
+  return {
+    files: [],
+    warnings: [
+      "This section is temporarily unavailable. Refresh the page or check with the DM."
+    ]
+  };
+}
+
+function unavailableData() {
+  return normalizeContent({
+    siteSettings: {
+      siteTitle: "Dungeons Hub",
+      siteSubtitle: "Gather the party",
+      footerText: "Dungeons Hub",
+      quickLinks: [],
+      futureLinks: [],
+      joinSteps: [],
+      starterHome: fallbackStarterHome()
+    },
+    tableAtAGlance: {
+      shortSummary: "Content temporarily unavailable"
+    },
+    howWePlay: {
+      title: "How We Play Here",
+      intro: "This section is temporarily unavailable. Refresh the page or check with the DM.",
+      entries: []
+    },
+    characterCreation: {
+      characterCreationChecklist: [],
+      guide: fallbackCharacterCreation()
+    },
+    toneAndBoundaries: {},
+    toolsAndLinks: {},
+    campaignStatus: {
+      campaignActive: false,
+      campaignSummary: "This section is temporarily unavailable. Refresh the page or check with the DM."
+    },
+    houseRules: { rules: [] },
+    sessions: { sessions: [] },
+    helpAndGlossary: {},
+    changeLog: { entries: [] }
+  });
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -46,7 +359,7 @@ function isRealLink(url) {
 }
 
 function campaignLink(key) {
-  return DATA.campaign.links[key] || "#";
+  return DATA?.campaign?.links?.[key] || "";
 }
 
 function assetUrl(key) {
@@ -100,7 +413,7 @@ function renderSiteFooter() {
     </div>
     <nav class="footer-links" aria-label="Footer links">
       ${linkButton("Repo", campaignLink("githubRepo"), "footer-link")}
-      ${routeButton("Admin", "admin", "footer-link")}
+      <a class="footer-link" href="/admin/">Admin</a>
       ${responsiveFooterLink("www.michealburford.com", "Micheal", campaignLink("michealHome"))}
     </nav>
   `;
@@ -144,14 +457,35 @@ function stat(label, value) {
 }
 
 function listItems(items) {
-  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  return asArray(items).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 }
 
 function latestSession() {
-  return DATA.sessions[DATA.sessions.length - 1];
+  return DATA.sessions[DATA.sessions.length - 1] || {
+    number: "",
+    date: "",
+    title: "No published session recap yet",
+    attended: [],
+    summary: ["This section is temporarily unavailable or no recap has been published yet."],
+    loot: [],
+    npcs: [],
+    questions: [],
+    nextObjective: ""
+  };
 }
 
 function renderRoute() {
+  if (!DATA) {
+    app.innerHTML = `
+      <section class="panel">
+        <p class="eyebrow">Loading</p>
+        <h1>Gathering the scrolls...</h1>
+        <p>Loading the public table content.</p>
+      </section>
+    `;
+    return;
+  }
+
   const route = (window.location.hash || "#home").replace(/^#\/?/, "") || "home";
   const normalized = ROUTES[route] ? route : "home";
 
@@ -344,7 +678,7 @@ function renderCampaignDashboardHome() {
         </div>
         <div class="map-frame">
           <iframe src="${escapeHtml(iframeSrc)}" title="Game Map" allow="fullscreen"></iframe>
-          ${isRealLink(mapUrl) ? "" : `<div class="map-placeholder"><strong>Map link not added yet</strong><span>Add the Owlbear room URL in data.js.</span></div>`}
+          ${isRealLink(mapUrl) ? "" : `<div class="map-placeholder"><strong>Map link not added yet</strong><span>Add the Owlbear room URL in Tools & Links.</span></div>`}
         </div>
         <p class="help-text">If the panel does not load, open it directly.</p>
       </article>
@@ -1046,7 +1380,7 @@ function renderCharacters() {
   }
 
   return `
-    ${pageHeader("Characters", "Party roster cards edited from data.js.")}
+    ${pageHeader("Characters", "Party roster cards loaded from public content files.")}
     <section class="character-grid">
       ${DATA.party.map(renderCharacterCard).join("")}
     </section>
@@ -1181,50 +1515,43 @@ function renderJoin() {
 }
 
 function renderAdmin() {
-  const admin = DATA.admin;
   return `
-    ${pageHeader("DM Admin", "Static editing links and source files for the Dungeons Hub.")}
+    ${pageHeader("DM Admin", "Use the form-based content editor for public table information.")}
     <section class="content-grid">
       <article class="panel wide-panel">
-        <p class="eyebrow">Static site note</p>
-        <h2>Editing happens in GitHub</h2>
-        <p>${escapeHtml(admin.intro)}</p>
+        <p class="eyebrow">Content editor</p>
+        <h2>Open Decap CMS</h2>
+        <p>The public site loads editable JSON content from <code>/content/</code>. Micheal and the DM can update public-facing text through the admin forms after Netlify GitHub OAuth is configured.</p>
         <div class="button-stack">
-          ${linkButton("Open GitHub Repo", campaignLink("githubRepo"))}
-          ${linkButton("Open Live Site", campaignLink("githubPages"), "button button-secondary")}
+          <a class="button" href="/admin/">Open Admin</a>
+          ${linkButton("Open GitHub Repo", campaignLink("githubRepo"), "button button-secondary")}
         </div>
       </article>
 
       <article class="panel">
-        <h2>Normal Update Workflow</h2>
+        <h2>Publishing Workflow</h2>
         <ol class="step-list">
-          ${admin.workflow.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+          <li>Open <code>/admin/</code>.</li>
+          <li>Sign in with GitHub.</li>
+          <li>Edit one public content section.</li>
+          <li>Click Publish.</li>
+          <li>Decap commits JSON changes to <code>main</code>.</li>
+          <li>Netlify detects the commit and redeploys the static site.</li>
         </ol>
       </article>
 
       <article class="panel">
-        <h2>Most Common Edits</h2>
+        <h2>Public Content Only</h2>
         <ul class="clean-list">
-          <li>Update external links in <code>data.js</code>.</li>
-          <li>Add or edit party characters in <code>SITE_DATA.party</code>.</li>
-          <li>Add recaps in <code>SITE_DATA.sessions</code>.</li>
-          <li>Edit table rules and house rules in <code>SITE_DATA.rules</code>.</li>
-          <li>Edit beginner help in <code>SITE_DATA.help</code>.</li>
+          <li>Do not store secret DM notes.</li>
+          <li>Do not store spoilers, monster notes, API keys, passwords, or private player information.</li>
+          <li>Anything in <code>/content/</code> is deployed with the public static site.</li>
         </ul>
       </article>
 
       <article class="panel wide-panel">
-        <h2>Important Files</h2>
-        <div class="admin-file-grid">
-          ${admin.files.map((file) => `
-            <article class="admin-file-card">
-              <p class="eyebrow">${escapeHtml(file.path)}</p>
-              <h3>${escapeHtml(file.label)}</h3>
-              <p>${escapeHtml(file.description)}</p>
-              ${linkButton("Edit / View", campaignLink(file.linkKey), "button button-small")}
-            </article>
-          `).join("")}
-        </div>
+        <h2>Editable Sections</h2>
+        <p>The CMS sidebar includes Table at a Glance, How We Play Here, Character Creation, House Rules, Tone & Boundaries, Tools & Links, Campaign Status, Sessions & Recaps, Help & Glossary, and Change Log.</p>
       </article>
     </section>
   `;
@@ -1542,6 +1869,26 @@ navToggle.addEventListener("click", () => {
 
 window.addEventListener("hashchange", renderRoute);
 window.addEventListener("DOMContentLoaded", () => {
+  initializeApp();
+});
+
+async function initializeApp() {
+  app.innerHTML = `
+    <section class="panel">
+      <p class="eyebrow">Loading</p>
+      <h1>Gathering the scrolls...</h1>
+      <p>Loading the public table content.</p>
+    </section>
+  `;
+
+  try {
+    DATA = await loadContent();
+  } catch (error) {
+    CONTENT_LOAD_FAILED = true;
+    DATA = unavailableData();
+    console.warn("Dungeons Hub content load failed.", error);
+  }
+
   renderSiteFooter();
   renderRoute();
-});
+}

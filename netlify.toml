@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=60"

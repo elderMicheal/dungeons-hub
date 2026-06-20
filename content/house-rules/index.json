@@ -1,0 +1,64 @@
+{
+  "rules": [
+    {
+      "title": "Rule of Cool",
+      "category": "Roleplay",
+      "status": "Active",
+      "shortVersion": "Creative and interesting ideas deserve a fair chance.",
+      "fullExplanation": "The rules matter, but memorable roleplay, clever solutions, and dramatic moments matter too. The DM may allow an idea, ask for a roll, add a cost, or create a consequence.",
+      "whyTheTableUsesIt": "It encourages players to describe interesting actions instead of only pressing rules buttons.",
+      "exampleInPlay": "A player tries to swing from a chandelier, kick an enemy, and land behind cover. The DM decides what roll is needed and what can go wrong.",
+      "exceptions": "It does not erase danger, invalidate another character, or guarantee success.",
+      "dateAdded": "2026-06-19",
+      "lastRevised": "2026-06-19",
+      "versionNumber": 1,
+      "replacesRule": "",
+      "optionalNotes": ""
+    },
+    {
+      "title": "Roleplay First, Then Roll",
+      "category": "Roleplay",
+      "status": "Active",
+      "shortVersion": "Say what your character tries to do before asking for a roll.",
+      "fullExplanation": "Players describe the action in plain language. The DM decides whether it works, requires a roll, or has a consequence.",
+      "whyTheTableUsesIt": "It keeps the focus on the shared fiction instead of turning every moment into a button on a sheet.",
+      "exampleInPlay": "Say \"I want to talk the guard into letting us through\" instead of \"I roll Persuasion.\"",
+      "exceptions": "Fast repeated checks may be abbreviated once everyone understands the scene.",
+      "dateAdded": "2026-06-19",
+      "lastRevised": "2026-06-19",
+      "versionNumber": 1,
+      "replacesRule": "",
+      "optionalNotes": ""
+    },
+    {
+      "title": "Stay With the Party",
+      "category": "Table Conduct",
+      "status": "Active",
+      "shortVersion": "The party should generally stay together.",
+      "fullExplanation": "Splitting up slows the game, separates players from the action, and can leave a character in danger without support. Temporary splits should be discussed.",
+      "whyTheTableUsesIt": "It helps keep a larger group engaged and easier to run.",
+      "exampleInPlay": "Scouting one hallway ahead may be fine. Leaving for a separate solo mission should be discussed first.",
+      "exceptions": "The DM may call for a temporary split when the story needs it.",
+      "dateAdded": "2026-06-19",
+      "lastRevised": "2026-06-19",
+      "versionNumber": 1,
+      "replacesRule": "",
+      "optionalNotes": ""
+    },
+    {
+      "title": "Six-Player Streamlining",
+      "category": "Other",
+      "status": "Proposed",
+      "shortVersion": "Some rulings may exist to keep a six-person group moving.",
+      "fullExplanation": "The DM has said some rulings were created, and more may emerge, to keep a six-person group moving. Specific rules should be logged here once named.",
+      "whyTheTableUsesIt": "Larger groups need clearer pacing tools.",
+      "exampleInPlay": "A future turn timing guideline or simplified procedure can be added here.",
+      "exceptions": "Not active until the DM records the exact rule.",
+      "dateAdded": "2026-06-19",
+      "lastRevised": "2026-06-19",
+      "versionNumber": 1,
+      "replacesRule": "",
+      "optionalNotes": ""
+    }
+  ]
+}

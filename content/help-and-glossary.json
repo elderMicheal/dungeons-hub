@@ -1,0 +1,577 @@
+{
+  "quickStartTutorial": [
+    "The DM describes the situation.",
+    "Players say what their characters try to do.",
+    "The DM decides whether the action simply works or requires a roll.",
+    "When a roll is needed, the player rolls a die, usually a d20.",
+    "The character sheet adds the needed bonuses.",
+    "The DM explains what happens.",
+    "The story continues."
+  ],
+  "faq": [
+    {
+      "question": "What is Dungeons & Dragons?",
+      "shortAnswer": "Dungeons & Dragons is a group storytelling game with rules. Players control characters, the DM describes the world, and dice help decide uncertain moments.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a Dungeon Master?",
+      "shortAnswer": "The Dungeon Master, or DM, runs the game. The DM describes places, plays monsters and other people, applies rules, and explains what happens.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a player?",
+      "shortAnswer": "A player controls one main character. The player says what that character tries to do and uses the character sheet when rolls or rules are needed.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a party?",
+      "shortAnswer": "The party is the group of player characters. Most D&D games assume the party works together.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a character sheet?",
+      "shortAnswer": "A character sheet is the record of your character. It lists your abilities, hit points, armor, skills, attacks, spells, equipment, and special features.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is D&D Beyond?",
+      "shortAnswer": "D&D Beyond is a website for digital character sheets, character creation, campaign management, and rules lookup.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is Discord used for?",
+      "shortAnswer": "Discord is used for voice chat, text chat, scheduling, announcements, recaps, and quick questions between sessions.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is Owlbear Rodeo?",
+      "shortAnswer": "Owlbear Rodeo is a simple virtual tabletop for maps and tokens. It helps everyone see where characters, enemies, and important places are.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is Roll20?",
+      "shortAnswer": "Roll20 is a larger virtual tabletop with maps, tokens, character sheet tools, and dice. This group only uses it if the DM says so.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What do I need before my first session?",
+      "shortAnswer": "Join Discord, create a D&D Beyond account, test your microphone, read the table rules, and ask questions. The campaign link and map will come later.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What do I do on my turn?",
+      "shortAnswer": "Say what your character wants to do. In combat, you usually can move and take one main action, and some characters also have a bonus action.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is initiative?",
+      "shortAnswer": "Initiative decides turn order during combat. Everyone involved rolls, and higher results usually act earlier.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is Armor Class?",
+      "shortAnswer": "Armor Class, or AC, is the number an attack usually needs to meet or beat to hit you.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What are hit points?",
+      "shortAnswer": "Hit points, or HP, show how much damage a character can take before going down.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What happens if my character reaches 0 hit points?",
+      "shortAnswer": "Your character usually falls unconscious and may need death saving throws. The DM will walk you through the exact steps.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a skill check?",
+      "shortAnswer": "A skill check is a roll to see whether your character succeeds at a trained or risky task, such as sneaking, climbing, noticing a clue, or persuading someone.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a saving throw?",
+      "shortAnswer": "A saving throw is a defensive roll to resist danger, such as poison, a trap, a spell, or being knocked down.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is an attack roll?",
+      "shortAnswer": "An attack roll is a roll to see whether an attack hits. If it meets or beats the target's Armor Class, it usually hits.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is damage?",
+      "shortAnswer": "Damage lowers hit points. Different weapons, spells, and hazards use different dice for damage.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is advantage?",
+      "shortAnswer": "Advantage means you roll two d20s and use the higher result. It represents a helpful situation.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is disadvantage?",
+      "shortAnswer": "Disadvantage means you roll two d20s and use the lower result. It represents a difficult situation.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a spell slot?",
+      "shortAnswer": "A spell slot is a limited resource many spellcasters spend to cast leveled spells. Your character sheet tracks how many you have.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is an NPC?",
+      "shortAnswer": "An NPC is a non-player character. The DM plays NPCs, such as villagers, villains, merchants, guards, and monsters that can talk.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What is a house rule?",
+      "shortAnswer": "A house rule is a local table change or clarification. It applies to this group even if another table plays differently.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "Who decides the rules?",
+      "shortAnswer": "Official rules provide the base. The DM applies them during play, and this table's house rules explain local changes.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    },
+    {
+      "question": "What should I do if I am confused?",
+      "shortAnswer": "Ask the DM or another player. The best first step is to describe what your character wants to try.",
+      "longerAnswer": "",
+      "relatedPage": "help",
+      "status": "Active"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Ability Check",
+      "plainLanguageDefinition": "A roll to see whether a character succeeds at a task using one of the six abilities.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Armor Class / AC",
+      "plainLanguageDefinition": "A number that shows how hard a character or creature is to hit. If an attack roll equals or beats the target's AC, the attack usually hits.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Attack Roll",
+      "plainLanguageDefinition": "A roll to see whether an attack hits a target.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Bonus Action",
+      "plainLanguageDefinition": "A smaller extra action some characters can take when a feature, spell, or rule says they can.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Campaign",
+      "plainLanguageDefinition": "The ongoing story made from connected sessions, characters, places, and choices.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Character",
+      "plainLanguageDefinition": "The fictional person a player controls in the game.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Character Class",
+      "plainLanguageDefinition": "A character's main adventuring type, such as fighter, rogue, cleric, or wizard.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Character Sheet",
+      "plainLanguageDefinition": "The record of a character's numbers, abilities, equipment, spells, and notes.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Combat Round",
+      "plainLanguageDefinition": "One pass through the turn order during combat, where each participant gets a turn.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "d4, d6, d8, d10, d12, d20",
+      "plainLanguageDefinition": "Common dice named by how many sides they have. A d20 is the twenty-sided die used for many important rolls.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Damage",
+      "plainLanguageDefinition": "A loss of hit points caused by attacks, spells, hazards, or other dangers.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Difficulty Class / DC",
+      "plainLanguageDefinition": "The target number for a check or saving throw. Meeting or beating it usually succeeds.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Disadvantage",
+      "plainLanguageDefinition": "Rolling two d20s and using the lower result.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Dungeon Master / DM",
+      "plainLanguageDefinition": "The person who runs the world, plays NPCs and monsters, applies rules, and keeps the game moving.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Encounter",
+      "plainLanguageDefinition": "A focused scene or challenge, such as a fight, negotiation, trap, chase, or puzzle.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Hit Points / HP",
+      "plainLanguageDefinition": "A number showing how much damage a character or creature can take before going down.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "House Rule",
+      "plainLanguageDefinition": "A local table rule that changes, clarifies, or adds to the official rules.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Initiative",
+      "plainLanguageDefinition": "The order in which characters and enemies take turns during combat.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Long Rest",
+      "plainLanguageDefinition": "A major rest, usually overnight, that restores many resources.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Map",
+      "plainLanguageDefinition": "A visual reference for locations, terrain, distances, tokens, and movement.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Movement",
+      "plainLanguageDefinition": "How far a character can usually move on their turn.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "NPC",
+      "plainLanguageDefinition": "A non-player character controlled by the DM.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Party",
+      "plainLanguageDefinition": "The group of player characters working together.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Player",
+      "plainLanguageDefinition": "A real person who controls a character and makes choices for that character.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Proficiency",
+      "plainLanguageDefinition": "Training that lets a character add a bonus to certain rolls.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Reaction",
+      "plainLanguageDefinition": "A special response that can happen outside your turn when a rule allows it.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Roleplaying",
+      "plainLanguageDefinition": "Making choices, speaking, and acting as your character in the story.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Saving Throw",
+      "plainLanguageDefinition": "A defensive roll to resist danger or reduce its effect.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Session",
+      "plainLanguageDefinition": "One meeting of the group to play the campaign.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Session Zero",
+      "plainLanguageDefinition": "A setup meeting for characters, expectations, safety, schedule, and campaign tone.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Short Rest",
+      "plainLanguageDefinition": "A brief rest that lets some characters recover certain resources.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Skill",
+      "plainLanguageDefinition": "A trained area on the character sheet, such as Stealth, Perception, Arcana, or Persuasion.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Spell Slot",
+      "plainLanguageDefinition": "A limited resource many spellcasters spend to cast leveled spells.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Token",
+      "plainLanguageDefinition": "A marker on a virtual map showing a character, monster, object, or location.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Turn",
+      "plainLanguageDefinition": "A character's chance to act in initiative order.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Virtual Tabletop / VTT",
+      "plainLanguageDefinition": "A digital tool for maps, tokens, dice, and online tabletop play.",
+      "example": "",
+      "status": "Active"
+    }
+  ],
+  "combatBasics": {
+    "flow": [
+      "The DM says combat has started.",
+      "Everyone rolls initiative.",
+      "Characters and enemies take turns from highest initiative to lowest.",
+      "On your turn, you usually can move and take one main action.",
+      "Some characters also have a bonus action.",
+      "Some situations allow a reaction outside your turn.",
+      "The DM tracks enemies and consequences.",
+      "Combat ends when the situation is resolved."
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "description": "Use a weapon or attack ability against a target."
+      },
+      {
+        "name": "Cast a Spell",
+        "description": "Use a spell your character knows or has prepared."
+      },
+      {
+        "name": "Dash",
+        "description": "Move farther than usual on your turn."
+      },
+      {
+        "name": "Disengage",
+        "description": "Move away carefully so nearby enemies usually cannot make opportunity attacks."
+      },
+      {
+        "name": "Dodge",
+        "description": "Focus on defense and make yourself harder to hit until your next turn."
+      },
+      {
+        "name": "Help",
+        "description": "Assist another character with a task or attack when the scene allows it."
+      },
+      {
+        "name": "Hide",
+        "description": "Try to avoid being seen or noticed."
+      },
+      {
+        "name": "Ready",
+        "description": "Prepare an action that will happen later if a specific trigger occurs."
+      },
+      {
+        "name": "Search",
+        "description": "Look carefully for something hidden, unclear, or important."
+      },
+      {
+        "name": "Use an Object",
+        "description": "Interact with an item, device, door, lever, potion, or other object."
+      }
+    ]
+  },
+  "characterSheetGuide": [
+    {
+      "label": "Name",
+      "description": "The character you are playing."
+    },
+    {
+      "label": "Class",
+      "description": "The character's main adventuring role, such as fighter, rogue, cleric, or wizard."
+    },
+    {
+      "label": "Level",
+      "description": "A rough measure of character power and experience."
+    },
+    {
+      "label": "Armor Class",
+      "description": "How hard you are to hit."
+    },
+    {
+      "label": "Hit Points",
+      "description": "How much damage you can take before going down."
+    },
+    {
+      "label": "Speed",
+      "description": "How far you can usually move on your turn."
+    },
+    {
+      "label": "Abilities",
+      "description": "The six core traits: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma."
+    },
+    {
+      "label": "Skills",
+      "description": "Things your character may be trained to do."
+    },
+    {
+      "label": "Saving Throws",
+      "description": "Defensive rolls used to resist danger."
+    },
+    {
+      "label": "Attacks",
+      "description": "Weapons or powers you can use to harm enemies."
+    },
+    {
+      "label": "Spells",
+      "description": "Magical abilities, if your character has them."
+    },
+    {
+      "label": "Equipment",
+      "description": "Items your character carries."
+    },
+    {
+      "label": "Features",
+      "description": "Special abilities from class, ancestry/species, background, or other choices."
+    }
+  ],
+  "whereToFindAnswers": [
+    {
+      "need": "I need my character sheet",
+      "destination": "Go to D&D Beyond."
+    },
+    {
+      "need": "I need the map",
+      "destination": "Maps come later. Owlbear Rodeo or Roll20 will be linked when a campaign starts."
+    },
+    {
+      "need": "I need voice chat",
+      "destination": "Join Discord."
+    },
+    {
+      "need": "I need to know what happened last time",
+      "destination": "Go to Sessions once the campaign has started."
+    },
+    {
+      "need": "I need the local table rules",
+      "destination": "Go to Rules."
+    },
+    {
+      "need": "I need basic definitions",
+      "destination": "Go to Help."
+    },
+    {
+      "need": "I need official rules",
+      "destination": "Use D&D Beyond or the official D&D free/basic rules source."
+    },
+    {
+      "need": "I am confused during play",
+      "destination": "Ask the DM. Describe what your character wants to try."
+    }
+  ],
+  "externalLearningResources": [
+    {
+      "label": "D&D Beyond Help",
+      "url": "https://dndbeyond-support.wizards.com/hc/en-us",
+      "description": "Character sheets, rules lookup, account help, and campaign tools."
+    },
+    {
+      "label": "Discord Support",
+      "url": "https://support.discord.com/hc/en-us",
+      "description": "Voice, text channels, account setup, and server basics."
+    },
+    {
+      "label": "Owlbear Rodeo Docs",
+      "url": "https://docs.owlbear.rodeo/",
+      "description": "Map rooms, tokens, scenes, and player basics."
+    },
+    {
+      "label": "Roll20 Help",
+      "url": "https://help.roll20.net/hc/en-us",
+      "description": "Virtual tabletop, character sheets, maps, dice, and game setup."
+    }
+  ]
+}
