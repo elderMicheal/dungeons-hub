@@ -2007,6 +2007,567 @@ code {
   }
 }
 
+/* Final SPA book-command shell */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+.site-header,
+.edge-tabs {
+  display: none !important;
+}
+
+.site-shell {
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr) 50px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.book-viewport {
+  min-height: 0;
+  height: 100%;
+  padding: clamp(0.55rem, 1.6vw, 1rem) clamp(0.55rem, 1.6vw, 1rem) clamp(0.55rem, 1.6vw, 1rem) clamp(2.25rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+.binding {
+  width: clamp(1.75rem, 4vw, 3.2rem);
+}
+
+.binding::before,
+.binding::after,
+.binding span {
+  opacity: 0.72;
+}
+
+.app-shell.page-root {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-shell.book-page {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.65rem;
+  min-height: 0;
+  overflow: hidden;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.page-shell.entered {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+.page-shell.incoming {
+  opacity: 0;
+  transform: rotateY(74deg);
+}
+
+.page-shell.turning-in {
+  animation: pageTurnIn 620ms cubic-bezier(0.2, 0.68, 0.18, 1) forwards;
+}
+
+.page-shell.turning-out {
+  animation: pageTurnOut 620ms cubic-bezier(0.38, 0, 0.2, 1) forwards;
+}
+
+@keyframes pageTurnIn {
+  0% {
+    opacity: 0;
+    transform: rotateY(74deg);
+    filter: brightness(1.12);
+  }
+  38% {
+    opacity: 0.76;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+    filter: brightness(1);
+  }
+}
+
+@keyframes pageTurnOut {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg);
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotateY(-82deg);
+    filter: brightness(0.72);
+  }
+}
+
+.page-shell > :not(.home-book) {
+  max-height: 100%;
+}
+
+.page-shell.book-page > .home-book {
+  grid-row: 1 / -1;
+}
+
+.page-shell.book-page > .content-grid,
+.page-shell.book-page > .dashboard-grid,
+.page-shell.book-page > .session-list,
+.page-shell.book-page > .character-grid,
+.page-shell.book-page > .vtt-decision,
+.page-shell.book-page > .timeline {
+  min-height: 0;
+  max-height: none;
+}
+
+.page-hero,
+.dashboard-hero {
+  min-height: 0;
+  margin: 0 0 0.65rem;
+  padding: 0.82rem 1rem;
+  border-width: 1px;
+}
+
+.page-hero h1,
+.dashboard-hero h1 {
+  margin: 0.12rem 0 0;
+  font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+  line-height: 1;
+}
+
+.page-hero .eyebrow,
+.dashboard-hero .eyebrow {
+  margin: 0;
+  font-size: 0.64rem;
+}
+
+.content-grid,
+.dashboard-grid,
+.session-list,
+.character-grid,
+.vtt-decision,
+.timeline {
+  max-height: 100%;
+  overflow: auto;
+  padding-right: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(125, 84, 35, 0.72) rgba(33, 23, 16, 0.22);
+}
+
+.start-page-hero {
+  min-height: 8.25rem !important;
+  padding: 0.9rem 1rem !important;
+}
+
+.start-page-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.7rem) !important;
+}
+
+.start-page-hero p {
+  max-width: 34rem;
+  font-size: 0.95rem;
+}
+
+.start-hero-wizard {
+  width: min(24%, 12rem) !important;
+  opacity: 0.55 !important;
+}
+
+.content-grid h2,
+.dashboard-grid h2,
+.panel h2,
+.panel h3 {
+  font-size: clamp(1.03rem, 2.1vw, 1.38rem);
+  line-height: 1.12;
+}
+
+.panel {
+  padding: clamp(0.78rem, 1.6vw, 1rem);
+}
+
+.panel p,
+.panel li,
+.panel dd,
+.panel span,
+.button,
+.quick-link-description {
+  font-size: 0.92rem;
+}
+
+.home-book {
+  position: relative;
+  height: 100%;
+  perspective: 1800px;
+  overflow: hidden;
+}
+
+.book-cover-panel,
+.book-front-panel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 2px solid rgba(215, 166, 66, 0.56);
+  border-radius: 14px;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.45), inset 0 0 0 7px rgba(0, 0, 0, 0.35), inset 0 0 0 9px rgba(235, 189, 84, 0.25);
+}
+
+.book-cover-panel {
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(242, 195, 91, 0.18), transparent 13rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 18%, rgba(0, 0, 0, 0.42)),
+    linear-gradient(150deg, #17100d, #362116 48%, #15100c 80%);
+  color: #f1d28d;
+  text-align: center;
+  transform-origin: left center;
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.18, 1), opacity 500ms ease 500ms;
+}
+
+.book-cover-panel::before,
+.book-front-panel::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(234, 189, 87, 0.42);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.cover-brand {
+  display: grid;
+  width: clamp(4rem, 10vw, 6.5rem);
+  height: clamp(4rem, 10vw, 6.5rem);
+  place-items: center;
+  border: 2px solid rgba(240, 187, 66, 0.78);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #100d0a, #322112 58%, #120e0a);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.04), 0 0 34px rgba(215, 166, 66, 0.18);
+  color: #f6c756;
+  font-size: clamp(1.55rem, 4vw, 2.7rem);
+  font-weight: 900;
+}
+
+.book-cover-panel h1 {
+  margin: 0;
+  color: #f1d28d;
+  font-size: clamp(2.1rem, 6.8vw, 4.7rem);
+  line-height: 0.95;
+  text-shadow: 0 2px 0 #5b3118, 0 9px 28px rgba(0, 0, 0, 0.68);
+}
+
+.book-cover-panel p:not(.eyebrow) {
+  max-width: 34rem;
+  margin: 0;
+  color: #e5ca91;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.cover-open-button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid #ffc754;
+  border-radius: 8px;
+  padding: 0.65rem 1.15rem;
+  background: linear-gradient(180deg, #9e3d1c 0%, #682316 46%, #3a130f 100%);
+  box-shadow: 0 0 0 3px rgba(241, 178, 56, 0.16), 0 0 22px rgba(255, 183, 49, 0.48);
+  color: #fff0bc;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.book-front-panel {
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  padding: clamp(0.75rem, 1.8vw, 1.1rem);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.22), transparent 19rem),
+    radial-gradient(circle at 100% 100%, rgba(123, 72, 21, 0.16), transparent 24rem),
+    linear-gradient(100deg, #d4ac72, #f0d5a0 15%, #ebce96 86%, #bd884d);
+  opacity: 0;
+  transform: rotateY(5deg) scale(0.985);
+  transition: opacity 500ms ease 360ms, transform 700ms ease 360ms;
+}
+
+.home-book.is-open .book-cover-panel {
+  opacity: 0;
+  transform: rotateY(-108deg);
+  pointer-events: none;
+}
+
+.home-book.is-open .book-front-panel {
+  opacity: 1;
+  transform: rotateY(0deg) scale(1);
+}
+
+.front-hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(11rem, 25vh, 15rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  gap: 1rem;
+  align-items: end;
+  overflow: hidden;
+  border: 1px solid rgba(89, 53, 20, 0.72);
+  border-radius: 10px;
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+  background:
+    linear-gradient(90deg, rgba(8, 5, 3, 0.58), rgba(8, 5, 3, 0.14) 44%, rgba(8, 5, 3, 0.06)),
+    url("assets/dungeons-asset-back.png");
+  background-position: center;
+  background-size: cover;
+  color: #fff0bc;
+}
+
+.front-hero h1 {
+  margin: 0;
+  color: #fff2d0;
+  font-size: clamp(1.8rem, 4.8vw, 3.3rem);
+  line-height: 0.98;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.front-hero p {
+  max-width: 42rem;
+  margin: 0.45rem 0 0;
+  color: #f2ddb0;
+  font-size: clamp(0.9rem, 1.6vw, 1.02rem);
+}
+
+.front-hero .hero-actions {
+  max-width: none;
+  margin: 0;
+}
+
+.front-grid {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  overflow: auto;
+  padding-right: 0.2rem;
+}
+
+.latest-updates-card {
+  align-content: start;
+}
+
+.update-list {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.update-item {
+  display: grid;
+  grid-template-columns: 4.2rem minmax(0, 1fr);
+  gap: 0.55rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(105, 63, 23, 0.32);
+  border-radius: 7px;
+  background: rgba(255, 246, 211, 0.25);
+}
+
+.update-item time {
+  color: #6b421c;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.update-item strong {
+  color: var(--book-ink);
+}
+
+.update-item p {
+  margin: 0.12rem 0 0;
+  color: var(--book-ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.28;
+}
+
+.quick-link-card {
+  min-height: 3.6rem;
+  padding: 0.55rem 0.65rem;
+}
+
+.quick-link-card .asset-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.quick-card-action {
+  font-size: 0.78rem;
+}
+
+.site-footer.command-deck {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(224, 173, 72, 0.4);
+  background: linear-gradient(180deg, #19120e, #100d0a);
+}
+
+.command-nav {
+  display: grid;
+  height: 50px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(54px, 1fr);
+  align-items: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.command-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.command-link,
+.command-disabled {
+  display: grid;
+  min-width: 54px;
+  height: 50px;
+  place-items: center;
+  align-content: center;
+  gap: 0.1rem;
+  border: 0;
+  border-right: 1px solid rgba(221, 171, 70, 0.14);
+  border-radius: 0;
+  padding: 0.2rem 0.25rem;
+  background: transparent;
+  color: #e7cf99;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.command-link svg,
+.command-disabled svg {
+  width: 1.12rem;
+  height: 1.12rem;
+}
+
+.command-link:hover,
+.command-link:focus-visible,
+.command-link.is-active,
+.command-link.active {
+  background: linear-gradient(180deg, rgba(215, 166, 66, 0.18), rgba(0, 0, 0, 0.12));
+  color: #f5cd68;
+}
+
+@media (max-width: 860px) {
+  .book-viewport {
+    padding: 0.5rem 0.5rem 0.5rem 1.55rem;
+  }
+
+  .binding {
+    width: 1.2rem;
+  }
+
+  .front-hero {
+    grid-template-columns: 1fr;
+    min-height: 16rem;
+    align-content: end;
+  }
+
+  .front-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-grid,
+  .dashboard-grid,
+  .session-list,
+  .character-grid,
+  .vtt-decision,
+  .timeline {
+    max-height: calc(100% - 4.4rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .book-viewport {
+    padding: 0.35rem;
+  }
+
+  .binding {
+    display: none;
+  }
+
+  .book-cover-panel,
+  .book-front-panel,
+  .starter-hero,
+  .page-hero,
+  .dashboard-hero {
+    border-radius: 9px;
+  }
+
+  .book-cover-panel {
+    padding: 1rem;
+  }
+
+  .front-hero {
+    min-height: 15.5rem;
+    padding: 0.75rem;
+  }
+
+  .front-hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-actions {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .quick-link-card {
+    min-height: 3.25rem;
+  }
+
+  .quick-link-description {
+    display: none;
+  }
+
+  .panel p,
+  .panel li,
+  .panel dd,
+  .panel span {
+    font-size: 0.86rem;
+  }
+}
+
 @media (min-width: 760px) {
   .nav-toggle {
     display: none;

@@ -39,8 +39,11 @@ const app = document.getElementById("app");
 const navToggle = document.getElementById("navToggle");
 const siteNav = document.getElementById("siteNav");
 const siteFooter = document.getElementById("siteFooter");
+const bookViewport = document.querySelector(".book-viewport");
 
 let rollHistory = [];
+let currentRoute = "";
+let homeCoverTimer = null;
 
 const ASSETS = {
   back: "assets/dungeons-asset-back.png",
@@ -149,6 +152,13 @@ function normalizeContent(content) {
     quickLinks: asArray(settings.quickLinks),
     starterHome: settings.starterHome || fallbackStarterHome(),
     futureLinks: asArray(settings.futureLinks),
+    changeLog: activeItems(content.changeLog?.entries, ["Published"]).map((entry) => ({
+      date: entry.date || "",
+      title: entry.title || "",
+      category: entry.category || "",
+      text: entry.whatChanged || "",
+      why: entry.whyItChanged || ""
+    })),
     setup: {
       phase: groupSetup.setupPhase || {},
       roadmap: asArray(groupSetup.roadmap),
@@ -430,42 +440,34 @@ function renderSiteFooter() {
   }
 
   siteFooter.innerHTML = `
-    <section class="command-group status-group">
-      <p class="command-label">Site status</p>
-      <span class="status-line"><span class="status-dot"></span><span>Static hub online</span></span>
-      <small>Content loads from public JSON files.</small>
-    </section>
-    <section class="command-group">
-      <p class="command-label">Repo & admin</p>
-      <div class="command-actions">
-        ${footerCommandLink("Repo", campaignLink("githubRepo"), "code")}
-        <a href="/admin/">${spriteIcon("shield")}<span>Admin</span></a>
-      </div>
-    </section>
-    <section class="command-group comms-group">
-      <p class="command-label">Communications</p>
-      <div class="communication-links">
-        ${footerCommandLink("Discord", campaignLink("discordInvite"), "discord")}
-        <a href="#watch">${spriteIcon("video")}<span>Watch</span></a>
-        ${footerCommandLink("Micheal", campaignLink("michealHome"), "home")}
-      </div>
-    </section>
-    <section class="command-group identity-group">
-      <p class="command-label">Site identity</p>
-      <a class="identity-lockup" href="${escapeHtml(campaignLink("michealHome") || "#home")}"${isRealLink(campaignLink("michealHome")) ? ' target="_blank" rel="noopener noreferrer"' : ""}>
-        <span class="brand-mark mini">DH</span>
-        <span><strong>Dungeons Hub</strong><small>www.michealburford.com</small></span>
-      </a>
-    </section>
+    <nav class="command-nav" aria-label="Dungeons Hub commands">
+      ${footerRouteLink("Home", "home", "home")}
+      ${footerRouteLink("Start", "start", "book")}
+      ${footerRouteLink("Setup", "session-minus-one", "spark")}
+      ${footerRouteLink("Zero", "session-zero", "users")}
+      ${footerRouteLink("Tools", "tools", "tools")}
+      ${footerRouteLink("VTT", "vtt", "d20")}
+      ${footerRouteLink("Rules", "rules", "scales")}
+      ${footerRouteLink("Roles", "roles", "mask")}
+      ${footerRouteLink("Help", "help", "help")}
+      ${footerRouteLink("Join", "join", "users")}
+      ${footerCommandLink("Repo", campaignLink("githubRepo"), "code")}
+      ${footerRouteLink("Admin", "admin", "shield")}
+      ${footerCommandLink("Site", campaignLink("michealHome"), "home")}
+    </nav>
   `;
+}
+
+function footerRouteLink(label, route, iconName) {
+  return `<a class="command-link" href="#${escapeHtml(route)}" data-route-link="${escapeHtml(route)}" aria-label="${escapeHtml(label)}">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
 }
 
 function footerCommandLink(label, url, iconName) {
   if (!isRealLink(url)) {
-    return `<span class="command-disabled" aria-disabled="true">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></span>`;
+    return `<span class="command-link command-disabled" aria-disabled="true">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></span>`;
   }
 
-  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
+  return `<a class="command-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(label)}">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
 }
 
 function pageHeader(title, text) {
@@ -473,7 +475,6 @@ function pageHeader(title, text) {
     <section class="page-hero">
       <p class="eyebrow">Dungeons Hub</p>
       <h1>${escapeHtml(title)}</h1>
-      ${text ? `<p>${escapeHtml(text)}</p>` : ""}
     </section>
   `;
 }
@@ -526,11 +527,11 @@ function latestSession() {
 function renderRoute() {
   if (!DATA) {
     app.innerHTML = `
-      <section class="panel">
+      <section class="page-shell entering"><section class="panel">
         <p class="eyebrow">Loading</p>
         <h1>Gathering the scrolls...</h1>
         <p>Loading the public table content.</p>
-      </section>
+      </section></section>
     `;
     return;
   }
@@ -543,8 +544,36 @@ function renderRoute() {
     return;
   }
 
-  const rendered = ROUTES[normalized]();
-  app.innerHTML = `<section class="page-shell entering">${rendered}</section>`;
+  clearTimeout(homeCoverTimer);
+  const rendered = `<section class="page-shell book-page incoming">${ROUTES[normalized]()}</section>`;
+  const existing = app.querySelector(".page-shell");
+
+  resetBookPosition();
+
+  if (existing && currentRoute && currentRoute !== normalized) {
+    existing.classList.remove("entering", "incoming");
+    existing.classList.add("turning-out");
+    app.insertAdjacentHTML("beforeend", rendered);
+    const incoming = app.querySelector(".page-shell.incoming");
+    window.setTimeout(() => {
+      incoming?.classList.add("turning-in");
+      incoming?.classList.remove("incoming");
+    }, 20);
+    window.setTimeout(() => {
+      existing.remove();
+      incoming?.classList.remove("turning-in");
+      incoming?.classList.add("entered");
+      afterRouteRender(normalized);
+    }, 620);
+  } else {
+    app.innerHTML = `<section class="page-shell book-page entered">${ROUTES[normalized]()}</section>`;
+    afterRouteRender(normalized);
+  }
+
+  currentRoute = normalized;
+}
+
+function afterRouteRender(normalized) {
   document.querySelectorAll("[data-route-link]").forEach((link) => {
     const isActive = link.dataset.routeLink === normalized;
     link.classList.toggle("is-active", isActive);
@@ -555,13 +584,35 @@ function renderRoute() {
       link.removeAttribute("aria-current");
     }
   });
-  siteNav.classList.remove("is-open");
-  navToggle.setAttribute("aria-expanded", "false");
+  siteNav?.classList.remove("is-open");
+  navToggle?.setAttribute("aria-expanded", "false");
   app.focus({ preventScroll: true });
 
   if (normalized === "help") {
     setupGlossarySearch();
   }
+
+  if (normalized === "home") {
+    setupHomeCover();
+  }
+}
+
+function resetBookPosition() {
+  window.scrollTo(0, 0);
+  app.scrollTop = 0;
+  bookViewport?.scrollTo?.(0, 0);
+}
+
+function setupHomeCover() {
+  const homeBook = app.querySelector("[data-home-book]");
+  if (!homeBook) {
+    return;
+  }
+
+  const open = () => homeBook.classList.add("is-open");
+  const openButton = homeBook.querySelector("[data-open-cover]");
+  openButton?.addEventListener("click", open, { once: true });
+  homeCoverTimer = window.setTimeout(open, 5000);
 }
 
 function renderHome() {
@@ -577,19 +628,64 @@ function renderStarterHome() {
   const primaryLinks = DATA.quickLinks.slice(0, 6);
 
   return `
-    <section class="starter-hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Gather the party</p>
+    <section class="home-book" data-home-book>
+      <section class="book-cover-panel" data-book-cover>
+        <div class="cover-brand">DH</div>
+        <p class="eyebrow">Apprentice Handbook</p>
         <h1>${escapeHtml(home.hero.title)}</h1>
-        <h2>${escapeHtml(home.hero.subtitle)}</h2>
-        <p>${escapeHtml(home.hero.intro)}</p>
-      </div>
-      <img class="hero-wizard" src="${escapeHtml(ASSETS.wizard)}" alt="" aria-hidden="true" loading="eager">
-      <div class="hero-actions" aria-label="First actions">
-        ${primaryLinks.map(renderQuickLinkCard).join("")}
-      </div>
-    </section>
+        <p>${escapeHtml(home.hero.subtitle)}</p>
+        <button class="cover-open-button" type="button" data-open-cover>
+          ${spriteIcon("book")}
+          <span>Open</span>
+        </button>
+      </section>
 
+      <section class="book-front-panel" data-book-front>
+        <section class="front-hero">
+          <div>
+            <p class="eyebrow">Gather the party</p>
+            <h1>${escapeHtml(home.hero.title)}</h1>
+            <p>${escapeHtml(home.hero.intro)}</p>
+          </div>
+          <div class="hero-actions" aria-label="First actions">
+            ${primaryLinks.map(renderQuickLinkCard).join("")}
+          </div>
+        </section>
+
+        <section class="front-grid">
+          ${renderLatestUpdates()}
+          ${renderSetupRoadmap()}
+          <article class="panel parchment-card">
+            ${assetIcon("book", "panel-art")}
+            <p class="eyebrow">Before your first session</p>
+            <h2>What you need</h2>
+            <ol class="check-list">
+              ${home.whatYouNeed.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+            </ol>
+          </article>
+          <article class="panel wide-panel">
+            <p class="eyebrow">New to D&D?</p>
+            <h2>Quick help</h2>
+            <div class="help-tile-grid">
+              ${home.quickHelp.slice(0, 6).map((item) => `
+                <a class="help-tile" href="#${escapeHtml(item.route)}">
+                  ${assetIcon(item.icon, "mini-icon")}
+                  <strong>${escapeHtml(item.title)}</strong>
+                  <span>${escapeHtml(item.text)}</span>
+                </a>
+              `).join("")}
+            </div>
+          </article>
+        </section>
+      </section>
+    </section>
+  `;
+}
+
+function renderStarterHomeLegacy() {
+  const home = DATA.starterHome;
+
+  return `
     <section class="starter-grid">
       <article class="panel intro-card">
         ${assetIcon("home", "panel-art")}
@@ -670,6 +766,57 @@ function renderStarterHome() {
       </article>
     </section>
   `;
+}
+
+function renderLatestUpdates() {
+  const updates = latestUpdates();
+
+  return `
+    <article class="panel latest-updates-card wide-panel">
+      <p class="eyebrow">Latest Updates</p>
+      <h2>What changed for the group</h2>
+      <div class="update-list">
+        ${updates.map((item) => `
+          <article class="update-item">
+            <time>${escapeHtml(item.date)}</time>
+            <div>
+              <strong>${escapeHtml(item.title)}</strong>
+              <p>${escapeHtml(item.text)}</p>
+            </div>
+          </article>
+        `).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function latestUpdates() {
+  const contentUpdates = asArray(DATA.changeLog)
+    .filter((entry) => !["Admin", "Technical", "Site"].includes(entry.category))
+    .map((entry) => ({
+      date: entry.date || "Now",
+      title: entry.title,
+      text: entry.text || entry.why || ""
+    }));
+
+  return [
+    ...contentUpdates,
+    {
+      date: "Now",
+      title: "Setup roadmap is active",
+      text: `${DATA.setup?.phase?.currentPhase || "Planning"}: ${DATA.setup?.phase?.nextGroupTask || "Complete the prep path before the first adventure."}`
+    },
+    {
+      date: "Now",
+      title: "VTT comparison added",
+      text: "The group can compare Discord, Owlbear, Roll20, D&D Beyond Maps, Foundry, Fantasy Grounds, and Tabletop Simulator before the DM chooses."
+    },
+    {
+      date: "Now",
+      title: "First adventure remains provisional",
+      text: DATA.setup?.firstAdventure?.status || "Candidate under discussion."
+    }
+  ].slice(0, 4);
 }
 
 function renderSetupRoadmap() {
@@ -2334,6 +2481,17 @@ function setupGlossarySearch() {
 }
 
 document.addEventListener("click", (event) => {
+  const routeLink = event.target.closest("a[data-route-link]");
+  if (routeLink) {
+    const route = routeLink.dataset.routeLink;
+    if (route && route === currentRoute) {
+      resetBookPosition();
+      if (route === "home") {
+        setupHomeCover();
+      }
+    }
+  }
+
   const tocToggle = event.target.closest("[data-start-toc-toggle]");
   if (tocToggle) {
     const toc = tocToggle.closest(".start-toc");
@@ -2412,9 +2570,9 @@ document.addEventListener("submit", (event) => {
   refreshInitiativeList();
 });
 
-navToggle.addEventListener("click", () => {
-  const isOpen = siteNav.classList.toggle("is-open");
-  navToggle.setAttribute("aria-expanded", String(isOpen));
+navToggle?.addEventListener("click", () => {
+  const isOpen = siteNav?.classList.toggle("is-open");
+  navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
   navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 });
 
