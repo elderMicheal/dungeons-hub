@@ -73,6 +73,34 @@
       "status": "Active"
     },
     {
+      "question": "Do we need a map for everything?",
+      "shortAnswer": "No. Most scenes can be described through roleplay and narration. A world map may help show where the party is traveling. A battle map or floor plan is mainly useful when movement, distance, cover, or positioning matters during a fight.",
+      "longerAnswer": "",
+      "relatedPage": "vtt",
+      "status": "Active"
+    },
+    {
+      "question": "Will the DM need to build every town and house?",
+      "shortAnswer": "No. The DM can describe a town without constructing it. Digital maps, paper maps, miniatures, floor plans, or no map at all can all work depending on the scene.",
+      "longerAnswer": "",
+      "relatedPage": "vtt",
+      "status": "Active"
+    },
+    {
+      "question": "What is a battle map?",
+      "shortAnswer": "A battle map is a top-down view of a location used when positioning matters. It may show a room, road, forest clearing, tavern, bridge, cave, or other encounter area.",
+      "longerAnswer": "",
+      "relatedPage": "vtt",
+      "status": "Active"
+    },
+    {
+      "question": "What is theater of the mind?",
+      "shortAnswer": "Theater of the mind means the group imagines the scene from the DM's description instead of using a detailed map or miniatures.",
+      "longerAnswer": "",
+      "relatedPage": "vtt",
+      "status": "Active"
+    },
+    {
       "question": "What do I need before my first session?",
       "shortAnswer": "Join Discord, test your microphone, read the table rules, and ask questions. The DM will choose the character sheet and map tools before the campaign starts.",
       "longerAnswer": "",
@@ -224,6 +252,84 @@
       "status": "Active"
     },
     {
+      "term": "Adventure",
+      "plainLanguageDefinition": "A contained story or mission. It may last one session or several sessions.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Battle Map",
+      "plainLanguageDefinition": "A top-down map used when movement, distance, cover, or positioning matters during an encounter.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Dungeon Master Preparation",
+      "plainLanguageDefinition": "The work the DM does before play, such as reading notes, choosing tools, preparing scenes, and deciding what needs a map.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Floor Plan",
+      "plainLanguageDefinition": "A simple layout of a room, building, cave, ship, or other location. It is often useful for tactical scenes.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Homebrew",
+      "plainLanguageDefinition": "Custom material made by a DM, player, or community instead of official published rules.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Miniature",
+      "plainLanguageDefinition": "A small figure used to represent a character, monster, or object on a physical or digital tabletop.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Module",
+      "plainLanguageDefinition": "A prewritten adventure sold or shared for D&D. It usually provides story material, locations, monsters, maps, and guidance for the DM.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "One-Shot",
+      "plainLanguageDefinition": "A short adventure intended to be played in one session, though some take longer.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Premade Character",
+      "plainLanguageDefinition": "A character already created for a player to use. Premade characters help a new group start faster when everyone is still learning character creation.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Session −1",
+      "plainLanguageDefinition": "A setup meeting before Session 0 for technology, accounts, Discord, devices, and basic tool access.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Theater of the Mind",
+      "plainLanguageDefinition": "Playing through the DM's description and the group's imagination instead of using a detailed map or miniatures.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Tutorial Adventure",
+      "plainLanguageDefinition": "A short first adventure used to teach the rules, table flow, tools, and character basics by playing.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "World Map",
+      "plainLanguageDefinition": "A broad map that shows regions, travel routes, settlements, and where the party is in the larger world.",
+      "example": "",
+      "status": "Active"
+    },
+    {
       "term": "Character",
       "plainLanguageDefinition": "The fictional person a player controls in the game.",
       "example": "",
@@ -370,6 +476,12 @@
     {
       "term": "Session Zero",
       "plainLanguageDefinition": "A setup meeting for characters, expectations, safety, schedule, and campaign tone.",
+      "example": "",
+      "status": "Active"
+    },
+    {
+      "term": "Session 0",
+      "plainLanguageDefinition": "Another name for Session Zero: the group setup meeting for characters, tone, rules, boundaries, and expectations.",
       "example": "",
       "status": "Active"
     },

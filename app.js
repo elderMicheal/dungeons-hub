@@ -9,6 +9,7 @@ const CONTENT_FILES = {
   toneAndBoundaries: "content/tone-and-boundaries.json",
   toolsAndLinks: "content/tools-and-links.json",
   campaignStatus: "content/campaign-status.json",
+  groupSetup: "content/group-setup.json",
   houseRules: "content/house-rules/index.json",
   sessions: "content/sessions/index.json",
   helpAndGlossary: "content/help-and-glossary.json",
@@ -18,12 +19,17 @@ const CONTENT_FILES = {
 const ROUTES = {
   home: renderHome,
   start: renderStart,
+  "session-minus-one": renderSessionMinusOne,
+  "session-zero": renderSessionZero,
   tools: renderTools,
+  vtt: renderVtt,
   roles: renderRoles,
   rules: renderRules,
   characters: renderCharacters,
   campaign: renderCampaign,
   sessions: renderSessions,
+  "first-adventure": renderFirstAdventure,
+  watch: renderWatch,
   help: renderHelp,
   admin: renderAdmin,
   join: renderJoin
@@ -87,6 +93,7 @@ function normalizeContent(content) {
   const tone = content.toneAndBoundaries || {};
   const tools = content.toolsAndLinks || {};
   const campaignStatus = content.campaignStatus || {};
+  const groupSetup = content.groupSetup || {};
   const houseRules = asArray(content.houseRules?.rules);
   const publishedSessions = activeItems(content.sessions?.sessions, ["Published"]);
   const help = content.helpAndGlossary || {};
@@ -124,7 +131,7 @@ function normalizeContent(content) {
     siteStatus: {
       campaignActive: Boolean(campaignStatus.campaignActive || table.campaignActive),
       campaignName: campaignStatus.campaignName || "",
-      message: campaignStatus.campaignSummary || "No active campaign yet. We are setting up the table, tools, and beginner guide first."
+      message: campaignStatus.campaignSummary || "The adventure is still loading. We are in setup mode."
     },
     campaign: {
       name: campaignStatus.campaignName || "Campaign Name",
@@ -142,6 +149,17 @@ function normalizeContent(content) {
     quickLinks: asArray(settings.quickLinks),
     starterHome: settings.starterHome || fallbackStarterHome(),
     futureLinks: asArray(settings.futureLinks),
+    setup: {
+      phase: groupSetup.setupPhase || {},
+      roadmap: asArray(groupSetup.roadmap),
+      sessionMinusOne: groupSetup.sessionMinusOne || {},
+      sessionZero: groupSetup.sessionZero || {},
+      techCheck: groupSetup.techCheck || {},
+      vtt: groupSetup.vtt || {},
+      mapFaq: asArray(groupSetup.mapFaq),
+      firstAdventure: groupSetup.firstAdventure || {},
+      learningResources: asArray(groupSetup.learningResources)
+    },
     ourTable: {
       title: how.title || "How We Play Here",
       compact: table.shortSummary || "2014 Rules • Level 1 • Main + Companion • Rule of Cool • Roleplay First • Stay With the Party",
@@ -338,6 +356,7 @@ function unavailableData() {
       campaignActive: false,
       campaignSummary: "This section is temporarily unavailable. Refresh the page or check with the DM."
     },
+    groupSetup: {},
     houseRules: { rules: [] },
     sessions: { sessions: [] },
     helpAndGlossary: {},
@@ -523,7 +542,7 @@ function renderHome() {
 
 function renderStarterHome() {
   const home = DATA.starterHome;
-  const primaryLinks = DATA.quickLinks.slice(0, 5);
+  const primaryLinks = DATA.quickLinks.slice(0, 6);
 
   return `
     <section class="starter-hero">
@@ -567,21 +586,7 @@ function renderStarterHome() {
         ${routeButton("Open Start Here", "start", "button button-small")}
       </article>
 
-      <article class="panel no-campaign-card">
-        ${assetIcon("map", "panel-art")}
-        <p class="eyebrow">Not started yet</p>
-        <h2>${escapeHtml(home.noCampaign.title)}</h2>
-        <p>${escapeHtml(home.noCampaign.text)}</p>
-        <div class="future-mini-grid">
-          ${DATA.futureLinks.slice(0, 4).map((item) => `
-            <a href="#${escapeHtml(item.route)}" class="future-mini-link">
-              ${assetIcon(item.icon, "mini-icon")}
-              <strong>${escapeHtml(item.label)}</strong>
-              <span>${escapeHtml(item.description)}</span>
-            </a>
-          `).join("")}
-        </div>
-      </article>
+      ${renderSetupRoadmap()}
 
       <article class="panel wide-panel">
         <p class="eyebrow">New to D&D?</p>
@@ -633,6 +638,35 @@ function renderStarterHome() {
       </article>
     </section>
   `;
+}
+
+function renderSetupRoadmap() {
+  const roadmap = DATA.setup?.roadmap || [];
+
+  return `
+    <article class="panel no-campaign-card wide-panel">
+      ${assetIcon("map", "panel-art")}
+      <p class="eyebrow">Setup roadmap</p>
+      <h2>The Adventure Is Still Loading</h2>
+      <p>We are in setup mode: getting everyone connected, learning the basics, choosing the lightest useful tools, and preparing for a short first adventure.</p>
+      <p>No experience required. No one is expected to know the rules yet.</p>
+      <p><strong>Current phase:</strong> ${escapeHtml(DATA.setup?.phase?.currentPhase || "Planning")}</p>
+      <div class="roadmap-grid">
+        ${roadmap.map((step) => `
+          <a class="roadmap-card" href="#${escapeHtml(step.route)}">
+            <span class="step-number">${escapeHtml(step.number)}</span>
+            <strong>${escapeHtml(step.title)}</strong>
+            <span>${escapeHtml(step.summary)}</span>
+            ${statusPill(step.status)}
+          </a>
+        `).join("")}
+      </div>
+    </article>
+  `;
+}
+
+function statusPill(status) {
+  return `<span class="status-pill">${escapeHtml(status || "Not Started")}</span>`;
 }
 
 function renderCampaignDashboardHome() {
@@ -1327,6 +1361,258 @@ function renderTools() {
   `;
 }
 
+function renderSessionMinusOne() {
+  const session = DATA.setup.sessionMinusOne || {};
+  const tech = DATA.setup.techCheck || {};
+
+  return `
+    ${pageHeader(session.title || "Session −1: Get Connected Before the Adventure", "Practical setup before Session 0.")}
+    <section class="content-grid">
+      <article class="panel wide-panel">
+        <p class="eyebrow">What this is</p>
+        <h2>Practical setup first</h2>
+        <p>${escapeHtml(session.whatThisIs)}</p>
+      </article>
+      <article class="panel">
+        <h2>Tech Checklist</h2>
+        <ul class="check-list">${listItems(session.techChecklist)}</ul>
+      </article>
+      <article class="panel parchment-card">
+        <h2>What You Do Not Need Yet</h2>
+        <ul class="clean-list">${listItems(session.notNeededYet)}</ul>
+      </article>
+      <article class="panel">
+        <h2>Bring These Questions</h2>
+        <ul class="clean-list">${listItems(session.questions)}</ul>
+      </article>
+      <article class="panel">
+        <h2>Current Tech Decisions</h2>
+        <dl class="info-list">
+          <dt>Discord required</dt><dd>${yesNo(tech.discordRequired)}</dd>
+          <dt>D&D Beyond required</dt><dd>${yesNo(tech.dndBeyondRequired)}</dd>
+          <dt>Voice test required</dt><dd>${yesNo(tech.voiceTestRequired)}</dd>
+          <dt>VTT selected</dt><dd>${yesNo(tech.vttSelected)}</dd>
+          <dt>VTT test required</dt><dd>${yesNo(tech.vttTestRequired)}</dd>
+          <dt>Device notes</dt><dd>${escapeHtml(tech.recommendedBrowserDeviceNotes || "")}</dd>
+        </dl>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Privacy Note</h2>
+        <p>${escapeHtml(session.privacyNote)}</p>
+      </article>
+    </section>
+  `;
+}
+
+function renderSessionZero() {
+  const session = DATA.setup.sessionZero || {};
+
+  return `
+    ${pageHeader(session.title || "Session 0: Build the Party Before the Story Begins", "Characters, tone, rules, boundaries, and expectations.")}
+    <section class="content-grid">
+      <article class="panel wide-panel">
+        <p class="eyebrow">Before the story begins</p>
+        <h2>What Session 0 is for</h2>
+        <p>${escapeHtml(session.intro)}</p>
+      </article>
+      <article class="panel wide-panel parchment-card">
+        <h2>Important Character Rule</h2>
+        <p>${escapeHtml(session.callout)}</p>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Discussion Topics</h2>
+        <ul class="clean-list two-column-list">${listItems(session.topics)}</ul>
+      </article>
+      <article class="panel">
+        <h2>Also read</h2>
+        <div class="button-row">
+          ${routeButton("How We Play Here", "rules", "button button-small")}
+          ${routeButton("Character Guide", "start", "button button-small button-secondary")}
+          ${routeButton("VTT Decision", "vtt", "button button-small button-secondary")}
+        </div>
+      </article>
+    </section>
+  `;
+}
+
+function renderVtt() {
+  const vtt = DATA.setup.vtt || {};
+  const needs = vtt.needs || {};
+  const decision = vtt.decision || {};
+
+  return `
+    ${pageHeader(vtt.title || "Maps, Minis, and Virtual Tabletops", "A decision center for the table's map and VTT needs.")}
+    <section class="content-grid">
+      <article class="panel wide-panel">
+        <p class="eyebrow">Group philosophy</p>
+        <h2>The tool serves the game</h2>
+        <p>${escapeHtml(vtt.philosophy)}</p>
+      </article>
+      <article class="panel parchment-card">
+        <h2>Decision Status</h2>
+        <dl class="info-list">
+          <dt>Current VTT Decision</dt><dd>${escapeHtml(decision.currentDecision || "Under Discussion")}</dd>
+          <dt>Decision Owner</dt><dd>${escapeHtml(decision.decisionOwner || "Dungeon Master")}</dd>
+          <dt>Group Role</dt><dd>${escapeHtml(decision.groupRole || "")}</dd>
+        </dl>
+      </article>
+      <article class="panel">
+        <h2>Map Policy</h2>
+        ${renderMapPolicy(vtt.mapPolicy || {})}
+      </article>
+      <article class="panel">
+        <h2>Required</h2>
+        <ul class="clean-list">${listItems(needs.required)}</ul>
+      </article>
+      <article class="panel">
+        <h2>Nice to Have</h2>
+        <ul class="clean-list">${listItems(needs.niceToHave)}</ul>
+      </article>
+      <article class="panel">
+        <h2>Not Required for the First Adventure</h2>
+        <ul class="clean-list">${listItems(needs.notRequiredForFirstAdventure)}</ul>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Candidate Tools</h2>
+        <div class="card-grid">
+          ${(vtt.candidates || []).map(renderVttCandidate).join("")}
+        </div>
+      </article>
+      <article class="panel wide-panel">
+        <h2>How Maps Will Be Used</h2>
+        <div class="faq-list">
+          ${DATA.setup.mapFaq.map((item) => `
+            <details>
+              <summary>${escapeHtml(item.question)}</summary>
+              <p>${escapeHtml(item.answer)}</p>
+            </details>
+          `).join("")}
+        </div>
+      </article>
+    </section>
+  `;
+}
+
+function renderFirstAdventure() {
+  const adventure = DATA.setup.firstAdventure || {};
+
+  return `
+    ${pageHeader(adventure.title || "Our First Adventure", "A provisional learning adventure before a longer campaign.")}
+    <section class="content-grid">
+      <article class="panel parchment-card wide-panel">
+        <p class="eyebrow">Current Status</p>
+        <h2>${escapeHtml(adventure.status || "Candidate Under Discussion")}</h2>
+        <p>${escapeHtml(adventure.purpose)}</p>
+      </article>
+      <article class="panel">
+        <h2>Adventure Details</h2>
+        <dl class="info-list">
+          <dt>Adventure title</dt><dd>${escapeHtml(adventure.adventureTitle)}</dd>
+          <dt>Expected sessions</dt><dd>${escapeHtml(adventure.expectedNumberOfSessions || "TBD")}</dd>
+          <dt>Rules version</dt><dd>${escapeHtml(adventure.rulesVersion)}</dd>
+          <dt>Character options</dt><dd>${escapeHtml(adventure.characterOptions)}</dd>
+          <dt>Required purchases</dt><dd>${escapeHtml(adventure.requiredPurchases || "TBD")}</dd>
+        </dl>
+      </article>
+      <article class="panel">
+        <h2>Setup Flags</h2>
+        <dl class="info-list">
+          <dt>Premade characters available</dt><dd>${yesNo(adventure.premadeCharactersAvailable)}</dd>
+          <dt>World map available</dt><dd>${yesNo(adventure.worldMapAvailable)}</dd>
+          <dt>Battle maps likely needed</dt><dd>${yesNo(adventure.battleMapsLikelyNeeded)}</dd>
+          <dt>Follow-up campaign possible</dt><dd>${yesNo(adventure.followUpCampaignPossible)}</dd>
+        </dl>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Why this approach</h2>
+        <p>${escapeHtml(adventure.whyThisWasChosen)}</p>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Notes for New Players</h2>
+        <p>${escapeHtml(adventure.notesForNewPlayers)}</p>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Group Notes</h2>
+        <p>${escapeHtml(adventure.groupNotes)}</p>
+      </article>
+    </section>
+  `;
+}
+
+function renderWatch() {
+  return `
+    ${pageHeader("Watch a Little D&D", "Optional examples of what D&D can look like.")}
+    <section class="content-grid">
+      <article class="panel wide-panel">
+        <p class="eyebrow">Not homework</p>
+        <h2>Watch lightly</h2>
+        <p>These are optional examples of what D&D can look like. They are not homework, and our table does not need to play exactly like a polished show, podcast, or professional cast.</p>
+      </article>
+      <article class="panel wide-panel">
+        <h2>Learning Resources</h2>
+        <div class="reference-grid">
+          ${DATA.setup.learningResources.map(renderLearningResource).join("")}
+        </div>
+      </article>
+    </section>
+  `;
+}
+
+function yesNo(value) {
+  if (value === true) {
+    return "Yes";
+  }
+  if (value === false) {
+    return "No";
+  }
+  return escapeHtml(value || "TBD");
+}
+
+function renderMapPolicy(policy) {
+  return `
+    <dl class="info-list">
+      <dt>Use world maps</dt><dd>${escapeHtml(policy.useWorldMaps || "TBD")}</dd>
+      <dt>Use battle maps</dt><dd>${escapeHtml(policy.useBattleMaps || "TBD")}</dd>
+      <dt>Use floor plans for combat</dt><dd>${escapeHtml(policy.useFloorPlansForCombat || "TBD")}</dd>
+      <dt>Use theater of the mind</dt><dd>${escapeHtml(policy.useTheaterOfTheMind || "TBD")}</dd>
+      <dt>Use miniatures</dt><dd>${escapeHtml(policy.useMiniatures || "TBD")}</dd>
+    </dl>
+  `;
+}
+
+function renderVttCandidate(candidate) {
+  return `
+    <article class="panel tool-card">
+      <div class="card-topline">
+        <p class="eyebrow">Candidate</p>
+        ${statusPill(candidate.status)}
+      </div>
+      <h3>${escapeHtml(candidate.toolName)}</h3>
+      <dl class="info-list compact">
+        <dt>What it means</dt><dd>${escapeHtml(candidate.whatItIsFor)}</dd>
+        <dt>Best for</dt><dd>${escapeHtml(candidate.bestFor || candidate.whyItMayFit)}</dd>
+        <dt>Limits</dt><dd>${escapeHtml(candidate.limits || candidate.whyItMayNotFit)}</dd>
+        <dt>DM workload</dt><dd>${escapeHtml(candidate.dmWorkloadEstimate || "TBD")}</dd>
+        <dt>Player setup</dt><dd>${escapeHtml(candidate.playerSetupDifficulty || "TBD")}</dd>
+      </dl>
+    </article>
+  `;
+}
+
+function renderLearningResource(resource) {
+  return `
+    <article class="reference-card">
+      <p class="eyebrow">${escapeHtml(resource.type || "Resource")}</p>
+      <h3>${escapeHtml(resource.title)}</h3>
+      <p>${escapeHtml(resource.description)}</p>
+      <p><strong>${escapeHtml(resource.optionalOrRecommended || "Optional")}</strong> ${escapeHtml(resource.suggestedTimeCommitment || "")}</p>
+      <p><strong>Difficulty:</strong> ${escapeHtml(resource.difficulty || "Beginner")}</p>
+      ${resource.dmComment ? `<p>${escapeHtml(resource.dmComment)}</p>` : ""}
+      ${linkButton("Open", resource.url, "button button-small")}
+    </article>
+  `;
+}
+
 function renderRoles() {
   return `
     ${pageHeader("Roles", "People roles and character roles, without assuming rigid MMO-style jobs.")}
@@ -1516,7 +1802,7 @@ function renderComingLaterPage(title, text, items) {
     ${pageHeader(title, text)}
     <section class="content-grid">
       <article class="panel parchment-card wide-panel">
-        <p class="eyebrow">No campaign yet</p>
+        <p class="eyebrow">Setup mode</p>
         <h2>The tavern is still being built</h2>
         <p>${escapeHtml(DATA.siteStatus.message)}</p>
         <ul class="coming-list">
@@ -1589,7 +1875,7 @@ function renderAdmin() {
 
       <article class="panel wide-panel">
         <h2>Editable Sections</h2>
-        <p>Admin Lite can edit Site Settings, Table at a Glance, How We Play Here, Character Creation, House Rules, Tone & Boundaries, Tools & Links, Campaign Status, Sessions & Recaps, Help & Glossary, and Change Log files.</p>
+        <p>Admin Lite can edit Site Settings, Group Setup and First Adventure, Table at a Glance, How We Play Here, Character Creation, House Rules, Tone & Boundaries, Tools & Links, Campaign Status, Sessions & Recaps, Help & Glossary, and Change Log files.</p>
       </article>
 
       <article class="panel wide-panel parchment-card">

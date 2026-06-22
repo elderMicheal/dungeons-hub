@@ -1,0 +1,313 @@
+{
+  "setupPhase": {
+    "currentPhase": "Planning",
+    "phaseDescription": "The group is preparing before any long campaign begins.",
+    "whatTheGroupIsWorkingOn": "Getting everyone connected, choosing the lightest useful tools, and preparing for a short tutorial adventure.",
+    "nextGroupTask": "Complete Session −1 tech and account setup.",
+    "nextMeetingType": "Session −1"
+  },
+  "roadmap": [
+    {
+      "number": 1,
+      "title": "Session −1",
+      "summary": "Tech check, Discord, accounts, and basic tool setup.",
+      "status": "Planning",
+      "route": "session-minus-one"
+    },
+    {
+      "number": 2,
+      "title": "Session 0",
+      "summary": "Characters, table rules, tone, and group expectations.",
+      "status": "Not Started",
+      "route": "session-zero"
+    },
+    {
+      "number": 3,
+      "title": "First Adventure",
+      "summary": "A short tutorial story where we learn by playing.",
+      "status": "Not Started",
+      "route": "first-adventure"
+    },
+    {
+      "number": 4,
+      "title": "The Real Campaign",
+      "summary": "Once the group is comfortable, the larger story begins.",
+      "status": "Not Started",
+      "route": "campaign"
+    }
+  ],
+  "sessionMinusOne": {
+    "title": "Session −1: Get Connected Before the Adventure",
+    "whatThisIs": "This is the practical setup session before Session 0. We are making sure everyone can hear each other, access the tools, and understand the basic flow before we worry about adventure stuff.",
+    "techChecklist": [
+      "Discord account created",
+      "Discord username shared with the group privately",
+      "Discord voice test completed",
+      "D&D Beyond account created if the DM chooses D&D Beyond for sheets or rules",
+      "Character Builder opened successfully in the chosen sheet tool",
+      "Device and browser tested",
+      "VTT decision still pending, if applicable"
+    ],
+    "notNeededYet": [
+      "A finished character",
+      "A rulebook",
+      "A paid subscription",
+      "A map",
+      "A miniature",
+      "Knowledge of every rule"
+    ],
+    "questions": [
+      "What device are you using?",
+      "Can you hear and speak in Discord?",
+      "Have you made a D&D Beyond account if the DM asks for one?",
+      "Do you need help creating a character?",
+      "What parts of D&D are still confusing?"
+    ],
+    "privacyNote": "Do not post Discord handles or private contact details on this public site. Track those in Discord or private notes."
+  },
+  "sessionZero": {
+    "title": "Session 0: Build the Party Before the Story Begins",
+    "intro": "Session 0 is where the group agrees on characters, tone, table rules, boundaries, and expectations before the story starts.",
+    "topics": [
+      "How serious, funny, dark, or chaotic do we want the game to be?",
+      "What topics are off limits?",
+      "How do our characters know each other?",
+      "Why do our characters stay together?",
+      "What rules are we using?",
+      "What house rules are already active?",
+      "How will ability scores work?",
+      "What kind of characters does the group need?",
+      "What will the first adventure be?"
+    ],
+    "callout": "Your character does not need to be best friends with everyone else. Your character does need a reason to cooperate, remain loyal to the group, and not sabotage the adventure."
+  },
+  "techCheck": {
+    "discordRequired": true,
+    "dndBeyondRequired": false,
+    "voiceTestRequired": true,
+    "vttSelected": false,
+    "vttTestRequired": false,
+    "recommendedBrowserDeviceNotes": "Use the device you expect to play on. Test microphone, speakers, browser, and any chosen sheet or VTT tool before game night."
+  },
+  "vtt": {
+    "title": "Maps, Minis, and Virtual Tabletops",
+    "philosophy": "A VTT is optional technology for sharing maps, tokens, dice, and tabletop scenes online. We are not choosing a VTT because it has the most features. We are choosing the lightest setup that helps the DM run the game and helps players understand where things are.",
+    "decision": {
+      "currentDecision": "Under Discussion",
+      "decisionOwner": "Dungeon Master",
+      "groupRole": "Test tools, be patient, and give feedback."
+    },
+    "needs": {
+      "required": [
+        "Voice chat through Discord",
+        "A shared map when location matters",
+        "A battle floor plan when a fight needs one",
+        "Low player setup burden",
+        "Low DM preparation burden",
+        "Works for beginners"
+      ],
+      "niceToHave": [
+        "Tokens or simple miniatures",
+        "Shared dice tools",
+        "Premade maps",
+        "Easy character-sheet links",
+        "Simple fog-of-war or hidden areas"
+      ],
+      "notRequiredForFirstAdventure": [
+        "Fully modeled villages",
+        "Animated combat scenes",
+        "3D terrain",
+        "Digital mini collections",
+        "Building every location in advance",
+        "Complex automation"
+      ]
+    },
+    "candidates": [
+      {
+        "toolName": "Theater of the Mind + Discord",
+        "status": "Considering",
+        "whatItIsFor": "The DM describes scenes verbally. A map appears only when it would genuinely help.",
+        "bestFor": "Roleplay, travel, exploration, simple encounters, and low-prep games.",
+        "limits": "Players may have less visual clarity during complex combat.",
+        "dmWorkloadEstimate": "Low",
+        "playerSetupDifficulty": "Low",
+        "costNotes": "",
+        "mapSupport": "Optional",
+        "characterSheetSupport": "Separate tool",
+        "whyItMayFit": "It keeps technology from becoming the game.",
+        "whyItMayNotFit": "Complex tactical fights may need a visual aid.",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Owlbear Rodeo",
+        "status": "Considering",
+        "whatItIsFor": "Lightweight shared maps and tokens.",
+        "bestFor": "Simple online maps without a heavy campaign platform.",
+        "limits": "Character sheets and campaign management live elsewhere.",
+        "dmWorkloadEstimate": "",
+        "playerSetupDifficulty": "",
+        "costNotes": "",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "Separate tool",
+        "whyItMayFit": "It may be enough when the group only needs a map layer.",
+        "whyItMayNotFit": "It may not satisfy groups that want deeper automation.",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Roll20",
+        "status": "Considering",
+        "whatItIsFor": "A fuller virtual tabletop with maps, tokens, dice, and sheet support.",
+        "bestFor": "Groups that want more VTT features in one place.",
+        "limits": "More features can mean more setup and more interface to learn.",
+        "dmWorkloadEstimate": "",
+        "playerSetupDifficulty": "",
+        "costNotes": "",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "Yes",
+        "whyItMayFit": "It can centralize more of the tabletop.",
+        "whyItMayNotFit": "It may be heavier than the first adventure needs.",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "D&D Beyond Maps",
+        "status": "Considering",
+        "whatItIsFor": "A D&D Beyond map option if the table also uses that ecosystem.",
+        "bestFor": "Groups already using D&D Beyond for sheets and rules.",
+        "limits": "It should not be chosen only because it is attached to a character-sheet tool.",
+        "dmWorkloadEstimate": "",
+        "playerSetupDifficulty": "",
+        "costNotes": "",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "D&D Beyond sheets",
+        "whyItMayFit": "It may reduce account sprawl if D&D Beyond is already chosen.",
+        "whyItMayNotFit": "The DM may prefer a different map workflow.",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Tabletop Simulator",
+        "status": "Considering",
+        "whatItIsFor": "A 3D tabletop sandbox for digital boards, pieces, and scenes.",
+        "bestFor": "Groups that specifically want a 3D tabletop feel.",
+        "limits": "It can become a technology project instead of a beginner aid.",
+        "dmWorkloadEstimate": "",
+        "playerSetupDifficulty": "",
+        "costNotes": "",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "Separate tool",
+        "whyItMayFit": "It can feel like moving pieces around a real table.",
+        "whyItMayNotFit": "It is probably more setup than a first tutorial adventure needs.",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Other DM-selected tools",
+        "status": "Considering",
+        "whatItIsFor": "Any other tool the DM decides is easier for the actual game.",
+        "bestFor": "Keeping the DM workload sane.",
+        "limits": "The group should not force a tool the DM does not want to run.",
+        "dmWorkloadEstimate": "",
+        "playerSetupDifficulty": "",
+        "costNotes": "",
+        "mapSupport": "",
+        "characterSheetSupport": "",
+        "whyItMayFit": "The best tool is the one the DM can actually use comfortably.",
+        "whyItMayNotFit": "Players may need to learn something unexpected.",
+        "dmNotes": ""
+      }
+    ],
+    "mapPolicy": {
+      "useWorldMaps": "Sometimes",
+      "useBattleMaps": "Sometimes",
+      "useFloorPlansForCombat": "Sometimes",
+      "useTheaterOfTheMind": "Often",
+      "useMiniatures": "Sometimes"
+    }
+  },
+  "mapFaq": [
+    {
+      "question": "Do we need a map for everything?",
+      "answer": "No. Most scenes can be described through roleplay and narration. A world map may help show where the party is traveling. A battle map or floor plan is mainly useful when movement, distance, cover, or positioning matters during a fight."
+    },
+    {
+      "question": "Will the DM need to build every town and house?",
+      "answer": "No. The DM can describe a town without constructing it. Digital maps, paper maps, miniatures, floor plans, or no map at all can all work depending on the scene."
+    },
+    {
+      "question": "What is a battle map?",
+      "answer": "A battle map is a top-down view of a location used when positioning matters. It may show a room, road, forest clearing, tavern, bridge, cave, or other encounter area."
+    },
+    {
+      "question": "What is theater of the mind?",
+      "answer": "Theater of the mind means the group imagines the scene from the DM's description instead of using a detailed map or miniatures."
+    }
+  ],
+  "firstAdventure": {
+    "title": "Our First Adventure",
+    "status": "Candidate Under Discussion",
+    "purpose": "Use a short adventure to learn the table, rules, characters, and tools before beginning a longer campaign.",
+    "adventureTitle": "Candidate under discussion",
+    "whyThisWasChosen": "A short tutorial adventure gives new players room to learn without committing the group to a long campaign immediately.",
+    "expectedNumberOfSessions": "",
+    "rulesVersion": "2014 D&D 5e",
+    "characterOptions": "Level 1 characters using approved 2014 material.",
+    "premadeCharactersAvailable": false,
+    "worldMapAvailable": false,
+    "battleMapsLikelyNeeded": true,
+    "followUpCampaignPossible": true,
+    "notesForNewPlayers": "This is a learning adventure. The goal is not to play perfectly; it is to learn how our table works.",
+    "groupNotes": "Dragons of Stormwreck Isle is a possible tutorial adventure, but the DM has not confirmed the final choice.",
+    "dmNotes": "",
+    "requiredPurchases": ""
+  },
+  "learningResources": [
+    {
+      "title": "Beginner D&D playlist",
+      "url": "#",
+      "type": "Playlist",
+      "difficulty": "Beginner",
+      "suggestedTimeCommitment": "Optional",
+      "optionalOrRecommended": "Optional",
+      "description": "A short playlist can help new players see the basic flow before game night.",
+      "dmComment": ""
+    },
+    {
+      "title": "Critical Role sampler",
+      "url": "#",
+      "type": "Video",
+      "difficulty": "Beginner",
+      "suggestedTimeCommitment": "Optional",
+      "optionalOrRecommended": "Optional",
+      "description": "A polished show can demonstrate table energy, but our game does not need professional voices, production, or pacing.",
+      "dmComment": ""
+    },
+    {
+      "title": "What Session 0 is",
+      "url": "#",
+      "type": "Article",
+      "difficulty": "Beginner",
+      "suggestedTimeCommitment": "Optional",
+      "optionalOrRecommended": "Recommended",
+      "description": "Explains why tone, boundaries, character links, and expectations matter before play.",
+      "dmComment": ""
+    },
+    {
+      "title": "How combat works",
+      "url": "#",
+      "type": "Video",
+      "difficulty": "Beginner",
+      "suggestedTimeCommitment": "Optional",
+      "optionalOrRecommended": "Optional",
+      "description": "A plain example of turns, actions, movement, attacks, and dice.",
+      "dmComment": ""
+    },
+    {
+      "title": "How character sheets work",
+      "url": "#",
+      "type": "Video",
+      "difficulty": "Beginner",
+      "suggestedTimeCommitment": "Optional",
+      "optionalOrRecommended": "Optional",
+      "description": "A beginner-friendly walkthrough of the main parts of a character sheet.",
+      "dmComment": ""
+    }
+  ]
+}

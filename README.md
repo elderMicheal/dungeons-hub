@@ -48,6 +48,7 @@ Public content lives in `content/`:
 - `content/tone-and-boundaries.json`
 - `content/tools-and-links.json`
 - `content/campaign-status.json`
+- `content/group-setup.json`
 - `content/help-and-glossary.json`
 - `content/house-rules/index.json`
 - `content/house-rules/rule-of-cool.json`
@@ -121,12 +122,17 @@ http://localhost:8017/admin/
 
 - `#home`
 - `#start`
+- `#session-minus-one`
+- `#session-zero`
 - `#tools`
+- `#vtt`
 - `#roles`
 - `#rules`
 - `#characters`
 - `#campaign`
 - `#sessions`
+- `#first-adventure`
+- `#watch`
 - `#help`
 - `#admin`
 - `#join`

@@ -21,45 +21,37 @@
       "icon": "discord"
     },
     {
-      "label": "Character Sheets",
-      "description": "Tool choice comes later.",
-      "route": "tools",
-      "icon": "beyond"
-    },
-    {
-      "label": "Tools Guide",
-      "description": "Learn the tools.",
-      "route": "tools",
+      "label": "Complete Session −1",
+      "description": "Tech and account setup.",
+      "route": "session-minus-one",
       "icon": "tools"
     },
     {
-      "label": "Help / Glossary",
+      "label": "Learn the Basics",
       "description": "Terms and quick answers.",
       "route": "help",
       "icon": "book"
     },
     {
-      "label": "Rules",
-      "description": "Read the table expectations.",
-      "route": "rules",
-      "variant": "quiet",
+      "label": "Build Your Character",
+      "description": "Character guide and preflight.",
+      "route": "start",
       "icon": "book"
     },
     {
-      "label": "Roles",
-      "description": "Learn what the DM and players do.",
-      "route": "roles",
-      "variant": "quiet",
-      "icon": "wizard"
+      "label": "Explore VTT Options",
+      "description": "Maps and tool decisions.",
+      "route": "vtt",
+      "icon": "map"
     }
   ],
   "starterHome": {
     "hero": {
       "title": "Dungeons Hub",
       "subtitle": "A beginner-friendly D&D launchpad for Micheal and the crew.",
-      "intro": "New to D&D? Start here. Learn the tools, table roles, basic rules, and how to join without knowing everything first."
+      "intro": "New to D&D? Start here. This is the preparation hub for getting connected, learning the basics, choosing tools, and getting ready for a short first adventure."
     },
-    "whatThisIs": "This is the home base for getting our D&D group organized. It explains how to join, how the tools work, what the basic terms mean, and what to do if you have never played before.",
+    "whatThisIs": "This is the group preparation hub. It explains the setup path, how to join Discord, how Session −1 and Session 0 work, what tools are under discussion, and what beginners need before the first adventure.",
     "whatYouNeed": [
       "A Discord account for voice and group chat.",
       "A character sheet once the DM chooses the sheet tool.",
@@ -69,13 +61,14 @@
     "optionalNeed": "Owlbear Rodeo, Roll20, D&D Beyond Maps, or another VTT may be chosen later once a campaign starts.",
     "quickStart": [
       "Join Discord so you can hear the group and ask questions.",
-      "Wait for the DM to choose the character sheet and map tools.",
+      "Complete Session −1 so voice, accounts, and devices are ready.",
+      "Use Session 0 to talk characters, tone, rules, and expectations.",
       "Read Start Here if you have never played.",
-      "Use Help / Glossary when a word sounds made up."
+      "Explore VTT options, but let the DM choose the tool that keeps prep manageable."
     ],
     "noCampaign": {
-      "title": "No active campaign yet.",
-      "text": "We are setting up the table, tools, and beginner guide first. Once a campaign starts, this page will add party info, session recaps, maps, and campaign notes."
+      "title": "The Adventure Is Still Loading",
+      "text": "We are in setup mode: getting everyone connected, learning the basics, choosing the lightest useful tools, and preparing for a short first adventure. No experience required. No one is expected to know the rules yet."
     },
     "quickHelp": [
       {
@@ -105,7 +98,7 @@
       {
         "title": "What tools do we use?",
         "text": "Discord first, then sheet and map tools after the DM chooses.",
-        "route": "tools",
+        "route": "vtt",
         "icon": "tools"
       },
       {
@@ -113,6 +106,12 @@
         "text": "Open the glossary for quick definitions.",
         "route": "help",
         "icon": "book"
+      },
+      {
+        "title": "Can I watch an example?",
+        "text": "Optional videos and articles. Not homework.",
+        "route": "watch",
+        "icon": "wizard"
       }
     ],
     "toolsPreview": [
@@ -131,7 +130,7 @@
       {
         "title": "VTT / map tools",
         "text": "Owlbear, Roll20, D&D Beyond Maps, or another VTT may be chosen after the DM decides what fits.",
-        "route": "tools",
+        "route": "vtt",
         "icon": "map"
       }
     ],
