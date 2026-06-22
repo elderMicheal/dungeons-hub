@@ -3861,4 +3861,26 @@ details,
     width: 1rem;
     height: 1rem;
   }
+
+  .command-nav {
+    grid-auto-columns: 44px;
+  }
+
+  .command-link,
+  .command-disabled {
+    min-width: 44px;
+    padding: 0;
+    gap: 0;
+  }
+
+  .command-link span,
+  .command-disabled span {
+    display: none;
+  }
+
+  .command-link svg,
+  .command-disabled svg {
+    width: 1.22rem;
+    height: 1.22rem;
+  }
 }
