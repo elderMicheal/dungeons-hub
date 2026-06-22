@@ -394,6 +394,10 @@ function assetIcon(key, className = "asset-icon") {
   return `<span class="${className}" aria-hidden="true"><img src="${escapeHtml(src)}" alt="" loading="lazy"></span>`;
 }
 
+function spriteIcon(name) {
+  return `<svg aria-hidden="true"><use href="#i-${escapeHtml(name)}"></use></svg>`;
+}
+
 function linkButton(label, url, className = "button") {
   const safeLabel = escapeHtml(label);
   if (!isRealLink(url)) {
@@ -426,16 +430,42 @@ function renderSiteFooter() {
   }
 
   siteFooter.innerHTML = `
-    <div class="footer-copy">
-      <strong>Dungeons Hub</strong>
-      <span>Micheal's D&D starter launchpad.</span>
-    </div>
-    <nav class="footer-links" aria-label="Footer links">
-      ${linkButton("Repo", campaignLink("githubRepo"), "footer-link")}
-      <a class="footer-link" href="/admin/">Admin</a>
-      ${responsiveFooterLink("www.michealburford.com", "Micheal", campaignLink("michealHome"))}
-    </nav>
+    <section class="command-group status-group">
+      <p class="command-label">Site status</p>
+      <span class="status-line"><span class="status-dot"></span><span>Static hub online</span></span>
+      <small>Content loads from public JSON files.</small>
+    </section>
+    <section class="command-group">
+      <p class="command-label">Repo & admin</p>
+      <div class="command-actions">
+        ${footerCommandLink("Repo", campaignLink("githubRepo"), "code")}
+        <a href="/admin/">${spriteIcon("shield")}<span>Admin</span></a>
+      </div>
+    </section>
+    <section class="command-group comms-group">
+      <p class="command-label">Communications</p>
+      <div class="communication-links">
+        ${footerCommandLink("Discord", campaignLink("discordInvite"), "discord")}
+        <a href="#watch">${spriteIcon("video")}<span>Watch</span></a>
+        ${footerCommandLink("Micheal", campaignLink("michealHome"), "home")}
+      </div>
+    </section>
+    <section class="command-group identity-group">
+      <p class="command-label">Site identity</p>
+      <a class="identity-lockup" href="${escapeHtml(campaignLink("michealHome") || "#home")}"${isRealLink(campaignLink("michealHome")) ? ' target="_blank" rel="noopener noreferrer"' : ""}>
+        <span class="brand-mark mini">DH</span>
+        <span><strong>Dungeons Hub</strong><small>www.michealburford.com</small></span>
+      </a>
+    </section>
   `;
+}
+
+function footerCommandLink(label, url, iconName) {
+  if (!isRealLink(url)) {
+    return `<span class="command-disabled" aria-disabled="true">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></span>`;
+  }
+
+  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
 }
 
 function pageHeader(title, text) {
@@ -513,10 +543,12 @@ function renderRoute() {
     return;
   }
 
-  app.innerHTML = ROUTES[normalized]();
+  const rendered = ROUTES[normalized]();
+  app.innerHTML = `<section class="page-shell entering">${rendered}</section>`;
   document.querySelectorAll("[data-route-link]").forEach((link) => {
     const isActive = link.dataset.routeLink === normalized;
     link.classList.toggle("is-active", isActive);
+    link.classList.toggle("active", isActive);
     if (isActive) {
       link.setAttribute("aria-current", "page");
     } else {
@@ -1441,56 +1473,230 @@ function renderVtt() {
   const decision = vtt.decision || {};
 
   return `
-    ${pageHeader(vtt.title || "Maps, Minis, and Virtual Tabletops", "A decision center for the table's map and VTT needs.")}
-    <section class="content-grid">
-      <article class="panel wide-panel">
-        <p class="eyebrow">Group philosophy</p>
-        <h2>The tool serves the game</h2>
-        <p>${escapeHtml(vtt.philosophy)}</p>
+    ${pageHeader(vtt.title || "VTT & Game-Night Platform Comparison", vtt.subtitle || "A decision center for the table's map and VTT needs.")}
+    <section class="vtt-decision">
+      <article class="panel wide-panel vtt-lede">
+        <p class="eyebrow">Tools of the Trade</p>
+        <h2>Lowest friction wins</h2>
+        <p>${escapeHtml(vtt.intro || vtt.philosophy)}</p>
+        ${vtt.decisionRule ? `<div class="vtt-callout"><strong>Decision rule:</strong> ${escapeHtml(vtt.decisionRule)}</div>` : ""}
       </article>
-      <article class="panel parchment-card">
-        <h2>Decision Status</h2>
-        <dl class="info-list">
-          <dt>Current VTT Decision</dt><dd>${escapeHtml(decision.currentDecision || "Under Discussion")}</dd>
-          <dt>Decision Owner</dt><dd>${escapeHtml(decision.decisionOwner || "Dungeon Master")}</dd>
-          <dt>Group Role</dt><dd>${escapeHtml(decision.groupRole || "")}</dd>
-        </dl>
-      </article>
-      <article class="panel">
-        <h2>Map Policy</h2>
-        ${renderMapPolicy(vtt.mapPolicy || {})}
-      </article>
-      <article class="panel">
-        <h2>Required</h2>
-        <ul class="clean-list">${listItems(needs.required)}</ul>
-      </article>
-      <article class="panel">
-        <h2>Nice to Have</h2>
-        <ul class="clean-list">${listItems(needs.niceToHave)}</ul>
-      </article>
-      <article class="panel">
-        <h2>Not Required for the First Adventure</h2>
-        <ul class="clean-list">${listItems(needs.notRequiredForFirstAdventure)}</ul>
-      </article>
-      <article class="panel wide-panel">
-        <h2>Candidate Tools</h2>
-        <div class="card-grid">
-          ${(vtt.candidates || []).map(renderVttCandidate).join("")}
-        </div>
-      </article>
-      <article class="panel wide-panel">
-        <h2>How Maps Will Be Used</h2>
-        <div class="faq-list">
-          ${DATA.setup.mapFaq.map((item) => `
-            <details>
-              <summary>${escapeHtml(item.question)}</summary>
-              <p>${escapeHtml(item.answer)}</p>
-            </details>
-          `).join("")}
-        </div>
-      </article>
+
+      <section class="content-grid">
+        <article class="panel">
+          <h2>Decision Status</h2>
+          <dl class="info-list">
+            <dt>Current VTT Decision</dt><dd>${escapeHtml(decision.currentDecision || "Under Discussion")}</dd>
+            <dt>Decision Owner</dt><dd>${escapeHtml(decision.decisionOwner || "Dungeon Master")}</dd>
+            <dt>Group Role</dt><dd>${escapeHtml(decision.groupRole || "")}</dd>
+          </dl>
+        </article>
+        <article class="panel parchment-card">
+          <h2>Map Policy</h2>
+          ${renderMapPolicy(vtt.mapPolicy || {})}
+        </article>
+        <article class="panel wide-panel">
+          <p class="eyebrow">Group philosophy</p>
+          <h2>The tool serves the game</h2>
+          <p>${escapeHtml(vtt.philosophy)}</p>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <h2>Required</h2>
+          <ul class="clean-list">${listItems(needs.required)}</ul>
+        </article>
+        <article class="panel">
+          <h2>Nice to Have</h2>
+          <ul class="clean-list">${listItems(needs.niceToHave)}</ul>
+        </article>
+        <article class="panel">
+          <h2>Not Required for the First Adventure</h2>
+          <ul class="clean-list">${listItems(needs.notRequiredForFirstAdventure)}</ul>
+        </article>
+      </section>
+
+      ${renderPlatformDirectory(vtt)}
+      ${renderVttComparison(vtt)}
+
+      <section class="content-grid">
+        <article class="panel wide-panel">
+          <h2>Candidate Tools</h2>
+          <div class="card-grid">
+            ${asArray(vtt.candidates).map(renderVttCandidate).join("")}
+          </div>
+        </article>
+        <article class="panel wide-panel">
+          <h2>How Maps Will Be Used</h2>
+          <div class="faq-list">
+            ${DATA.setup.mapFaq.map((item) => `
+              <details>
+                <summary>${escapeHtml(item.question)}</summary>
+                <p>${escapeHtml(item.answer)}</p>
+              </details>
+            `).join("")}
+          </div>
+        </article>
+      </section>
+
+      ${renderVttSummary(vtt)}
     </section>
   `;
+}
+
+function renderPlatformDirectory(vtt) {
+  const platforms = asArray(vtt.platforms);
+  if (!platforms.length) {
+    return "";
+  }
+
+  return `
+    <section class="vtt-section" aria-labelledby="platform-directory-title">
+      <div class="section-heading">
+        <p class="eyebrow">Alphabetical Directory</p>
+        <h2 id="platform-directory-title">Platforms Discussed</h2>
+        ${vtt.priceNote ? `<p>${escapeHtml(vtt.priceNote)}</p>` : ""}
+      </div>
+      <div class="table-scroll vtt-table-scroll" tabindex="0" aria-label="Scrollable software directory">
+        <table class="platform-table">
+          <thead>
+            <tr>
+              <th scope="col">Platform</th>
+              <th scope="col">Primary Role</th>
+              <th scope="col">Cost / Subscription Model</th>
+              <th scope="col">Best Use for This Group</th>
+              <th scope="col">Product</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${platforms.map((platform) => `
+              <tr>
+                <th scope="row">${escapeHtml(platform.name)}</th>
+                <td>${escapeHtml(platform.primaryRole)}</td>
+                <td>${escapeHtml(platform.costModel)}</td>
+                <td>${escapeHtml(platform.bestUse)}</td>
+                <td>${renderTableLink(platform.buttonLabel || "Open", platform.url)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderVttComparison(vtt) {
+  const comparison = vtt.comparison || {};
+  const columns = asArray(comparison.columns);
+  const rows = asArray(comparison.rows);
+
+  if (!columns.length || !rows.length) {
+    return "";
+  }
+
+  return `
+    <section class="vtt-section" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <p class="eyebrow">Group-Fit Comparison</p>
+        <h2 id="comparison-title">What Actually Matters for This Table</h2>
+        <p class="comparison-legend">
+          <span class="fit yes" aria-label="Good fit">${fitSymbol("yes")}</span> Good fit
+          <span class="fit no" aria-label="Poor fit">${fitSymbol("no")}</span> Poor fit
+          <span class="fit caution" aria-label="Depends on setup or testing">${fitSymbol("caution")}</span> Depends on setup or should be tested
+          <span class="fit na" aria-label="Not applicable">${fitSymbol("na")}</span> Not applicable
+        </p>
+      </div>
+      <div class="table-scroll vtt-table-scroll comparison-scroll" tabindex="0" aria-label="Scrollable VTT comparison table">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">Criteria</th>
+              ${columns.map((column) => `<th scope="col">${renderColumnHeading(column)}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((row) => `
+              <tr${row.isRecommendation ? ` class="recommendation-row"` : ""}>
+                <th scope="row">${escapeHtml(row.criterion)}</th>
+                ${columns.map((column) => renderFitCell(row, column.key)).join("")}
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderVttSummary(vtt) {
+  if (!vtt.workingRecommendation) {
+    return "";
+  }
+
+  return `
+    <section class="vtt-summary">
+      <p class="eyebrow">Working Recommendation</p>
+      <h2>Where We Should Start</h2>
+      <p>${escapeHtml(vtt.workingRecommendation)}</p>
+    </section>
+  `;
+}
+
+function renderTableLink(label, url) {
+  if (!isRealLink(url)) {
+    return `<span class="muted">Not added yet</span>`;
+  }
+
+  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+}
+
+function renderColumnHeading(column) {
+  const label = escapeHtml(column.label);
+  const formattedLabel = label.replaceAll(" ", "<br>");
+  if (!isRealLink(column.url)) {
+    return formattedLabel;
+  }
+
+  return `<a href="${escapeHtml(column.url)}" target="_blank" rel="noopener noreferrer">${formattedLabel}</a>`;
+}
+
+function renderFitCell(row, key) {
+  const value = row.values?.[key] || "na";
+  const note = row.notes?.[key] || "";
+
+  return `
+    <td>
+      <span class="fit ${escapeHtml(value)}" aria-label="${escapeHtml(fitLabel(value))}">${fitSymbol(value)}</span>
+      ${note ? `<small>${escapeHtml(note)}</small>` : ""}
+    </td>
+  `;
+}
+
+function fitSymbol(value) {
+  if (value === "yes") {
+    return "✓";
+  }
+  if (value === "no") {
+    return "✕";
+  }
+  if (value === "caution") {
+    return "△";
+  }
+  return "—";
+}
+
+function fitLabel(value) {
+  if (value === "yes") {
+    return "Good fit";
+  }
+  if (value === "no") {
+    return "Poor fit";
+  }
+  if (value === "caution") {
+    return "Depends on setup or should be tested";
+  }
+  return "Not applicable";
 }
 
 function renderFirstAdventure() {
@@ -1594,7 +1800,9 @@ function renderVttCandidate(candidate) {
         <dt>Limits</dt><dd>${escapeHtml(candidate.limits || candidate.whyItMayNotFit)}</dd>
         <dt>DM workload</dt><dd>${escapeHtml(candidate.dmWorkloadEstimate || "TBD")}</dd>
         <dt>Player setup</dt><dd>${escapeHtml(candidate.playerSetupDifficulty || "TBD")}</dd>
+        <dt>Cost notes</dt><dd>${escapeHtml(candidate.costNotes || "No specific cost note added yet.")}</dd>
       </dl>
+      ${linkButton("Open Product", candidate.url, "button button-small button-secondary")}
     </article>
   `;
 }

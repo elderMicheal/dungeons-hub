@@ -90,8 +90,12 @@
     "recommendedBrowserDeviceNotes": "Use the device you expect to play on. Test microphone, speakers, browser, and any chosen sheet or VTT tool before game night."
   },
   "vtt": {
-    "title": "Maps, Minis, and Virtual Tabletops",
+    "title": "VTT & Game-Night Platform Comparison",
+    "subtitle": "Maps, minis, and virtual tabletops",
+    "intro": "We are not looking for the flashiest virtual tabletop. We are looking for the lowest-friction setup that lets the DM run D&D, lets new players join without a technical scavenger hunt, and keeps Dungeons Hub as the place everyone starts on game night. Discord handles conversation. D&D Beyond may handle character sheets and rules. A VTT should only handle maps and combat when a map actually helps.",
     "philosophy": "A VTT is optional technology for sharing maps, tokens, dice, and tabletop scenes online. We are not choosing a VTT because it has the most features. We are choosing the lightest setup that helps the DM run the game and helps players understand where things are.",
+    "decisionRule": "Choose the lightest tool that helps the DM run the game without turning preparation, setup, or troubleshooting into a second hobby.",
+    "priceNote": "Prices are included for quick comparison. They can change, so confirm current plans, module costs, access rules, and subscriptions through the linked product pages before anyone spends money.",
     "decision": {
       "currentDecision": "Under Discussion",
       "decisionOwner": "Dungeon Master",
@@ -122,6 +126,80 @@
         "Complex automation"
       ]
     },
+    "platforms": [
+      {
+        "name": "D&D Beyond",
+        "primaryRole": "Character sheets, rules reference, and character builder",
+        "costModel": "Free account available. Hero Tier from $2.99/mo or $2.17/mo billed annually; Master Tier from $5.99/mo or $4.58/mo billed annually. Books are sold separately.",
+        "bestUse": "Primary character-sheet and rules destination if the DM chooses that workflow.",
+        "url": "https://www.dndbeyond.com/",
+        "buttonLabel": "Open D&D Beyond"
+      },
+      {
+        "name": "D&D Beyond Maps",
+        "primaryRole": "Browser-based map and encounter tool",
+        "costModel": "Players can use D&D Beyond with a free account. Master Tier from $5.99/mo or $4.58/mo billed annually unlocks stronger Maps VTT features such as custom map uploads; books are sold separately.",
+        "bestUse": "Worth testing because the group may already use D&D Beyond, but it is not the default VTT choice.",
+        "url": "https://www.dndbeyond.com/dungeons-dragons/maps",
+        "buttonLabel": "Open D&D Beyond Maps"
+      },
+      {
+        "name": "Discord",
+        "primaryRole": "Voice chat, text chat, scheduling, and announcements",
+        "costModel": "Free base service. Optional Nitro upgrades are commonly around $2.99/mo to $9.99/mo and are not required for this group.",
+        "bestUse": "Core communication layer before, during, and after sessions.",
+        "url": "https://discord.com/",
+        "buttonLabel": "Open Discord"
+      },
+      {
+        "name": "Fantasy Grounds Unity",
+        "primaryRole": "Full-featured desktop VTT with automation and licensed modules",
+        "costModel": "Fantasy Grounds VTT software is currently free to use. Licensed rules modules, adventures, art subscriptions, and add-ons may still cost extra.",
+        "bestUse": "Possible future option if the group wants deep automation and accepts more setup.",
+        "url": "https://www.fantasygrounds.com/",
+        "buttonLabel": "Open Fantasy Grounds"
+      },
+      {
+        "name": "Foundry VTT",
+        "primaryRole": "Browser VTT with extensive modules and customization",
+        "costModel": "$50 one-time host software license. Players join through a browser. Hosting services, premium modules, or paid content may cost extra.",
+        "bestUse": "Strong future-growth option, but probably too much for the first tutorial adventure.",
+        "url": "https://foundryvtt.com/",
+        "buttonLabel": "Open Foundry VTT"
+      },
+      {
+        "name": "Owlbear Rodeo",
+        "primaryRole": "Lightweight browser maps, tokens, fog, and drawing tools",
+        "costModel": "Free base tier available. Paid plans are commonly around $3.99/mo and $7.99/mo for more storage, rooms, or support.",
+        "bestUse": "Best current fit for quick maps, combat floors, low prep, and beginner access.",
+        "url": "https://www.owlbear.rodeo/",
+        "buttonLabel": "Open Owlbear Rodeo"
+      },
+      {
+        "name": "Roll20",
+        "primaryRole": "Browser VTT with maps, tokens, sheets, dice, marketplace, and automation",
+        "costModel": "Free base tier available. Plus is commonly about $5.99/mo or $59.99/yr; Pro is commonly about $9.99/mo or $109.99/yr. Marketplace content costs extra.",
+        "bestUse": "Useful backup if the group wants a more established all-in-one browser VTT.",
+        "url": "https://roll20.net/",
+        "buttonLabel": "Open Roll20"
+      },
+      {
+        "name": "Tabletop Simulator",
+        "primaryRole": "Steam-based 3D physics tabletop sandbox with Workshop content",
+        "costModel": "$19.99 per copy; $59.99 four-pack. Optional DLC and Workshop assets vary.",
+        "bestUse": "Best for a digital minis-and-terrain experience, not a browser-first site-centered setup.",
+        "url": "https://store.steampowered.com/app/286160/Tabletop_Simulator/",
+        "buttonLabel": "Open Tabletop Simulator"
+      },
+      {
+        "name": "Theater of the Mind + Discord",
+        "primaryRole": "DM narration with maps used only when truly necessary",
+        "costModel": "No VTT cost. Discord free account is sufficient.",
+        "bestUse": "Excellent baseline for roleplay-heavy scenes, travel, exploration, and early learning.",
+        "url": "https://discord.com/",
+        "buttonLabel": "Open Discord"
+      }
+    ],
     "candidates": [
       {
         "toolName": "Theater of the Mind + Discord",
@@ -131,11 +209,12 @@
         "limits": "Players may have less visual clarity during complex combat.",
         "dmWorkloadEstimate": "Low",
         "playerSetupDifficulty": "Low",
-        "costNotes": "",
+        "costNotes": "No VTT cost. Discord free account is enough.",
         "mapSupport": "Optional",
         "characterSheetSupport": "Separate tool",
         "whyItMayFit": "It keeps technology from becoming the game.",
         "whyItMayNotFit": "Complex tactical fights may need a visual aid.",
+        "url": "https://discord.com/",
         "dmNotes": ""
       },
       {
@@ -146,11 +225,12 @@
         "limits": "Character sheets and campaign management live elsewhere.",
         "dmWorkloadEstimate": "",
         "playerSetupDifficulty": "",
-        "costNotes": "",
+        "costNotes": "Free base tier. Paid plans are commonly around $3.99/mo and $7.99/mo for more storage, rooms, or support.",
         "mapSupport": "Yes",
         "characterSheetSupport": "Separate tool",
         "whyItMayFit": "It may be enough when the group only needs a map layer.",
         "whyItMayNotFit": "It may not satisfy groups that want deeper automation.",
+        "url": "https://www.owlbear.rodeo/",
         "dmNotes": ""
       },
       {
@@ -161,11 +241,12 @@
         "limits": "More features can mean more setup and more interface to learn.",
         "dmWorkloadEstimate": "",
         "playerSetupDifficulty": "",
-        "costNotes": "",
+        "costNotes": "Free base tier. Plus is commonly about $5.99/mo or $59.99/yr; Pro is commonly about $9.99/mo or $109.99/yr. Marketplace content costs extra.",
         "mapSupport": "Yes",
         "characterSheetSupport": "Yes",
         "whyItMayFit": "It can centralize more of the tabletop.",
         "whyItMayNotFit": "It may be heavier than the first adventure needs.",
+        "url": "https://roll20.net/",
         "dmNotes": ""
       },
       {
@@ -176,11 +257,44 @@
         "limits": "It should not be chosen only because it is attached to a character-sheet tool.",
         "dmWorkloadEstimate": "",
         "playerSetupDifficulty": "",
-        "costNotes": "",
+        "costNotes": "D&D Beyond has a free account tier. Master Tier starts at $5.99/mo or $4.58/mo billed annually for stronger Maps VTT features; books are sold separately.",
         "mapSupport": "Yes",
         "characterSheetSupport": "D&D Beyond sheets",
         "whyItMayFit": "It may reduce account sprawl if D&D Beyond is already chosen.",
         "whyItMayNotFit": "The DM may prefer a different map workflow.",
+        "url": "https://www.dndbeyond.com/dungeons-dragons/maps",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Foundry VTT",
+        "status": "Considering",
+        "whatItIsFor": "A customizable browser VTT with a large module ecosystem.",
+        "bestFor": "Groups that want a powerful long-term VTT and have someone willing to own setup and hosting.",
+        "limits": "The customization that makes it strong can also create more setup work than a tutorial adventure needs.",
+        "dmWorkloadEstimate": "High until configured",
+        "playerSetupDifficulty": "Medium",
+        "costNotes": "$50 one-time host software license. Hosting services, premium modules, or paid content may cost extra.",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "Possible with setup",
+        "whyItMayFit": "It can grow with a longer campaign if the DM wants that level of control.",
+        "whyItMayNotFit": "It is probably not the lightest first-session tool.",
+        "url": "https://foundryvtt.com/",
+        "dmNotes": ""
+      },
+      {
+        "toolName": "Fantasy Grounds Unity",
+        "status": "Considering",
+        "whatItIsFor": "A full-featured desktop VTT with automation and licensed modules.",
+        "bestFor": "Groups that want deep automation and are comfortable installing and learning a heavier platform.",
+        "limits": "It adds more setup burden than a browser-first beginner path.",
+        "dmWorkloadEstimate": "High",
+        "playerSetupDifficulty": "High",
+        "costNotes": "Fantasy Grounds VTT software is currently free to use. Paid rules modules, adventures, art subscriptions, and add-ons may still apply.",
+        "mapSupport": "Yes",
+        "characterSheetSupport": "Yes",
+        "whyItMayFit": "It may be useful later if the table wants a more automated desktop VTT.",
+        "whyItMayNotFit": "It is too heavy for the current group-prep phase.",
+        "url": "https://www.fantasygrounds.com/",
         "dmNotes": ""
       },
       {
@@ -191,11 +305,12 @@
         "limits": "It can become a technology project instead of a beginner aid.",
         "dmWorkloadEstimate": "",
         "playerSetupDifficulty": "",
-        "costNotes": "",
+        "costNotes": "$19.99 per copy; $59.99 four-pack. Optional DLC and Workshop assets vary.",
         "mapSupport": "Yes",
         "characterSheetSupport": "Separate tool",
         "whyItMayFit": "It can feel like moving pieces around a real table.",
         "whyItMayNotFit": "It is probably more setup than a first tutorial adventure needs.",
+        "url": "https://store.steampowered.com/app/286160/Tabletop_Simulator/",
         "dmNotes": ""
       },
       {
@@ -211,6 +326,7 @@
         "characterSheetSupport": "",
         "whyItMayFit": "The best tool is the one the DM can actually use comfortably.",
         "whyItMayNotFit": "Players may need to learn something unexpected.",
+        "url": "",
         "dmNotes": ""
       }
     ],
@@ -220,7 +336,267 @@
       "useFloorPlansForCombat": "Sometimes",
       "useTheaterOfTheMind": "Often",
       "useMiniatures": "Sometimes"
-    }
+    },
+    "comparison": {
+      "columns": [
+        {
+          "key": "dndBeyond",
+          "label": "D&D Beyond",
+          "url": "https://www.dndbeyond.com/"
+        },
+        {
+          "key": "dndBeyondMaps",
+          "label": "D&D Beyond Maps",
+          "url": "https://www.dndbeyond.com/dungeons-dragons/maps"
+        },
+        {
+          "key": "discord",
+          "label": "Discord",
+          "url": "https://discord.com/"
+        },
+        {
+          "key": "fantasyGrounds",
+          "label": "Fantasy Grounds",
+          "url": "https://www.fantasygrounds.com/"
+        },
+        {
+          "key": "foundry",
+          "label": "Foundry VTT",
+          "url": "https://foundryvtt.com/"
+        },
+        {
+          "key": "owlbear",
+          "label": "Owlbear Rodeo",
+          "url": "https://www.owlbear.rodeo/"
+        },
+        {
+          "key": "roll20",
+          "label": "Roll20",
+          "url": "https://roll20.net/"
+        },
+        {
+          "key": "tabletopSimulator",
+          "label": "Tabletop Simulator",
+          "url": "https://store.steampowered.com/app/286160/Tabletop_Simulator/"
+        },
+        {
+          "key": "theaterOfMind",
+          "label": "Theater of Mind + Discord",
+          "url": ""
+        }
+      ],
+      "rows": [
+        {
+          "criterion": "Players can use it in a browser",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "yes",
+            "discord": "yes",
+            "fantasyGrounds": "no",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "No installed app required for every player",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "yes",
+            "discord": "yes",
+            "fantasyGrounds": "no",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Can show shared maps and battle floor plans",
+          "values": {
+            "dndBeyond": "no",
+            "dndBeyondMaps": "yes",
+            "discord": "no",
+            "fantasyGrounds": "yes",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "yes",
+            "theaterOfMind": "no"
+          }
+        },
+        {
+          "criterion": "Low player setup burden",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "caution",
+            "discord": "yes",
+            "fantasyGrounds": "no",
+            "foundry": "caution",
+            "owlbear": "yes",
+            "roll20": "caution",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Low DM prep for map-only-when-needed play",
+          "values": {
+            "dndBeyond": "na",
+            "dndBeyondMaps": "caution",
+            "discord": "na",
+            "fantasyGrounds": "no",
+            "foundry": "no",
+            "owlbear": "yes",
+            "roll20": "caution",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Supports improvisation and Rule of Cool play",
+          "values": {
+            "dndBeyond": "na",
+            "dndBeyondMaps": "caution",
+            "discord": "na",
+            "fantasyGrounds": "caution",
+            "foundry": "caution",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "caution",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Works alongside Discord instead of replacing it",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "yes",
+            "discord": "yes",
+            "fantasyGrounds": "yes",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "yes",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Fits a D&D Beyond character-sheet workflow if chosen",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "yes",
+            "discord": "yes",
+            "fantasyGrounds": "caution",
+            "foundry": "caution",
+            "owlbear": "yes",
+            "roll20": "caution",
+            "tabletopSimulator": "yes",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Still works well when no map is needed",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "yes",
+            "discord": "yes",
+            "fantasyGrounds": "yes",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "caution",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Provides a 3D minis-and-tabletop feel",
+          "values": {
+            "dndBeyond": "no",
+            "dndBeyondMaps": "no",
+            "discord": "no",
+            "fantasyGrounds": "no",
+            "foundry": "no",
+            "owlbear": "no",
+            "roll20": "no",
+            "tabletopSimulator": "yes",
+            "theaterOfMind": "no"
+          }
+        },
+        {
+          "criterion": "Can plausibly become a Dungeons Hub widget",
+          "values": {
+            "dndBeyond": "no",
+            "dndBeyondMaps": "caution",
+            "discord": "caution",
+            "fantasyGrounds": "no",
+            "foundry": "caution",
+            "owlbear": "caution",
+            "roll20": "no",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Low required cost for players",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "caution",
+            "discord": "yes",
+            "fantasyGrounds": "caution",
+            "foundry": "yes",
+            "owlbear": "yes",
+            "roll20": "yes",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Easy to test and abandon after one tutorial adventure",
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "caution",
+            "discord": "yes",
+            "fantasyGrounds": "no",
+            "foundry": "no",
+            "owlbear": "yes",
+            "roll20": "caution",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          }
+        },
+        {
+          "criterion": "Recommended use for this group right now",
+          "isRecommendation": true,
+          "values": {
+            "dndBeyond": "yes",
+            "dndBeyondMaps": "caution",
+            "discord": "yes",
+            "fantasyGrounds": "no",
+            "foundry": "no",
+            "owlbear": "yes",
+            "roll20": "caution",
+            "tabletopSimulator": "no",
+            "theaterOfMind": "yes"
+          },
+          "notes": {
+            "dndBeyond": "Sheets and rules",
+            "dndBeyondMaps": "Test later",
+            "discord": "Voice and chat",
+            "fantasyGrounds": "Too heavy now",
+            "foundry": "Future option",
+            "owlbear": "Best first map tool",
+            "roll20": "Browser backup",
+            "tabletopSimulator": "Later, if wanted",
+            "theaterOfMind": "Default play style"
+          }
+        }
+      ]
+    },
+    "workingRecommendation": "The cleanest starting setup is Dungeons Hub + Discord + D&D Beyond for character sheets if the DM chooses it + Theater of the Mind, with Owlbear Rodeo added only when a battle map or floor plan will make a scene clearer. That gives the DM room to improvise, keeps player setup low, avoids forcing everyone into a paid installed application, and preserves a simple exit path if the group later decides it wants Roll20, Foundry, Tabletop Simulator, or something else."
   },
   "mapFaq": [
     {
