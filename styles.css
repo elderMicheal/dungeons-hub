@@ -3784,3 +3784,81 @@ details,
     border-radius: 7px 0 0 7px;
   }
 }
+
+/* Final readability pass for parchment pages and compact phones. */
+.page-body {
+  scrollbar-gutter: stable;
+}
+
+.panel details,
+.faq-list details {
+  border-color: rgba(111, 73, 31, 0.38);
+  background: rgba(255, 246, 211, 0.36);
+}
+
+.panel summary,
+.faq-list summary,
+.panel details p,
+.faq-list details p {
+  color: var(--book-ink) !important;
+}
+
+.panel summary {
+  line-height: 1.25;
+}
+
+.panel details[open] summary {
+  border-bottom: 1px solid rgba(111, 73, 31, 0.26);
+}
+
+.panel a:not(.button):not(.footer-link):not(.quick-link):not(.edge-tab),
+.definition-card a,
+.reference-card a {
+  color: #4a2b0e;
+  font-weight: 800;
+}
+
+@media (max-width: 620px) {
+  .book-viewport {
+    padding: 0.45rem 2.18rem 0.45rem 0.42rem;
+  }
+
+  .page-shell.book-page {
+    gap: 0.42rem;
+  }
+
+  .page-hero,
+  .dashboard-hero {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .page-hero h1,
+  .dashboard-hero h1 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .page-body {
+    padding-right: 0.15rem;
+  }
+
+  .panel {
+    padding: 0.72rem;
+  }
+
+  .edge-tabs {
+    top: 0.45rem;
+    right: 0;
+    gap: 0.2rem;
+  }
+
+  .edge-tab {
+    width: 1.98rem;
+    min-height: 2.34rem;
+    padding: 0.24rem 0.05rem;
+  }
+
+  .edge-tab svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
