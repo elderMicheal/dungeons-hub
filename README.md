@@ -1,10 +1,59 @@
 # Dungeons Hub
 
-Static D&D starter hub for dungeons.michealburford.com.
+Static player-facing D&D library and group ledger for `dungeons.michealburford.com`.
 
-The public site is HTML, CSS, and vanilla JavaScript. It has no database, custom backend, user accounts, OAuth requirement, CMS service, or build step.
+The site is plain HTML, CSS, and vanilla JavaScript. There is no backend, database, login system, build step, CMS service, OAuth flow, or custom API.
 
 Repository: https://github.com/elderMicheal/dungeons-hub
+
+## Site Structure
+
+The root URL opens directly into:
+
+```text
+Apprentice Handbook -> Getting Your Bearings
+```
+
+The public site is organized into three volumes:
+
+- `Apprentice Handbook` - player-facing D&D reference material.
+- `The Party Ledger` - group status, announcements, roster, campaign, and sessions.
+- `Table Operations` - public admin structure and future capability register.
+
+These are physical page groups, not hash routes.
+
+## Important Routes
+
+```text
+/
+/handbook/
+/handbook/getting-your-bearings/
+/handbook/beginner/
+/handbook/intermediate/
+/handbook/expert/
+/handbook/glossary/
+/handbook/characters/
+/handbook/tools/
+/handbook/how-a-session-works/
+/handbook/dice-and-rolls/
+
+/ledger/
+/ledger/announcements/
+/ledger/status/
+/ledger/roster/
+/ledger/campaign/
+/ledger/sessions/
+/ledger/journal/
+/ledger/characters/
+
+/operations/
+/operations/character-records/
+/operations/player-records/
+/operations/campaign-admin/
+/operations/content-admin/
+/operations/site-settings/
+/operations/capabilities/
+```
 
 ## Admin Lite
 
@@ -14,94 +63,25 @@ Open:
 https://dungeons.michealburford.com/admin/
 ```
 
-Admin Lite is a browser-only editor for public content files. It:
+Admin Lite remains a browser-only editor for public content files. It can save local drafts and download edited JSON files. It cannot publish directly to GitHub without adding authentication and a write service.
 
-- loads JSON from `content/`,
-- renders editable form fields,
-- saves drafts in this browser with `localStorage`,
-- downloads updated JSON files,
-- never logs in,
-- never talks to a backend,
-- never publishes directly to GitHub.
+## Content Files
 
-This is intentional. A static site can read public files, but it cannot safely write back to the repository without OAuth, a backend, or a CMS service.
+Public content and planning data lives under `content/`.
 
-## Publish Edited Content
+New volume metadata files:
 
-1. Open `/admin/`.
-2. Choose a content file.
-3. Edit the form fields.
-4. Click `Save Draft Here` if you are still working.
-5. Click `Download JSON` when ready.
-6. Replace the matching file under `content/`.
-7. Commit and push the repo.
-8. GitHub Pages redeploys the public site.
+- `content/handbook/index.json`
+- `content/ledger/status.json`
+- `content/operations/capabilities.json`
 
-## Editable Content
-
-Public content lives in `content/`:
-
-- `content/site-settings.json`
-- `content/table-at-a-glance.json`
-- `content/how-we-play.json`
-- `content/character-creation.json`
-- `content/tone-and-boundaries.json`
-- `content/tools-and-links.json`
-- `content/campaign-status.json`
-- `content/group-setup.json`
-- `content/help-and-glossary.json`
-- `content/house-rules/index.json`
-- `content/house-rules/rule-of-cool.json`
-- `content/house-rules/roleplay-first.json`
-- `content/sessions/index.json`
-- `content/change-log/index.json`
-
-The public site loads these files with `fetch()`. If content fails to load, the site keeps navigation visible and shows a friendly unavailable message.
-
-## Update Links
-
-Use Admin Lite:
-
-```text
-Tools and Links
-```
-
-Leave unknown links blank. The public UI shows `Link not added yet` instead of rendering dead `#` links.
-
-## House Rules
-
-Use Admin Lite:
-
-```text
-House Rules Index
-House Rule: Rule of Cool
-House Rule: Roleplay First
-```
-
-Mark old rules `Retired` instead of deleting them. The public Rules page shows active/revised rules by default and preserves the log data.
+Existing public content files are still present for Admin Lite and future migration.
 
 ## Deploy
 
-The current lightweight path is GitHub Pages:
-
-```text
-Push changes to main.
-GitHub Pages publishes the static site.
-```
+Push changes to `main`. GitHub Pages publishes the static files.
 
 No build command is required.
-
-Netlify or Cloudflare Pages can also host the same files as a static site, but Admin Lite still cannot publish without adding an auth/write service.
-
-## Custom Domain
-
-The `CNAME` file contains:
-
-```text
-dungeons.michealburford.com
-```
-
-DNS for the `dungeons` subdomain must point to the selected static host.
 
 ## Local Preview
 
@@ -114,42 +94,34 @@ python -m http.server 8017
 Open:
 
 ```text
-http://localhost:8017/#home
-http://localhost:8017/admin/
+http://localhost:8017/
+http://localhost:8017/handbook/glossary/
+http://localhost:8017/ledger/
+http://localhost:8017/operations/
 ```
 
-## Routes
+## Custom Domain
 
-- `#home`
-- `#start`
-- `#session-minus-one`
-- `#session-zero`
-- `#tools`
-- `#vtt`
-- `#roles`
-- `#rules`
-- `#characters`
-- `#campaign`
-- `#sessions`
-- `#first-adventure`
-- `#watch`
-- `#help`
-- `#admin`
-- `#join`
+The `CNAME` file contains:
+
+```text
+dungeons.michealburford.com
+```
+
+DNS for the `dungeons` subdomain must point to the selected static host.
 
 ## Public Content Security
 
-Anything in this static site can be viewed by visitors.
+Anything deployed with this static site can be viewed by visitors.
 
 Do not commit:
 
-- secret DM notes,
-- hidden monster notes,
-- spoilers,
-- private player information,
-- API keys,
-- tokens,
+- private contact information,
+- Discord handles,
 - passwords,
-- GitHub credentials.
-
-Version 1 has no DM-only secret fields.
+- API keys,
+- account tokens,
+- private DM notes,
+- hidden encounters,
+- unrevealed plot information,
+- player information that has not been approved for public display.

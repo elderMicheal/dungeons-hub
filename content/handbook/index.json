@@ -1,0 +1,10 @@
+{
+  "volume": "Apprentice Handbook",
+  "defaultEntry": "/handbook/getting-your-bearings/",
+  "depthLabels": [
+    "Beginner",
+    "Intermediate",
+    "Expert"
+  ],
+  "purpose": "Public player reference material, not a required course."
+}

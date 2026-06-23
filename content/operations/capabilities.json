@@ -1,0 +1,10 @@
+{
+  "volume": "Table Operations",
+  "adminStatus": "Static site, public content only",
+  "capabilityStatuses": [
+    "Available now",
+    "Local draft only",
+    "Requires account system",
+    "Planned for table use"
+  ]
+}
