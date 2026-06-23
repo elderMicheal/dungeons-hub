@@ -3884,3 +3884,531 @@ details,
     height: 1.22rem;
   }
 }
+
+/* Navigation and readability reset. */
+h1,
+h2,
+h3,
+.brand strong {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.book-front-panel {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(239, 184, 79, 0.1), transparent 16rem),
+    linear-gradient(180deg, #17110d 0%, #0d0a08 100%);
+  color: var(--text);
+}
+
+.front-hero {
+  min-height: clamp(8.75rem, 24vh, 12.5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: 0.65rem;
+  padding: clamp(0.75rem, 1.6vw, 1rem);
+}
+
+.front-hero h1 {
+  font-size: clamp(1.85rem, 4.2vw, 2.85rem);
+  line-height: 1;
+}
+
+.front-hero p {
+  max-width: 42rem;
+  font-size: clamp(0.86rem, 1.2vw, 0.98rem);
+  line-height: 1.38;
+}
+
+.front-hero .hero-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.quick-link-card {
+  min-height: 3.35rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem;
+  padding: 0.48rem 0.55rem;
+  border-radius: 9px;
+}
+
+.quick-link-card .asset-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.quick-link-card strong {
+  font-size: 0.88rem;
+  line-height: 1.05;
+}
+
+.quick-link-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.72rem;
+}
+
+.quick-card-action {
+  display: none;
+}
+
+.panel,
+.character-card,
+.definition-card,
+.reference-card,
+.tool-preview-grid article,
+.roadmap-card,
+.help-tile,
+.future-mini-link,
+.quick-character,
+.tool-link-row,
+.admin-file-card,
+details,
+.stat {
+  border-color: rgba(214, 168, 79, 0.22);
+  background:
+    linear-gradient(180deg, rgba(35, 27, 20, 0.98), rgba(18, 14, 11, 0.98));
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.32);
+  color: var(--text);
+}
+
+.parchment-card {
+  background:
+    linear-gradient(180deg, rgba(38, 30, 22, 0.98), rgba(22, 17, 13, 0.98));
+}
+
+.panel h1,
+.panel h2,
+.panel h3,
+.character-card h2,
+.definition-card h3,
+.definition-card dt,
+.reference-card h3,
+.info-list dt,
+.roadmap-card strong,
+.help-tile strong {
+  color: #fff1d4;
+}
+
+.panel p,
+.panel li,
+.panel dd,
+.panel span,
+.character-card p,
+.character-card li,
+.info-list dd,
+.definition-card dd,
+.definition-card p,
+.reference-card p,
+.roadmap-card span:not(.step-number, .status-pill),
+.help-tile span {
+  color: #e2d0ad;
+}
+
+.panel .eyebrow,
+.page-hero .eyebrow,
+.dashboard-hero .eyebrow {
+  color: #efc36b;
+}
+
+.panel details,
+.faq-list details {
+  border-color: rgba(239, 184, 79, 0.22);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.panel summary,
+.faq-list summary,
+.panel details p,
+.faq-list details p {
+  color: #f7ead4 !important;
+}
+
+.panel a:not(.button):not(.footer-link):not(.quick-link):not(.edge-tab),
+.definition-card a,
+.reference-card a {
+  color: #f3c766;
+}
+
+.edge-tab {
+  position: relative;
+}
+
+.edge-tab::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.45rem);
+  min-width: max-content;
+  max-width: 12rem;
+  transform: translate(0.35rem, -50%);
+  border: 1px solid rgba(239, 184, 79, 0.38);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  background: rgba(11, 8, 6, 0.96);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  color: #fff0bc;
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+
+.edge-tab:hover::after,
+.edge-tab:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.tab-home {
+  background: linear-gradient(135deg, #5c4220, #21160c);
+}
+
+.nav-toast {
+  position: fixed;
+  right: 3.1rem;
+  top: 0.7rem;
+  z-index: 100;
+  max-width: min(16rem, calc(100vw - 4.5rem));
+  transform: translateY(-0.4rem);
+  border: 1px solid rgba(239, 184, 79, 0.42);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  background: rgba(10, 8, 6, 0.96);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  color: #fff0bc;
+  font-size: 0.82rem;
+  font-weight: 850;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+
+.nav-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.update-item {
+  border-color: rgba(239, 184, 79, 0.22);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.update-item time {
+  color: #efc36b;
+}
+
+.update-item strong,
+.update-item p {
+  color: #f7ead4;
+}
+
+@media (max-width: 760px) {
+  .front-hero {
+    min-height: auto;
+  }
+
+  .front-hero .hero-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-link-card {
+    min-height: 3rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .book-front-panel {
+    gap: 0.5rem;
+    padding: 0.55rem;
+  }
+
+  .front-hero {
+    padding: 0.65rem;
+  }
+
+  .front-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .front-hero p {
+    font-size: 0.84rem;
+  }
+
+  .quick-link-card {
+    min-height: 2.85rem;
+    padding: 0.4rem 0.48rem;
+  }
+
+  .quick-link-description {
+    display: none;
+  }
+}
+
+/* Low-brown palette correction. Keep fantasy cues, remove the muddy parchment wash. */
+:root {
+  --bg: #050608;
+  --bg-soft: #0a0d11;
+  --surface: #101419;
+  --surface-2: #151b22;
+  --surface-3: #1d2530;
+  --text: #f4f0e8;
+  --muted: #c9c2b8;
+  --gold: #d8b35c;
+  --gold-soft: #7f6938;
+  --red: #7b2228;
+  --green: #173b30;
+  --blue: #18394d;
+  --purple: #2c2542;
+  --border: #35404a;
+  --line: rgba(222, 210, 188, 0.16);
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(216, 179, 92, 0.09), transparent 18rem),
+    radial-gradient(circle at 92% 8%, rgba(55, 96, 122, 0.12), transparent 21rem),
+    linear-gradient(180deg, #050608 0%, #080a0d 48%, #030405 100%);
+}
+
+.site-shell {
+  background: #050608;
+}
+
+.book-viewport {
+  background:
+    linear-gradient(90deg, rgba(216, 179, 92, 0.1), transparent 2.2rem),
+    linear-gradient(180deg, #0a0d11, #050608);
+}
+
+.binding::before,
+.binding::after,
+.binding span {
+  background: linear-gradient(90deg, transparent, rgba(216, 179, 92, 0.48), transparent);
+}
+
+.book-cover-panel {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(216, 179, 92, 0.14), transparent 12rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 18%, rgba(0, 0, 0, 0.46)),
+    linear-gradient(150deg, #090b0f, #171d25 52%, #06070a 100%);
+}
+
+.book-cover-panel,
+.book-front-panel,
+.page-hero,
+.dashboard-hero,
+.starter-hero {
+  border-color: rgba(216, 179, 92, 0.28);
+  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(216, 179, 92, 0.08);
+}
+
+.page-hero,
+.dashboard-hero,
+.starter-hero {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(52, 90, 115, 0.12), transparent 18rem),
+    linear-gradient(180deg, #101419, #080a0d);
+}
+
+.book-cover-panel::before,
+.book-front-panel::before,
+.starter-hero::before,
+.page-hero::before,
+.dashboard-hero::before {
+  border-color: rgba(216, 179, 92, 0.22);
+}
+
+.book-front-panel {
+  background:
+    radial-gradient(circle at 20% 0%, rgba(216, 179, 92, 0.07), transparent 15rem),
+    radial-gradient(circle at 92% 12%, rgba(52, 90, 115, 0.12), transparent 18rem),
+    linear-gradient(180deg, #101419 0%, #080a0d 100%);
+}
+
+.front-hero {
+  border-color: rgba(216, 179, 92, 0.22);
+  background:
+    linear-gradient(90deg, rgba(5, 6, 8, 0.9), rgba(5, 6, 8, 0.54) 48%, rgba(5, 6, 8, 0.42)),
+    linear-gradient(180deg, rgba(19, 44, 60, 0.28), rgba(5, 6, 8, 0.18)),
+    url("assets/dungeons-asset-back.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.front-hero h1,
+.book-cover-panel h1,
+.page-hero h1,
+.dashboard-hero h1 {
+  color: #f6efe1;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.78);
+}
+
+.book-cover-panel p:not(.eyebrow),
+.front-hero p,
+.page-hero p,
+.dashboard-hero p {
+  color: #d8d0c4;
+}
+
+.panel,
+.character-card,
+.definition-card,
+.reference-card,
+.tool-preview-grid article,
+.roadmap-card,
+.help-tile,
+.future-mini-link,
+.quick-character,
+.tool-link-row,
+.admin-file-card,
+details,
+.stat,
+.update-item {
+  border-color: rgba(216, 179, 92, 0.16);
+  background: linear-gradient(180deg, rgba(19, 24, 30, 0.98), rgba(11, 14, 18, 0.98));
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
+}
+
+.parchment-card {
+  background: linear-gradient(180deg, rgba(22, 28, 35, 0.98), rgba(12, 15, 19, 0.98));
+}
+
+.panel h1,
+.panel h2,
+.panel h3,
+.character-card h2,
+.definition-card h3,
+.definition-card dt,
+.reference-card h3,
+.info-list dt,
+.roadmap-card strong,
+.help-tile strong,
+.update-item strong {
+  color: #f4f0e8;
+}
+
+.panel p,
+.panel li,
+.panel dd,
+.panel span,
+.character-card p,
+.character-card li,
+.info-list dd,
+.definition-card dd,
+.definition-card p,
+.reference-card p,
+.roadmap-card span:not(.step-number, .status-pill),
+.help-tile span,
+.update-item p {
+  color: #cfc7bb;
+}
+
+.panel .eyebrow,
+.page-hero .eyebrow,
+.dashboard-hero .eyebrow,
+.update-item time {
+  color: #d8b35c;
+}
+
+.panel details,
+.faq-list details {
+  border-color: rgba(216, 179, 92, 0.16);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.panel summary,
+.faq-list summary,
+.panel details p,
+.faq-list details p {
+  color: #f4f0e8 !important;
+}
+
+.button,
+.footer-link {
+  border-color: rgba(216, 179, 92, 0.35);
+  background: linear-gradient(180deg, #2c333d, #151a20);
+  color: #f4f0e8;
+}
+
+.button-primary,
+.quick-link-primary,
+.cover-open-button {
+  background: linear-gradient(180deg, #9d7a34, #50401f);
+  color: #fff5d7;
+}
+
+.quick-link-card {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.quick-link-card:nth-child(1) {
+  background: linear-gradient(135deg, #6f2026, #2a1014);
+}
+
+.quick-link-card:nth-child(2) {
+  background: linear-gradient(135deg, #2c2542, #171322);
+}
+
+.quick-link-card:nth-child(3) {
+  background: linear-gradient(135deg, #173b30, #0e211b);
+}
+
+.quick-link-card:nth-child(4) {
+  background: linear-gradient(135deg, #18394d, #0d202d);
+}
+
+.tab-home,
+.tab-help {
+  background: linear-gradient(135deg, #2c333d, #101419);
+}
+
+.tab-start {
+  background: linear-gradient(135deg, #7b2228, #2a1014);
+}
+
+.tab-tools {
+  background: linear-gradient(135deg, #2c2542, #171322);
+}
+
+.tab-rules {
+  background: linear-gradient(135deg, #173b30, #0e211b);
+}
+
+.tab-roles {
+  background: linear-gradient(135deg, #18394d, #0d202d);
+}
+
+.tab-join {
+  background: linear-gradient(135deg, #3a2a59, #1a1427);
+}
+
+.site-footer.command-deck,
+.command-nav {
+  background: linear-gradient(180deg, #0b0e12, #050608);
+}
+
+.command-link,
+.command-disabled {
+  border-right-color: rgba(216, 179, 92, 0.12);
+  color: #d8d0c4;
+}
+
+.command-link:hover,
+.command-link:focus-visible,
+.command-link.is-active,
+.command-link.active {
+  background: rgba(216, 179, 92, 0.11);
+  color: #f4f0e8;
+}
+
+.nav-toast,
+.edge-tab::after {
+  border-color: rgba(216, 179, 92, 0.32);
+  background: rgba(7, 9, 12, 0.97);
+  color: #f4f0e8;
+}

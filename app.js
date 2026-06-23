@@ -443,10 +443,7 @@ function renderSiteFooter() {
     <nav class="command-nav" aria-label="Dungeons Hub commands">
       ${footerRouteLink("Home", "home", "home")}
       ${footerRouteLink("Start", "start", "book")}
-      ${footerRouteLink("Setup", "session-minus-one", "spark")}
-      ${footerRouteLink("Zero", "session-zero", "users")}
       ${footerRouteLink("Tools", "tools", "tools")}
-      ${footerRouteLink("VTT", "vtt", "d20")}
       ${footerRouteLink("Rules", "rules", "scales")}
       ${footerRouteLink("Roles", "roles", "mask")}
       ${footerRouteLink("Help", "help", "help")}
@@ -459,7 +456,8 @@ function renderSiteFooter() {
 }
 
 function footerRouteLink(label, route, iconName) {
-  return `<a class="command-link" href="#${escapeHtml(route)}" data-route-link="${escapeHtml(route)}" aria-label="${escapeHtml(label)}">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
+  const href = route === "home" ? "./" : `#${escapeHtml(route)}`;
+  return `<a class="command-link" href="${href}" data-route-link="${escapeHtml(route)}" aria-label="${escapeHtml(label)}">${spriteIcon(iconName)}<span>${escapeHtml(label)}</span></a>`;
 }
 
 function footerCommandLink(label, url, iconName) {
@@ -603,6 +601,29 @@ function resetBookPosition() {
   bookViewport?.scrollTo?.(0, 0);
 }
 
+function showNavigationToast(label) {
+  if (!label) {
+    return;
+  }
+
+  let toast = document.getElementById("navToast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "navToast";
+    toast.className = "nav-toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = label;
+  toast.classList.add("is-visible");
+  window.clearTimeout(showNavigationToast.timer);
+  showNavigationToast.timer = window.setTimeout(() => {
+    toast.classList.remove("is-visible");
+  }, 1100);
+}
+
 function setupHomeCover() {
   const homeBook = app.querySelector("[data-home-book]");
   if (!homeBook) {
@@ -625,7 +646,12 @@ function renderHome() {
 
 function renderStarterHome() {
   const home = DATA.starterHome;
-  const primaryLinks = DATA.quickLinks.slice(0, 6);
+  const primaryLinks = [
+    { label: "Start Here", description: "Begin the guide.", route: "start", icon: "book" },
+    { label: "Join Discord", description: "Open Discord.", linkKey: "discordInvite", icon: "discord" },
+    { label: "Tools", description: "See the tools.", route: "tools", icon: "tools" },
+    { label: "Help", description: "Terms and answers.", route: "help", icon: "book" }
+  ];
 
   return `
     <section class="home-book" data-home-book>
@@ -2483,11 +2509,16 @@ function setupGlossarySearch() {
 document.addEventListener("click", (event) => {
   const routeLink = event.target.closest("a[data-route-link]");
   if (routeLink) {
+    if (routeLink.classList.contains("edge-tab")) {
+      showNavigationToast(routeLink.getAttribute("aria-label") || routeLink.textContent.trim());
+    }
+
     const route = routeLink.dataset.routeLink;
     if (route && route === currentRoute) {
       resetBookPosition();
-      if (route === "home") {
-        setupHomeCover();
+      if (route === "home" && window.location.hash) {
+        window.history.pushState("", document.title, window.location.pathname);
+        renderRoute();
       }
     }
   }
@@ -2544,6 +2575,20 @@ document.addEventListener("click", (event) => {
     entries.splice(index, 1);
     saveInitiative(entries);
     refreshInitiativeList();
+  }
+});
+
+document.addEventListener("pointerover", (event) => {
+  const tab = event.target.closest(".edge-tab");
+  if (tab) {
+    showNavigationToast(tab.getAttribute("aria-label") || tab.textContent.trim());
+  }
+});
+
+document.addEventListener("focusin", (event) => {
+  const tab = event.target.closest(".edge-tab");
+  if (tab) {
+    showNavigationToast(tab.getAttribute("aria-label") || tab.textContent.trim());
   }
 });
 
